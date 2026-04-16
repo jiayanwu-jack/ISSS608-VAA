@@ -37,7 +37,7 @@ exam_data <- read_csv("data/Exam_data.csv")
 
     -   The continuous attributes are: MATHS, ENGLISH and SCIENCE.
 
-## **1.3 Introducing ggplot**
+## 1.3 Introducing ggplot
 
 ggplot is an R package for declaratively creating data-driven graphics based on The Grammar of Graphics
 
@@ -49,7 +49,7 @@ It is also part of the tidyverse family specially designed for visual exploratio
 
 -   For more detail, visit [ggplot2 link](https://ggplot2.tidyverse.org/).
 
-### **1.3.1 R Graphics VS ggplot**
+### 1.3.1 R Graphics VS ggplot
 
 First, let us compare how R Graphics, the core graphical functions of Base R and ggplot plot a simple histogram.
 
@@ -133,7 +133,7 @@ note:
 
 -   If the dataset is not already a data.frame, it will be converted to one by `fortify()`.
 
-## 1.6 Essential Grammatical Elements in ggplot2: [**Aesthetic mappings**](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
+## 1.6 Essential Grammatical Elements in ggplot2: [Aesthetic mappings](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
 
 The aesthetic mappings take attributes of the data and and use them to influence visual characteristics, such as position, colour, size, shape, or transparency. Each visual characteristic can thus encode an aspect of the data and be used to convey information.
 
@@ -147,7 +147,7 @@ ggplot(data=exam_data, aes(x= MATHS))
 
 note: ggplot includes the x-axis and the axis’s label.
 
-## **1.7 Essential Grammatical Elements in ggplot2: geom**
+## 1.7 Essential Grammatical Elements in ggplot2: geom
 
 Geometric objects are the actual marks we put on a plot. Examples include:
 
