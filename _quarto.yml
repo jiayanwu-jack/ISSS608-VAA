@@ -19,7 +19,7 @@ format:
     theme: morph
     css: styles.css
     toc: true
-    code-block-bg: "#f8f9fa"  # Use any Hex color code here
-    code-block-border-left: "#31BAE9" # Optional: adds a colored line on the left
+    code-block-bg: "#f8f9fa"
+    code-block-border-left: "#31BAE9"
 editor: visual
 
