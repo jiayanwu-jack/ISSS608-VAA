@@ -507,6 +507,17 @@ In order to identify subplots in text, patchwork also provides auto-tagging capa
 ```
 :::
 
+Other tagging options:
+
+|                |                                       |
+|----------------|---------------------------------------|
+| **Level Code** | **Result**                            |
+| `'a'`          | Lowercase letters (a, b, c)           |
+| `'A'`          | Uppercase letters (A, B, C)           |
+| `'1'`          | Numbers (1, 2, 3)                     |
+| `'i'`          | Lowercase Roman numerals (i, ii, iii) |
+| `'I'`          | Uppercase Roman numerals (I, II, III) |
+
 ### **2.5.5 Creating figure with insert**
 
 The [inset_element()](https://patchwork.data-imaginist.com/reference/inset_element.html) of patchwork can place one or several plots or graphic elements freely on top or below another plot, as demonstrated in the following code chunk:
