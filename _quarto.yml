@@ -23,5 +23,10 @@ format:
     toc: true
     code-block-bg: "#f8f9fa"
     code-block-border-left: "#31BAE9"
+    code-overflow: scroll
+    grid:
+      body-width: 1100px
+      sidebar-width: 250px
+      margin-width: 200px
 editor: visual
 

@@ -466,6 +466,8 @@ We can plot more complex composite by using appropriate operators. For example, 
 
 ```{r}
 #| echo: false
+#| out-width: "100%"
+#| fig-width: 12
 (p1 / p2) | p3
 ```
 
@@ -473,6 +475,8 @@ We can plot more complex composite by using appropriate operators. For example, 
 
 ```{r}
 #| eval: false
+#| out-width: "100%"
+#| fig-width: 12
 (p1 / p2) | p3
 ```
 :::
@@ -486,6 +490,8 @@ In order to identify subplots in text, patchwork also provides auto-tagging capa
 
 ```{r}
 #| echo: false
+#| out-width: "100%"
+#| fig-width: 12
 ((p1 / p2) | p3) + 
   plot_annotation(tag_levels = '1')
 ```
@@ -494,6 +500,8 @@ In order to identify subplots in text, patchwork also provides auto-tagging capa
 
 ```{r}
 #| eval: false
+#| out-width: "100%"
+#| fig-width: 12
 ((p1 / p2) | p3) + 
   plot_annotation(tag_levels = '1')
 ```
@@ -536,6 +544,8 @@ Code chunk combines patchwork and theme_economist() of ggthemes package.
 
 ```{r}
 #| echo: false
+#| out-width: "100%"
+#| fig-width: 12
 patchwork <- (p1 / p2) | p3
 patchwork & theme_economist()
 ```
@@ -544,6 +554,8 @@ patchwork & theme_economist()
 
 ```{r}
 #| eval: false
+#| out-width: "100%"
+#| fig-width: 12
 patchwork <- (p1 / p2) | p3
 patchwork & theme_economist()
 ```
