@@ -11,6 +11,10 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html"
           - text: "Hands-on Exercise 2"
             href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html"
+      - text: "In-class Exercise"
+        menu: 
+          - text: "In-class Exercise 2"
+            href: "https://public.tableau.com/app/profile/jiayan.wu/viz/In-Class_Ex02_17771004530650/Dashboard1?publish=yes"
     right: 
       - href: index.qmd
         text: Home
