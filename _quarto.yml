@@ -1,0 +1,81 @@
+project:
+  type: website
+
+website:
+  title: "ISSS608-VAA"
+  navbar:
+    left:
+      - text: "Hands-on Exercise"
+        menu: 
+          - text: "Hands-on Exercise 1: Introduction to Visual Analytics"
+            href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html"
+          - text: "Hands-on Exercise 2: Designing Graphs to Enlighten"
+            href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html"
+          - text: "Hands-on Exercise 3a: Programming Interactive Data Visualisation with R"
+            href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html"
+          - text: "Hands-on Exercise 3b: Programming Animated Statistical Graphics with R"
+            href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html"
+          - text: "Hands-on Exercise 4a: Visualising Distribution"
+            href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html"
+          - text: "Hands-on Exercise 4b: Visual Statistical Analysis"
+            href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html"
+          - text: "Hands-on Exercise 4c: Visualising Uncertainty"
+            href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html"
+          - text: "Hands-on Exercise 4d: Building Funnel Plot with R"
+            href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html"
+          - text: "Hands-on Exercise 5a: Building Ternary Plot with R"
+            href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html"
+          - text: "Hands-on Exercise 5b: Visual Correlation Analysis"
+            href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html"
+          - text: "Hands-on Exercise 5c: Visual Multivariate Analysis with Heatmap"
+            href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html"
+          - text: "Hands-on Exercise 5d: Visual Multivariate Analysis with Parallel Coordinates Plot"
+            href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html"
+          - text: "Hands-on Exercise 5e: Treemap Visualisation with R"
+            href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html"
+      - text: "In-class Exercise"
+        menu: 
+          - text: "In-class Exercise 1"
+            href: "https://public.tableau.com/app/profile/jiayan.wu/viz/In-Class_Ex02_17771004530650/Dashboard1?publish=yes"
+          - text: "In-class Exercise 2"
+            href: "https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex03_17777052978680/SuperstoreSalesReport?publish=yes" 
+          - text: "In-class Exercise 3"
+            href: "https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex03b_17777067081690/AgeGroupbyGenderandPlanningArea?publish=yes"
+          - text: "In-class Exercise 4a"
+            href: "https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex04Showmethestatistics/EnglishScoreStatistics?publish=yes"
+          - text: "In-class Exercise 4b"
+            href: "https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex04Divergingstackedbarchart/FoodServiceKPIReport?publish=yes"
+          - text: "In-class Exercise 5a"
+            href: "https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex05_17789148967870/Treemapofnumberofunitssoldandunitpricebygeography?publish=yes"
+          - text: "In-class Exercise 5b"
+            href: "https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex05b_17789167119670/Treepmapofsalesandprofitbygeography?publish=yes"
+      - text: "Take-home Exercise"
+        menu: 
+          - text: "Take-home Exercise 1: Executive Summary"
+            href: "Take-home_Ex/Take-home_Ex01/executive_summary.html"
+          - text: "Take-home Exercise 1: Technical Report"
+            href: "Take-home_Ex/Take-home_Ex01/technical_report.htmly"
+    right: 
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark:  darkly
+    highlight-style:
+      light: arrow-light
+      dark:  arrow-dark
+    css: styles.css
+    toc: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    code-overflow: scroll
+    grid:
+      body-width: 1100px
+      sidebar-width: 250px
+      margin-width: 200px
+editor: visual
+

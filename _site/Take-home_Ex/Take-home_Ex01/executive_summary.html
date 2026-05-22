@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
+
+  <meta name="author" content="Wu Jiayan">
+  <meta name="dcterms.date" content="2026-05-10">
+  <title>ISSS608-VAA – Motor Insurance Portfolio</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-43c1d28654fb9b901a1d15ca4f0fd7c5.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Motor Insurance Portfolio</h1>
+  <p class="subtitle">Visual Analytics for Data Discovery</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Wu Jiayan 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-05-10</p>
+</section>
+<section id="contents" class="slide level2 smaller">
+<h2>Contents</h2>
+<div>
+<ol type="1">
+<li><strong>Dataset Overview</strong> — Portfolio scope, structure and key KPIs</li>
+<li><strong>Univariate: Premium &amp; Claims</strong> — Distribution shape and skewness</li>
+<li><strong>Univariate: Categorical Variables</strong> — Coverage, bonus score and geography</li>
+<li><strong>Temporal Trends</strong> — Year-on-year premium, claims and loss ratio</li>
+<li><strong>Bivariate: Driver Age vs Risk</strong> — Frequency-severity trade-off</li>
+<li><strong>Bivariate: Bonus Score vs Loss Ratio</strong> — Claims history as risk discriminator</li>
+<li><strong>Bivariate: Coverage Type vs Profitability</strong> — Product line analysis</li>
+<li><strong>Bivariate: Vehicle Value</strong> — U-shaped loss ratio and rising frequency</li>
+<li><strong>Bivariate: Urban vs Rural</strong> — Geographic risk divergence</li>
+<li><strong>Correlation Landscape</strong> — Premium structure and predictive power</li>
+<li><strong>Key Insights &amp; Recommendations</strong></li>
+</ol>
+</div>
+<aside class="notes">
+<p>This presentation applies visual analytics to a real-world Spanish motor insurance portfolio from Mendeley Data, covering 354,140 policy-year observations across 2022–2024. The investigation follows a structured pipeline: univariate exploration of individual variables, followed by bivariate analysis testing factors that influence profitability (loss ratio, profit per policy) and volatility (claim frequency, claim severity). All visuals are produced with ggplot2 and its extensions within the tidyverse ecosystem.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="dataset-overview" class="slide level2">
+<h2>Dataset Overview</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/overview-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li><strong>354,140</strong> policy-year records · <strong>189,576</strong> unique policyholders · Portfolio loss ratio: <strong>70.3%</strong> · Claim frequency: <strong>14.3%</strong></li>
+<li>Portfolio grew at a CAGR of ~65% (2022–2024); <strong>Third Party+Multi-Cover (CC)</strong> is the dominant product at 57.8%, followed by Comprehensive (With Excess) at 25.8%</li>
+<li>The dataset is organised into four variable groups: Policy &amp; Insured Characteristics, Driver &amp; Vehicle Characteristics, Premiums, and Exposure/Claims/Incurred</li>
+</ul>
+</div>
+<aside class="notes">
+<p>The dataset from Mendeley Data covers 354,140 policy-year records across 2022–2024. Total written premium is €105.1M with €73.9M incurred, yielding an overall loss ratio of 70.3%. The claim frequency of 14.3% means roughly 1 in 7 policies generates at least one claim per year. The portfolio grew substantially each year at a CAGR of ~65%, driven by both new business and renewals. Third Party+Multi-Cover (CC) dominates at 57.8% of policies.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-1-premium-claims-distributions" class="slide level2">
+<h2>Observation 1 — Premium &amp; Claims Distributions</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/premium-claims-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li>Both distributions are strongly <strong>right-skewed</strong> — a small number of high-value policies and catastrophic claims dominate the upper tails</li>
+<li>Annual premium median is <strong>~€258</strong>; the long upper tail reflects high-value comprehensive covers</li>
+<li>Incurred losses are even more extremely skewed — consistent with <strong>log-normal or Pareto loss models</strong>; reserve calculations must account for the heavy upper tail</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Total annual premiums have a median of €258, indicating most policies are modestly priced while high-value comprehensive covers create the long upper tail. Incurred losses among claimants show even more extreme right skewness — a hallmark of insurance loss distributions. Both were truncated at the 99.5th percentile for clarity. Mean-based pricing overestimates the typical policy cost; the median is a more appropriate central tendency measure for actuarial pricing here.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-2-categorical-variable-distributions" class="slide level2">
+<h2>Observation 2 — Categorical Variable Distributions</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/categoricals-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li><strong>Third Party+Multi-Cover (CC)</strong> is the largest segment at 57.8%; Comprehensive (With Excess) follows at 25.8%</li>
+<li><strong>96.5%</strong> of policyholders hold a Good bonus score — a positive quality signal, but limits discriminatory power for the majority</li>
+<li><strong>Urban policies dominate</strong> across all municipality types (Inland, Coastal, Islands); island policies show distinct risk profiles from the mainland</li>
+</ul>
+</div>
+<aside class="notes">
+<p>The portfolio is dominated by Third Party+Multi-Cover (CC) at 57.8%, followed by Comprehensive with excess (COMP_E) at 25.8%. The bonus score distribution is heavily skewed toward Good (96.5%), though the 3.5% with Neutral or Bad scores are disproportionately important for risk segmentation. Urban policies dominate across all municipality types. Inland and coastal distinctions matter for territorial pricing.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-3-temporal-trends-20222024" class="slide level2">
+<h2>Observation 3 — Temporal Trends (2022–2024)</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/temporal-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li>Premium written grew at a CAGR of <strong>~65%</strong> (2022–2024), reflecting aggressive portfolio expansion</li>
+<li>Loss ratio was <strong>stable at ~66% in 2022 and 2023</strong>, then <strong>spiked sharply to 74.7% in 2024</strong> — a 9 pp single-year deterioration</li>
+<li><strong>The 2024 spike is not a gradual drift</strong> — it is more consistent with a large claims event, reserve strengthening, or a structural shift; root cause investigation is urgently required before any pricing action</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Premium written grew at a CAGR of approximately 65% over 2022–2024. The loss ratio was stable at ~66% in both 2022 and 2023, then jumped sharply to 74.7% in 2024 — a 9 pp single-year deterioration. This sudden spike, rather than a gradual drift, warrants urgent root cause investigation before any pricing action is taken in 2025.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-4-driver-age-vs-claim-frequency-and-severity" class="slide level2">
+<h2>Observation 4 — Driver Age vs Claim Frequency and Severity</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/driver-age-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li>Claim frequency <strong>declines monotonically</strong> with age: <strong>20.5% (18–25)</strong> → <strong>12.1% (66+)</strong> — youngest drivers are 70% more likely to claim</li>
+<li>Severity moves in the <strong>opposite direction</strong>: 66+ drivers generate the <strong>highest average cost at €1,982/claim</strong> vs €1,658 for the 26–35 group</li>
+<li><strong>Frequency and severity must be priced separately</strong> — a simple loss ratio approach obscures this critical trade-off; a two-part GLM (frequency × severity) is recommended</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Driver age reveals a critical frequency-severity trade-off. Claim frequency declines monotonically from 20.5% for the youngest cohort to 12.1% for the oldest. However, severity moves in the opposite direction: the 66+ cohort generates the highest average incurred cost at €1,982, versus the lowest at €1,658 for the 26–35 group. A two-part GLM is strongly recommended to correctly price both dimensions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-5-bonus-score-vs-loss-ratio" class="slide level2">
+<h2>Observation 5 — Bonus Score vs Loss Ratio</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/bonus-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li><strong>Neutral (81.4%)</strong> is actually worse than <strong>Bad (79.0%)</strong> — both far exceed Good (69.7%); Neutral policyholders may represent a deteriorating segment transitioning toward Bad</li>
+<li>Claim frequency gap: Bad at <strong>21.9%</strong> vs Good at <strong>14.2%</strong> — a 7.7 pp differential driven by both frequency and severity</li>
+<li>Ridge plot confirms <strong>Bad/Neutral policyholders pay higher premiums</strong> (mean €589/€416 vs €290 for Good), but the residual loss ratio gap shows the <strong>current loading is still insufficient</strong> — a 12–15% additional loading is required</li>
+</ul>
+</div>
+<aside class="notes">
+<p>The bonus score is a meaningful risk discriminator with a surprising finding: the Neutral category (81.4% loss ratio) is actually worse than Bad (79.0%), both far exceeding Good (69.7%). This suggests Neutral policyholders represent a deteriorating segment. The claim frequency gap is substantial — Bad at 21.9% versus Good at 14.2%. The ridge plot confirms Bad/Neutral policyholders pay more, but the persistent loss ratio gap indicates current loadings are insufficient.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-6-coverage-type-vs-profitability" class="slide level2">
+<h2>Observation 6 — Coverage Type vs Profitability</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/coverage-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li><strong>Comprehensive (No Excess) — COMP_N — has the worst loss ratio at 93.9%</strong>: without any excess, policyholders bear no cost-sharing incentive, driving small-claim frequency up</li>
+<li><strong>Third Party</strong> achieves the best loss ratio (~54.3%) but represents only 1.6% of the portfolio</li>
+<li>Violin plots confirm <strong>COMP_N and Comprehensive (With Excess) carry the widest downside profit distributions</strong> — the greatest per-policy volatility in the book</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Coverage type is a key driver of portfolio profitability. Third Party achieves the best loss ratio at 54.3% but represents only 1.6% of policies. COMP_N at 93.9% is the standout concern — without any excess, policyholders bear no cost-sharing incentive. Third Party+Multi-Cover (CC) performs better than expected at 63.4%. The violin plots show COMP_N and COMP_E carry the widest downside profit distributions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-7-vehicle-value-vs-loss-ratio" class="slide level2">
+<h2>Observation 7 — Vehicle Value vs Loss Ratio</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/vehicle-value-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li><strong>Loss ratio is U-shaped</strong> — Q1: 72.3%, Q2: 69.3%, Q3: 69.0%, Q4: 67.2%, Q5: 73.3%; <strong>mid-value vehicles (Q3–Q4) are most profitable</strong>, not the cheapest</li>
+<li><strong>Claim frequency rises monotonically</strong> from 10.9% (Q1) to 17.9% (Q5) — higher-value vehicles are claimed more often</li>
+<li>The vehicle value loading in theft and property premiums (r ≈ 0.33–0.41) <strong>only partially compensates</strong> for the elevated frequency at the top quintile</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Vehicle value reveals a nuanced pattern contradicting simple assumptions. The loss ratio is U-shaped — mid-value vehicles (Q3–Q4) are actually the most profitable. This is likely because low-value vehicles (Q1) have high claim frequency relative to their low premium base. Claim frequency does rise monotonically from 10.9% (Q1) to 17.9% (Q5). The vehicle value loading in theft and property damage premiums only partially compensates.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-8-urban-vs-rural-risk" class="slide level2">
+<h2>Observation 8 — Urban vs Rural Risk</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/urban-rural-1.png" width="1152" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li>Urban loss ratio (<strong>71.4%</strong>) exceeds rural (<strong>68.9%</strong>) overall; in 2022 urban was actually more profitable — the <strong>gap only clearly emerges from 2024</strong> (urban 76.3% vs rural 72.6%)</li>
+<li>The urban disadvantage <strong>persists across all age groups</strong>; young urban drivers (18–25) show the highest claim frequency at <strong>22.2% vs 18.9%</strong> for rural peers</li>
+<li>The <strong>urban-age interaction</strong> supports a two-dimensional rating structure rather than treating geography and age as independent additive factors</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Urban policyholders have a higher overall loss ratio (71.4% vs 68.9% rural). Crucially, in 2022 urban was actually more profitable than rural; the gap only diverged sharply in 2024. The age-stratified analysis confirms the urban disadvantage persists across all age groups, with young urban drivers showing the highest claim frequency at 22.2% versus 18.9% for rural peers. This urban-age interaction supports a two-dimensional rating factor structure.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observation-9-correlation-landscape" class="slide level2">
+<h2>Observation 9 — Correlation Landscape</h2>
+
+<img data-src="executive_summary_files/figure-revealjs/correlation-1.png" style="width:100.0%" class="r-stretch"><div style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;">
+<ul>
+<li>Premium components are <strong>moderately to strongly correlated</strong> with total premium (Property r=0.75, Liability r=0.68, Glass r=0.52, Theft r=0.49) — reflecting a common pricing model</li>
+<li><strong>Total incurred shows a very weak correlation with premium (r≈0.07)</strong> — individual policy outcomes are largely unpredictable; portfolio diversification is essential</li>
+<li>Vehicle value correlates with premium (r≈0.32) and theft/property premiums (r≈0.33–0.41); driver age has a very weak negative correlation with claims (r≈−0.03) — <strong>multivariate modelling is essential</strong></li>
+</ul>
+</div>
+<aside class="notes">
+<p>The correlation matrix reveals the internal structure of the premium model. Premium components correlate moderately to strongly with total premium. Most importantly, total incurred shows a very weak correlation with premium (r ≈ 0.07), confirming individual policy outcomes are highly stochastic. Vehicle value correlates positively with premium and theft/property premiums, validating the rating model. Driver age has a very weak negative correlation with claim counts — age alone explains minimal variance.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="key-insights-recommendations" class="slide level2">
+<h2>Key Insights &amp; Recommendations</h2>
+<div class="columns" style="font-size:0.56em; line-height:1.22;">
+<div class="column" style="width:50%;">
+<p><strong>Critical Findings</strong></p>
+<p>🔴 <strong>2024 LR spike: 66% → 75%</strong> — 9 pp single-year jump; root cause investigation needed before any pricing action</p>
+<p>🔴 <strong>COMP_N at 93.9% LR</strong> — no excess = no cost-sharing incentive; most urgent pricing problem in the portfolio</p>
+<p>🟠 <strong>Neutral bonus score (81.4%) worse than Bad (79.0%)</strong> — counter-intuitive; current bonus-malus segmentation needs redesigning</p>
+<p>🟠 <strong>Severity rises with age</strong> — 66+ most expensive at €1,982/claim despite lowest claim frequency (12.1%)</p>
+<p>🟡 <strong>Vehicle value U-shaped LR</strong> — mid-value most profitable; frequency rises monotonically Q1→Q5 (10.9%→17.9%)</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Recommended Actions</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Priority</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>🔴 High</td>
+<td>Investigate 2024 LR spike — root cause analysis first</td>
+</tr>
+<tr class="even">
+<td>🔴 High</td>
+<td>Introduce mandatory minimum excess for COMP_N</td>
+</tr>
+<tr class="odd">
+<td>🔴 High</td>
+<td>Redesign bonus-malus: increase Neutral &amp; Bad loadings</td>
+</tr>
+<tr class="even">
+<td>🟠 Medium</td>
+<td>Age-specific severity loading for 66+ drivers</td>
+</tr>
+<tr class="odd">
+<td>🟠 Medium</td>
+<td>Strengthen urban territorial rating factors</td>
+</tr>
+<tr class="even">
+<td>🟡 Low</td>
+<td>Monitor vehicle value frequency trend Q1→Q5</td>
+</tr>
+</tbody>
+</table>
+<div style="font-size:0.60em; color:#7090b0; margin-top:3px;">
+<p><em>Premium–incurred r ≈ 0.07: individual outcomes are largely unpredictable — portfolio diversification is essential. Multivariate GLM or machine learning required for individual policy prediction.</em></p>
+</div>
+</div></div>
+<aside class="notes">
+<p>This slide synthesises the key findings into a prioritised action plan. Three high-priority actions: the 2024 loss ratio spike needs root cause analysis before any rate changes, COMP_N at 93.9% requires structural reform via a mandatory excess, and the Neutral-worse-than-Bad bonus score finding suggests the current segmentation needs redesigning. Medium-priority actions address the frequency-severity age trade-off and worsening urban-rural divergence. The very low premium-incurred correlation (r ≈ 0.07) confirms that visual analytics identifies portfolio-level patterns — individual policy prediction requires multivariate modelling.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Motor Insurance Portfolio — Visual Analytics</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

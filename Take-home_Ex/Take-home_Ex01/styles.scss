@@ -1,0 +1,122 @@
+/*-- scss:defaults --*/
+// No Sass variable overrides needed
+
+/*-- scss:rules --*/
+
+/* Motor Insurance Visual Analytics - RevealJS Styles */
+
+:root {
+  --primary: #2196F3;
+  --secondary: #FF9800;
+  --accent: #4CAF50;
+  --danger: #F44336;
+  --bg-dark: #1a1a2e;
+  --bg-panel: #16213e;
+}
+
+.reveal .slides {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.reveal h2 {
+  color: #ffffff;
+  font-size: 0.65em;
+  border-bottom: 2px solid #2196F3;
+  padding-bottom: 8px;
+}
+
+.reveal h3 {
+  color: #90CAF9;
+}
+
+/* Speaker notes pane */
+.reveal .speaker-notes,
+aside.notes,
+.reveal aside.notes p,
+.reveal aside.notes li {
+  font-size: 0.25em !important;
+  line-height: 1.4;
+}
+
+.reveal .slide-background {
+  background-color: #1a1a2e;
+}
+
+.reveal p, .reveal li {
+  color: #e0e0e0;
+}
+
+.reveal .incremental li {
+  color: #b0b0c0;
+}
+
+.reveal .incremental li.current-fragment {
+  color: #ffffff;
+}
+
+/* KPI cards */
+.kpi-card {
+  background: #16213e;
+  border: 1px solid #2196F3;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+/* Footer */
+.reveal .footer {
+  color: #555577;
+  font-size: 0.7em;
+}
+
+/* Navigation controls (next/prev buttons) */
+.reveal .controls {
+  color: #2196F3;
+}
+
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-down {
+  color: #2196F3;
+  opacity: 0.6;
+}
+
+.reveal .controls .navigate-right:hover,
+.reveal .controls .navigate-left:hover {
+  color: #64B5F6;
+  opacity: 1;
+}
+
+/* Slide numbers */
+.reveal .slide-number {
+  color: #90CAF9;
+  background: rgba(0,0,0,0.4);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 0.75em;
+}
+
+/* Column layout spacing */
+.reveal .columns {
+  gap: 2rem;
+}
+
+/* Table styling in dark theme */
+.reveal table {
+  font-size: 0.78em;
+  color: #e0e0e0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.reveal table th {
+  color: #90CAF9;
+  border-bottom: 2px solid #2196F3;
+  padding: 4px 8px;
+}
+
+.reveal table td {
+  border-color: #2d2d4e;
+  padding: 3px 8px;
+}

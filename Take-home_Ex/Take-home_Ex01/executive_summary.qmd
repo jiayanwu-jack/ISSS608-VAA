@@ -1,0 +1,724 @@
+---
+title: "Motor Insurance Portfolio"
+subtitle: "Visual Analytics for Data Discovery"
+author: "Wu Jiayan"
+date: "May 10, 2026"
+format:
+  revealjs:
+    theme: [dark, styles.scss]
+    slide-number: true
+    controls: true
+    footer: "Motor Insurance Portfolio — Visual Analytics"
+    transition: slide
+    background-transition: fade
+    fig-align: center
+    fig-width: 12
+    fig-height: 5.8
+    out-width: "100%"
+    code-fold: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+#| include: false
+
+pacman::p_load(ggcorrplot, ggplot2, tidyverse, scales, patchwork, ggridges, ggrepel, knitr, kableExtra)
+
+df_raw <- read_delim(
+  "data/Dataset_of_motor_insurance_portfolio.csv",
+  delim = ";",
+  show_col_types = FALSE
+)
+
+df <- df_raw |>
+  mutate(
+    year = factor(year),
+    policy_type = factor(policy_type,
+                         levels = c("TP","TPG","CC","COMP_N","COMP_E"),
+                         labels = c("Third Party","Third Party+Glass",
+                                    "Third Party+Multi-Cover",
+                                    "Comprehensive (No Excess)",
+                                    "Comprehensive (With Excess)")),
+    policy_status     = factor(policy_status, levels = c("A","C"),
+                               labels = c("Active","Cancelled")),
+    business_type     = factor(business_type, levels = c("NB","P"),
+                               labels = c("New Business","Portfolio")),
+    payment_frequency = factor(payment_frequency,
+                               levels = c("A","S","Q"),
+                               labels = c("Annual","Semi-Annual","Quarterly")),
+    bonus_score       = factor(bonus_score, levels = c("G","N","B"),
+                               labels = c("Good (Favourable History)",
+                                          "Neutral",
+                                          "Bad (Poor History)")),
+    fuel_type         = factor(fuel_type, levels = c("G","D"),
+                               labels = c("Gasoline","Diesel")),
+    municipality_type = factor(municipality_type,
+                               levels = c("I","C","IS"),
+                               labels = c("Inland","Coastal","Islands")),
+    circulation_area  = factor(circulation_area, levels = c("U","R"),
+                               labels = c("Urban","Rural")),
+    has_claim         = total_claims > 0,
+    loss_ratio        = if_else(total_premium > 0,
+                                total_incurred / total_premium, NA_real_),
+    profit            = total_premium - total_incurred,
+    severity          = if_else(has_claim, total_incurred / total_claims, NA_real_),
+    driver_age_group  = cut(driver_age,
+                            breaks = c(17,25,35,45,55,65,90),
+                            labels = c("18-25","26-35","36-45","46-55","56-65","66+"),
+                            right = TRUE),
+    veh_value_q       = ntile(vehicle_value, 5)
+  )
+
+pal_cat5  <- c("#1565C0","#FF9800","#4CAF50","#F44336","#9C27B0")
+pal_bonus <- c("Good (Favourable History)" = "#4CAF50",
+               Neutral                     = "#FF9800",
+               "Bad (Poor History)"        = "#F44336")
+pal_area  <- c(Urban = "#FF9800", Rural = "#1E88E5")
+
+theme_pres <- function() {
+  theme_minimal(base_size = 12) +
+    theme(
+      plot.background   = element_rect(fill = "#1a1a2e", colour = NA),
+      panel.background  = element_rect(fill = "#16213e", colour = NA),
+      panel.grid.major  = element_line(colour = "#2d2d4e"),
+      panel.grid.minor  = element_blank(),
+      text              = element_text(colour = "#e0e0e0"),
+      axis.text         = element_text(colour = "#b0b0c0", size = 9),
+      axis.title        = element_text(colour = "#e0e0e0", size = 10),
+      plot.title        = element_text(colour = "#ffffff", face = "bold", size = 12),
+      plot.subtitle     = element_text(colour = "#90CAF9", size = 9),
+      legend.background = element_rect(fill = "#1a1a2e", colour = NA),
+      legend.text       = element_text(colour = "#e0e0e0", size = 8),
+      legend.title      = element_text(colour = "#90CAF9", size = 9),
+      strip.text        = element_text(colour = "#90CAF9", face = "bold"),
+      legend.position   = "bottom"
+    )
+}
+
+# Observation box style used across slides
+obs_style <- "font-size:0.72em; line-height:1.5; padding:8px 14px;
+              border-top: 2px solid #90CAF9; margin-top:6px; color:#e0e0e0;"
+```
+
+------------------------------------------------------------------------
+
+## Contents {.smaller}
+
+<div>
+
+1.  **Dataset Overview** — Portfolio scope, structure and key KPIs
+2.  **Univariate: Premium & Claims** — Distribution shape and skewness
+3.  **Univariate: Categorical Variables** — Coverage, bonus score and geography
+4.  **Temporal Trends** — Year-on-year premium, claims and loss ratio
+5.  **Bivariate: Driver Age vs Risk** — Frequency-severity trade-off
+6.  **Bivariate: Bonus Score vs Loss Ratio** — Claims history as risk discriminator
+7.  **Bivariate: Coverage Type vs Profitability** — Product line analysis
+8.  **Bivariate: Vehicle Value** — U-shaped loss ratio and rising frequency
+9.  **Bivariate: Urban vs Rural** — Geographic risk divergence
+10. **Correlation Landscape** — Premium structure and predictive power
+11. **Key Insights & Recommendations**
+
+</div>
+
+::: notes
+This presentation applies visual analytics to a real-world Spanish motor insurance portfolio from Mendeley Data, covering 354,140 policy-year observations across 2022–2024. The investigation follows a structured pipeline: univariate exploration of individual variables, followed by bivariate analysis testing factors that influence profitability (loss ratio, profit per policy) and volatility (claim frequency, claim severity). All visuals are produced with ggplot2 and its extensions within the tidyverse ecosystem.
+:::
+
+------------------------------------------------------------------------
+
+## Dataset Overview
+
+```{r overview}
+#| fig-height: 5.8
+n_policies <- scales::comma(nrow(df))
+n_insureds <- scales::comma(n_distinct(df$insured_id))
+overall_lr <- scales::percent(sum(df$total_incurred)/sum(df$total_premium), accuracy=0.1)
+claim_rate <- scales::percent(mean(df$has_claim), accuracy=0.1)
+
+p_comp <- df |>
+  count(year, policy_type) |>
+  ggplot(aes(year, n, fill = policy_type)) +
+  geom_col(position = "stack", width = 0.6, colour = NA) +
+  scale_fill_manual(values = pal_cat5) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(title = "Portfolio Composition by Year and Coverage Type",
+       x = "Policy Year", y = "Number of Policies", fill = "Coverage") +
+  theme_pres()
+
+p_kpi <- df |>
+  group_by(year) |>
+  summarise(
+    premium  = sum(total_premium)/1e6,
+    incurred = sum(total_incurred)/1e6,
+    lr       = incurred/premium,
+    .groups  = "drop"
+  ) |>
+  pivot_longer(c(premium,incurred), names_to="type", values_to="amount") |>
+  mutate(type = factor(type, levels=c("premium","incurred"),
+                       labels=c("Premium Written","Claims Incurred"))) |>
+  ggplot(aes(year, amount, colour=type, group=type)) +
+  geom_line(linewidth=1.4) +
+  geom_point(size=3.5) +
+  geom_text(aes(label=scales::dollar(amount, prefix="€", suffix="M", accuracy=0.1)),
+            vjust=-1, size=3) +
+  scale_colour_manual(values=c("#1E88E5","#F44336")) +
+  scale_y_continuous(labels=scales::dollar_format(prefix="€",suffix="M"),
+                     limits=c(0,62)) +
+  labs(title="Annual Premium vs Claims (€M)", x="Year", y="Amount (€M)", colour=NULL) +
+  theme_pres()
+
+p_comp + p_kpi
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   **354,140** policy-year records · **189,576** unique policyholders · Portfolio loss ratio: **70.3%** · Claim frequency: **14.3%**
+-   Portfolio grew at a CAGR of \~65% (2022–2024); **Third Party+Multi-Cover (CC)** is the dominant product at 57.8%, followed by Comprehensive (With Excess) at 25.8%
+-   The dataset is organised into four variable groups: Policy & Insured Characteristics, Driver & Vehicle Characteristics, Premiums, and Exposure/Claims/Incurred
+:::
+
+::: notes
+The dataset from Mendeley Data covers 354,140 policy-year records across 2022–2024. Total written premium is €105.1M with €73.9M incurred, yielding an overall loss ratio of 70.3%. The claim frequency of 14.3% means roughly 1 in 7 policies generates at least one claim per year. The portfolio grew substantially each year at a CAGR of \~65%, driven by both new business and renewals. Third Party+Multi-Cover (CC) dominates at 57.8% of policies.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 1 — Premium & Claims Distributions
+
+```{r premium-claims}
+#| fig-height: 5.8
+q995_prem <- quantile(df$total_premium, 0.995, na.rm=TRUE)
+q995_inc  <- quantile(df$total_incurred[df$total_incurred>0], 0.995, na.rm=TRUE)
+med_prem  <- median(df$total_premium[df$total_premium>0], na.rm=TRUE)
+
+p_prem <- df |>
+  filter(total_premium > 0, total_premium <= q995_prem) |>
+  ggplot(aes(total_premium)) +
+  geom_histogram(aes(y=after_stat(density)), bins=70,
+                 fill="#1E88E5", colour=NA, alpha=0.85) +
+  geom_density(colour="#FF9800", linewidth=0.9) +
+  geom_vline(xintercept=med_prem, colour="#F44336",
+             linetype="dashed", linewidth=0.9) +
+  annotate("text", x=med_prem+20, y=0.002,
+           label=paste0("Median: €", round(med_prem)),
+           colour="#F44336", hjust=0, size=3) +
+  scale_x_continuous(labels=scales::dollar_format(prefix="€")) +
+  labs(title="Total Annual Premium Distribution",
+       x="Premium (€)", y="Density") +
+  theme_pres()
+
+p_inc <- df |>
+  filter(total_incurred > 0, total_incurred <= q995_inc) |>
+  ggplot(aes(total_incurred)) +
+  geom_histogram(aes(y=after_stat(density)), bins=70,
+                 fill="#F44336", colour=NA, alpha=0.8) +
+  geom_density(colour="#FF9800", linewidth=0.9) +
+  scale_x_continuous(labels=scales::dollar_format(prefix="€")) +
+  labs(title="Incurred Claims Distribution (Claimants Only)",
+       x="Incurred Claims (€)", y="Density") +
+  theme_pres()
+
+p_prem + p_inc
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   Both distributions are strongly **right-skewed** — a small number of high-value policies and catastrophic claims dominate the upper tails
+-   Annual premium median is **\~€258**; the long upper tail reflects high-value comprehensive covers
+-   Incurred losses are even more extremely skewed — consistent with **log-normal or Pareto loss models**; reserve calculations must account for the heavy upper tail
+:::
+
+::: notes
+Total annual premiums have a median of €258, indicating most policies are modestly priced while high-value comprehensive covers create the long upper tail. Incurred losses among claimants show even more extreme right skewness — a hallmark of insurance loss distributions. Both were truncated at the 99.5th percentile for clarity. Mean-based pricing overestimates the typical policy cost; the median is a more appropriate central tendency measure for actuarial pricing here.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 2 — Categorical Variable Distributions
+
+```{r categoricals}
+#| fig-height: 5.8
+p_pt <- df |>
+  count(policy_type, sort=TRUE) |>
+  mutate(policy_type=fct_reorder(policy_type,n), pct=n/sum(n)) |>
+  ggplot(aes(n, policy_type, fill=policy_type)) +
+  geom_col(colour=NA, alpha=0.9) +
+  geom_text(aes(label=scales::percent(pct, accuracy=0.1)),
+            hjust=-0.1, size=3, colour="#ffffff") +
+  scale_fill_manual(values=pal_cat5, guide="none") +
+  scale_x_continuous(labels=scales::comma,
+                     expand=expansion(mult=c(0,0.20))) +
+  labs(title="Coverage Type Distribution", x="Policies", y=NULL) +
+  theme_pres()
+
+p_bs <- df |>
+  filter(!is.na(bonus_score)) |>
+  count(bonus_score) |>
+  mutate(pct=n/sum(n)) |>
+  ggplot(aes(bonus_score, pct, fill=bonus_score)) +
+  geom_col(colour=NA, width=0.6) +
+  geom_text(aes(label=scales::percent(pct, accuracy=0.1)),
+            vjust=-0.5, size=3, colour="#ffffff") +
+  scale_fill_manual(values=pal_bonus, guide="none") +
+  scale_y_continuous(labels=scales::percent, limits=c(0,1.05)) +
+  labs(title="Bonus Score Distribution", x=NULL, y="Proportion") +
+  theme_pres()
+
+p_area <- df |>
+  count(circulation_area, municipality_type) |>
+  ggplot(aes(circulation_area, n, fill=municipality_type)) +
+  geom_col(position="fill", colour=NA, width=0.6) +
+  scale_fill_manual(values=c("#1565C0","#42A5F5","#90CAF9")) +
+  scale_y_continuous(labels=scales::percent) +
+  labs(title="Area × Municipality", x=NULL, y="Proportion", fill="Municipality") +
+  theme_pres()
+
+p_pt | p_bs | p_area
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   **Third Party+Multi-Cover (CC)** is the largest segment at 57.8%; Comprehensive (With Excess) follows at 25.8%
+-   **96.5%** of policyholders hold a Good bonus score — a positive quality signal, but limits discriminatory power for the majority
+-   **Urban policies dominate** across all municipality types (Inland, Coastal, Islands); island policies show distinct risk profiles from the mainland
+:::
+
+::: notes
+The portfolio is dominated by Third Party+Multi-Cover (CC) at 57.8%, followed by Comprehensive with excess (COMP_E) at 25.8%. The bonus score distribution is heavily skewed toward Good (96.5%), though the 3.5% with Neutral or Bad scores are disproportionately important for risk segmentation. Urban policies dominate across all municipality types. Inland and coastal distinctions matter for territorial pricing.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 3 — Temporal Trends (2022–2024)
+
+```{r temporal}
+#| fig-height: 5.8
+yearly <- df |>
+  group_by(year) |>
+  summarise(
+    premium    = sum(total_premium, na.rm=TRUE),
+    incurred   = sum(total_incurred, na.rm=TRUE),
+    loss_ratio = incurred/premium,
+    n_policies = n(),
+    .groups    = "drop"
+  )
+
+p_vol <- yearly |>
+  pivot_longer(c(premium,incurred), names_to="type", values_to="amount") |>
+  mutate(type=factor(type, levels=c("premium","incurred"),
+                     labels=c("Premium Written","Claims Incurred"))) |>
+  ggplot(aes(year, amount/1e6, colour=type, group=type)) +
+  geom_line(linewidth=1.5) +
+  geom_point(size=4) +
+  geom_text(aes(label=scales::dollar(amount/1e6, prefix="€", suffix="M", accuracy=0.1)),
+            vjust=-1.2, size=3) +
+  scale_colour_manual(values=c("#1E88E5","#F44336")) +
+  scale_y_continuous(labels=scales::dollar_format(prefix="€",suffix="M"),
+                     limits=c(0,65)) +
+  labs(title="Premium Written vs Claims Incurred",
+       x="Year", y="Amount (€M)", colour=NULL) +
+  theme_pres()
+
+p_lr <- yearly |>
+  ggplot(aes(year, loss_ratio, fill=loss_ratio, group=1)) +
+  geom_col(alpha=0.7, width=0.5) +
+  geom_point(colour="white", size=3) +
+  geom_text(aes(label=scales::percent(loss_ratio, accuracy=0.1)),
+            vjust=-0.7, size=4, fontface="bold", colour="#e0e0e0") +
+  scale_fill_gradient2(low="#4CAF50", mid="#FF9800", high="#F44336",
+                       midpoint=0.70, guide="none") +
+  scale_y_continuous(labels=scales::percent, limits=c(0,0.85)) +
+  labs(title="Loss Ratio by Year", x="Year", y="Loss Ratio (%)") +
+  theme_pres()
+
+p_vol + p_lr + plot_layout(widths=c(2,1))
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   Premium written grew at a CAGR of **\~65%** (2022–2024), reflecting aggressive portfolio expansion
+-   Loss ratio was **stable at \~66% in 2022 and 2023**, then **spiked sharply to 74.7% in 2024** — a 9 pp single-year deterioration
+-   **The 2024 spike is not a gradual drift** — it is more consistent with a large claims event, reserve strengthening, or a structural shift; root cause investigation is urgently required before any pricing action
+:::
+
+::: notes
+Premium written grew at a CAGR of approximately 65% over 2022–2024. The loss ratio was stable at \~66% in both 2022 and 2023, then jumped sharply to 74.7% in 2024 — a 9 pp single-year deterioration. This sudden spike, rather than a gradual drift, warrants urgent root cause investigation before any pricing action is taken in 2025.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 4 — Driver Age vs Claim Frequency and Severity
+
+```{r driver-age}
+#| fig-height: 5.8
+age_summary <- df |>
+  group_by(driver_age_group) |>
+  summarise(
+    n            = n(),
+    claim_freq   = mean(has_claim, na.rm=TRUE),
+    avg_severity = mean(total_incurred[total_incurred>0], na.rm=TRUE),
+    loss_ratio   = sum(total_incurred,na.rm=TRUE)/sum(total_premium,na.rm=TRUE),
+    .groups      = "drop"
+  )
+
+p_freq <- age_summary |>
+  ggplot(aes(driver_age_group, claim_freq, fill=claim_freq)) +
+  geom_col(colour=NA, width=0.7) +
+  geom_text(aes(label=scales::percent(claim_freq, accuracy=0.1)),
+            vjust=-0.4, size=3.5, fontface="bold", colour="#e0e0e0") +
+  scale_fill_gradient(low="#42A5F5", high="#F44336", guide="none") +
+  scale_y_continuous(labels=scales::percent, limits=c(0,0.25)) +
+  labs(title="Claim Frequency by Driver Age Group",
+       x="Age Group", y="Claim Frequency (%)") +
+  theme_pres()
+
+p_sev <- age_summary |>
+  ggplot(aes(driver_age_group, avg_severity, fill=driver_age_group)) +
+  geom_col(colour=NA, width=0.7) +
+  scale_fill_brewer(palette="Blues", guide="none") +
+  geom_text(aes(label=scales::dollar(avg_severity, prefix="€", accuracy=1)),
+            vjust=-0.4, size=3.5, colour="#e0e0e0") +
+  scale_y_continuous(labels=scales::dollar_format(prefix="€"),
+                     expand=expansion(mult=c(0,0.18))) +
+  labs(title="Average Claim Severity by Driver Age Group",
+       x="Age Group", y="Avg Incurred per Claim (€)") +
+  theme_pres()
+
+p_freq + p_sev
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   Claim frequency **declines monotonically** with age: **20.5% (18–25)** → **12.1% (66+)** — youngest drivers are 70% more likely to claim
+-   Severity moves in the **opposite direction**: 66+ drivers generate the **highest average cost at €1,982/claim** vs €1,658 for the 26–35 group
+-   **Frequency and severity must be priced separately** — a simple loss ratio approach obscures this critical trade-off; a two-part GLM (frequency × severity) is recommended
+:::
+
+::: notes
+Driver age reveals a critical frequency-severity trade-off. Claim frequency declines monotonically from 20.5% for the youngest cohort to 12.1% for the oldest. However, severity moves in the opposite direction: the 66+ cohort generates the highest average incurred cost at €1,982, versus the lowest at €1,658 for the 26–35 group. A two-part GLM is strongly recommended to correctly price both dimensions.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 5 — Bonus Score vs Loss Ratio
+
+```{r bonus}
+#| fig-height: 5.8
+bonus_summary <- df |>
+  filter(!is.na(bonus_score)) |>
+  group_by(bonus_score) |>
+  summarise(
+    total_prem = sum(total_premium, na.rm=TRUE),
+    total_inc  = sum(total_incurred, na.rm=TRUE),
+    claim_freq = mean(has_claim, na.rm=TRUE),
+    loss_ratio = total_inc/total_prem,
+    avg_prem   = mean(total_premium, na.rm=TRUE),
+    .groups    = "drop"
+  )
+
+port_lr <- sum(df$total_incurred)/sum(df$total_premium)
+
+p_blr <- bonus_summary |>
+  ggplot(aes(bonus_score, loss_ratio, fill=bonus_score)) +
+  geom_col(colour=NA, width=0.6) +
+  geom_hline(yintercept=port_lr, colour="#90CAF9",
+             linetype="dashed", linewidth=0.9) +
+  geom_text(aes(label=scales::percent(loss_ratio, accuracy=0.1)),
+            vjust=-0.5, size=4.5, fontface="bold", colour="#e0e0e0") +
+  annotate("text", x=1.5, y=port_lr+0.02,
+           label="Portfolio avg: 70.3%", colour="#90CAF9",
+           hjust=0.5, size=3) +
+  scale_fill_manual(values=pal_bonus, guide="none") +
+  scale_y_continuous(labels=scales::percent, limits=c(0,0.92)) +
+  labs(title="Loss Ratio by Bonus Score", x="Bonus Score", y="Loss Ratio (%)") +
+  theme_pres()
+
+p_bcf <- df |>
+  filter(!is.na(bonus_score), total_premium>0, total_premium<1500) |>
+  ggplot(aes(total_premium, bonus_score, fill=bonus_score)) +
+  geom_density_ridges(alpha=0.75, scale=1.2, colour=NA) +
+  scale_fill_manual(values=pal_bonus, guide="none") +
+  scale_x_continuous(labels=scales::dollar_format(prefix="€")) +
+  labs(title="Premium Distribution by Bonus Score",
+       x="Annual Premium (€)", y=NULL) +
+  theme_pres()
+
+p_blr + p_bcf
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   **Neutral (81.4%)** is actually worse than **Bad (79.0%)** — both far exceed Good (69.7%); Neutral policyholders may represent a deteriorating segment transitioning toward Bad
+-   Claim frequency gap: Bad at **21.9%** vs Good at **14.2%** — a 7.7 pp differential driven by both frequency and severity
+-   Ridge plot confirms **Bad/Neutral policyholders pay higher premiums** (mean €589/€416 vs €290 for Good), but the residual loss ratio gap shows the **current loading is still insufficient** — a 12–15% additional loading is required
+:::
+
+::: notes
+The bonus score is a meaningful risk discriminator with a surprising finding: the Neutral category (81.4% loss ratio) is actually worse than Bad (79.0%), both far exceeding Good (69.7%). This suggests Neutral policyholders represent a deteriorating segment. The claim frequency gap is substantial — Bad at 21.9% versus Good at 14.2%. The ridge plot confirms Bad/Neutral policyholders pay more, but the persistent loss ratio gap indicates current loadings are insufficient.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 6 — Coverage Type vs Profitability
+
+```{r coverage}
+#| fig-height: 5.8
+cov_summary <- df |>
+  group_by(policy_type) |>
+  summarise(
+    loss_ratio = sum(total_incurred,na.rm=TRUE)/sum(total_premium,na.rm=TRUE),
+    claim_freq = mean(has_claim, na.rm=TRUE),
+    .groups    = "drop"
+  ) |>
+  mutate(policy_type=fct_reorder(policy_type, loss_ratio))
+
+p_clr <- cov_summary |>
+  ggplot(aes(loss_ratio, policy_type, fill=loss_ratio)) +
+  geom_col(colour=NA) +
+  geom_vline(xintercept=sum(df$total_incurred)/sum(df$total_premium),
+             colour="#90CAF9", linetype="dashed", linewidth=1) +
+  geom_text(aes(label=scales::percent(loss_ratio, accuracy=0.1)),
+            hjust=-0.1, size=3.8, colour="#e0e0e0") +
+  scale_fill_gradient2(low="#4CAF50", mid="#FF9800", high="#F44336",
+                       midpoint=0.70, guide="none") +
+  scale_x_continuous(labels=scales::percent,
+                     expand=expansion(mult=c(0,0.15))) +
+  labs(title="Loss Ratio by Coverage Type",
+       subtitle="Dashed = portfolio avg (70.3%)",
+       x="Loss Ratio", y=NULL) +
+  theme_pres()
+
+p_cviol <- df |>
+  filter(profit > -5000, profit < 2000) |>
+  ggplot(aes(policy_type, profit, fill=policy_type)) +
+  geom_violin(alpha=0.7, colour=NA, draw_quantiles=c(0.25,0.5,0.75)) +
+  geom_hline(yintercept=0, colour="#F44336", linetype="dashed") +
+  scale_fill_manual(values=pal_cat5, guide="none") +
+  scale_x_discrete(labels=function(x) str_wrap(x, width=12)) +
+  scale_y_continuous(labels=scales::dollar_format(prefix="€")) +
+  labs(title="Profit Distribution by Coverage Type",
+       x=NULL, y="Profit per Policy (€)") +
+  theme_pres()
+
+p_clr + p_cviol + plot_layout(widths=c(1,1.2))
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   **Comprehensive (No Excess) — COMP_N — has the worst loss ratio at 93.9%**: without any excess, policyholders bear no cost-sharing incentive, driving small-claim frequency up
+-   **Third Party** achieves the best loss ratio (\~54.3%) but represents only 1.6% of the portfolio
+-   Violin plots confirm **COMP_N and Comprehensive (With Excess) carry the widest downside profit distributions** — the greatest per-policy volatility in the book
+:::
+
+::: notes
+Coverage type is a key driver of portfolio profitability. Third Party achieves the best loss ratio at 54.3% but represents only 1.6% of policies. COMP_N at 93.9% is the standout concern — without any excess, policyholders bear no cost-sharing incentive. Third Party+Multi-Cover (CC) performs better than expected at 63.4%. The violin plots show COMP_N and COMP_E carry the widest downside profit distributions.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 7 — Vehicle Value vs Loss Ratio
+
+```{r vehicle-value}
+#| fig-height: 5.8
+veh_quintiles <- df |>
+  filter(!is.na(vehicle_value), vehicle_value>0) |>
+  group_by(veh_value_q) |>
+  summarise(
+    min_val    = min(vehicle_value),
+    max_val    = max(vehicle_value),
+    loss_ratio = sum(total_incurred,na.rm=TRUE)/sum(total_premium,na.rm=TRUE),
+    claim_freq = mean(has_claim, na.rm=TRUE),
+    .groups    = "drop"
+  ) |>
+  mutate(label=paste0("Q",veh_value_q,"\n€",
+                      scales::comma(round(min_val/1000)),"k–",
+                      scales::comma(round(max_val/1000)),"k"))
+
+p_vlr <- veh_quintiles |>
+  ggplot(aes(label, loss_ratio, fill=loss_ratio)) +
+  geom_col(colour=NA, width=0.7) +
+  geom_text(aes(label=scales::percent(loss_ratio, accuracy=0.1)),
+            vjust=-0.5, size=4, fontface="bold", colour="#e0e0e0") +
+  scale_fill_gradient2(low="#4CAF50", mid="#FF9800", high="#F44336",
+                       midpoint=0.70, guide="none") +
+  scale_y_continuous(labels=scales::percent, limits=c(0,0.88)) +
+  labs(title="Loss Ratio by Vehicle Value Quintile",
+       subtitle="U-shaped: mid-value vehicles (Q3–Q4) most profitable",
+       x="Vehicle Value Quintile", y="Loss Ratio (%)") +
+  theme_pres()
+
+p_vcf <- veh_quintiles |>
+  ggplot(aes(label, claim_freq, fill=claim_freq)) +
+  geom_col(colour=NA, width=0.7) +
+  geom_text(aes(label=scales::percent(claim_freq, accuracy=0.1)),
+            vjust=-0.5, size=4, colour="#e0e0e0") +
+  scale_fill_gradient(low="#90CAF9", high="#1565C0", guide="none") +
+  scale_y_continuous(labels=scales::percent, limits=c(0,0.22)) +
+  labs(title="Claim Frequency by Vehicle Value Quintile",
+       subtitle="Monotonically rising: 10.9% (Q1) → 17.9% (Q5)",
+       x="Vehicle Value Quintile", y="Claim Frequency (%)") +
+  theme_pres()
+
+p_vlr + p_vcf
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   **Loss ratio is U-shaped** — Q1: 72.3%, Q2: 69.3%, Q3: 69.0%, Q4: 67.2%, Q5: 73.3%; **mid-value vehicles (Q3–Q4) are most profitable**, not the cheapest
+-   **Claim frequency rises monotonically** from 10.9% (Q1) to 17.9% (Q5) — higher-value vehicles are claimed more often
+-   The vehicle value loading in theft and property premiums (r ≈ 0.33–0.41) **only partially compensates** for the elevated frequency at the top quintile
+:::
+
+::: notes
+Vehicle value reveals a nuanced pattern contradicting simple assumptions. The loss ratio is U-shaped — mid-value vehicles (Q3–Q4) are actually the most profitable. This is likely because low-value vehicles (Q1) have high claim frequency relative to their low premium base. Claim frequency does rise monotonically from 10.9% (Q1) to 17.9% (Q5). The vehicle value loading in theft and property damage premiums only partially compensates.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 8 — Urban vs Rural Risk
+
+```{r urban-rural}
+#| fig-height: 5.8
+area_year <- df |>
+  group_by(circulation_area, year) |>
+  summarise(
+    loss_ratio = sum(total_incurred,na.rm=TRUE)/sum(total_premium,na.rm=TRUE),
+    claim_freq = mean(has_claim, na.rm=TRUE),
+    .groups    = "drop"
+  )
+
+p_alr <- area_year |>
+  ggplot(aes(year, loss_ratio, colour=circulation_area,
+             group=circulation_area)) +
+  geom_line(linewidth=1.5) +
+  geom_point(size=4) +
+  geom_text(aes(label=scales::percent(loss_ratio, accuracy=0.1)),
+            vjust=-1.1, size=3.5, colour="#e0e0e0") +
+  scale_colour_manual(values=pal_area) +
+  scale_y_continuous(labels=scales::percent, limits=c(0.55,0.82)) +
+  labs(title="Loss Ratio: Urban vs Rural (2022–2024)",
+       subtitle="Sharp divergence in 2024: Urban 76.3% vs Rural 72.6%",
+       x="Year", y="Loss Ratio (%)", colour="Area") +
+  theme_pres()
+
+p_acf <- df |>
+  group_by(circulation_area, driver_age_group) |>
+  summarise(claim_freq=mean(has_claim,na.rm=TRUE), .groups="drop") |>
+  ggplot(aes(driver_age_group, claim_freq, fill=circulation_area)) +
+  geom_col(position="dodge", colour=NA, width=0.7) +
+  scale_fill_manual(values=pal_area) +
+  scale_y_continuous(labels=scales::percent) +
+  labs(title="Claim Frequency: Urban vs Rural by Age Group",
+       subtitle="Urban premium persists across all age groups",
+       x="Driver Age Group", y="Claim Frequency (%)", fill="Area") +
+  theme_pres()
+
+p_alr + p_acf
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   Urban loss ratio (**71.4%**) exceeds rural (**68.9%**) overall; in 2022 urban was actually more profitable — the **gap only clearly emerges from 2024** (urban 76.3% vs rural 72.6%)
+-   The urban disadvantage **persists across all age groups**; young urban drivers (18–25) show the highest claim frequency at **22.2% vs 18.9%** for rural peers
+-   The **urban-age interaction** supports a two-dimensional rating structure rather than treating geography and age as independent additive factors
+:::
+
+::: notes
+Urban policyholders have a higher overall loss ratio (71.4% vs 68.9% rural). Crucially, in 2022 urban was actually more profitable than rural; the gap only diverged sharply in 2024. The age-stratified analysis confirms the urban disadvantage persists across all age groups, with young urban drivers showing the highest claim frequency at 22.2% versus 18.9% for rural peers. This urban-age interaction supports a two-dimensional rating factor structure.
+:::
+
+------------------------------------------------------------------------
+
+## Observation 9 — Correlation Landscape
+
+```{r correlation}
+#| fig-width: 12
+#| fig-height: 6
+#| out-width: "100%"
+cor_vars <- df |>
+  select(
+    Total_Premium  = total_premium,
+    Liab_Prem      = liability_premium,
+    Property_Prem  = property_damage_premium,
+    Theft_Prem     = theft_premium,
+    Glass_Prem     = glass_premium,
+    Total_Incurred = total_incurred,
+    Total_Claims   = total_claims,
+    Driver_Age     = driver_age,
+    Vehicle_Age    = vehicle_age,
+    Veh_Value      = vehicle_value,
+    Pwr_Weight     = power_to_weight_ratio,
+    Exposure       = total_exposure
+  )
+
+corr_mat <- cor(cor_vars, use="complete.obs", method="pearson")
+
+ggcorrplot(corr_mat, method="square", type="lower",
+           lab=TRUE, lab_size=3.2,
+           colors=c("#D32F2F","#dce8f5","#1565C0"),
+           outline.color="#aac4e0", tl.cex=10, tl.col="#1a1a2e") +
+  labs(title="Pearson Correlation Matrix",
+       subtitle="Premium components · Claims outcomes · Risk characteristics",
+       x=NULL, y=NULL) +
+  theme_minimal(base_size=13) +
+  theme(
+    plot.background   = element_rect(fill="#dce8f5", colour=NA),
+    panel.background  = element_rect(fill="#dce8f5", colour=NA),
+    panel.grid        = element_blank(),
+    plot.title        = element_text(colour="#1a1a2e", face="bold", size=14),
+    plot.subtitle     = element_text(colour="#2d5a8e", size=10),
+    axis.text.x       = element_text(angle=45, hjust=1, size=9, colour="#1a1a2e"),
+    axis.text.y       = element_text(size=9, colour="#1a1a2e"),
+    legend.background = element_rect(fill="#dce8f5", colour=NA),
+    legend.text       = element_text(colour="#1a1a2e"),
+    legend.title      = element_text(colour="#1a1a2e"),
+    legend.position   = "right",
+    legend.key.width  = unit(0.4,"cm"),
+    plot.margin       = margin(5,10,5,5)
+  )
+```
+
+::: {style="font-size:0.26em; line-height:1.25; padding:2px 8px; border-top:1px solid #90CAF9; margin-top:1px; color:#d0d0d0;"}
+-   Premium components are **moderately to strongly correlated** with total premium (Property r=0.75, Liability r=0.68, Glass r=0.52, Theft r=0.49) — reflecting a common pricing model
+-   **Total incurred shows a very weak correlation with premium (r≈0.07)** — individual policy outcomes are largely unpredictable; portfolio diversification is essential
+-   Vehicle value correlates with premium (r≈0.32) and theft/property premiums (r≈0.33–0.41); driver age has a very weak negative correlation with claims (r≈−0.03) — **multivariate modelling is essential**
+:::
+
+::: notes
+The correlation matrix reveals the internal structure of the premium model. Premium components correlate moderately to strongly with total premium. Most importantly, total incurred shows a very weak correlation with premium (r ≈ 0.07), confirming individual policy outcomes are highly stochastic. Vehicle value correlates positively with premium and theft/property premiums, validating the rating model. Driver age has a very weak negative correlation with claim counts — age alone explains minimal variance.
+:::
+
+------------------------------------------------------------------------
+
+## Key Insights & Recommendations
+
+:::::: {.columns style="font-size:0.56em; line-height:1.22;"}
+::: {.column width="50%"}
+**Critical Findings**
+
+🔴 **2024 LR spike: 66% → 75%** — 9 pp single-year jump; root cause investigation needed before any pricing action
+
+🔴 **COMP_N at 93.9% LR** — no excess = no cost-sharing incentive; most urgent pricing problem in the portfolio
+
+🟠 **Neutral bonus score (81.4%) worse than Bad (79.0%)** — counter-intuitive; current bonus-malus segmentation needs redesigning
+
+🟠 **Severity rises with age** — 66+ most expensive at €1,982/claim despite lowest claim frequency (12.1%)
+
+🟡 **Vehicle value U-shaped LR** — mid-value most profitable; frequency rises monotonically Q1→Q5 (10.9%→17.9%)
+:::
+
+:::: {.column width="50%"}
+**Recommended Actions**
+
+| Priority  | Action                                                |
+|-----------|-------------------------------------------------------|
+| 🔴 High   | Investigate 2024 LR spike — root cause analysis first |
+| 🔴 High   | Introduce mandatory minimum excess for COMP_N         |
+| 🔴 High   | Redesign bonus-malus: increase Neutral & Bad loadings |
+| 🟠 Medium | Age-specific severity loading for 66+ drivers         |
+| 🟠 Medium | Strengthen urban territorial rating factors           |
+| 🟡 Low    | Monitor vehicle value frequency trend Q1→Q5           |
+
+::: {style="font-size:0.60em; color:#7090b0; margin-top:3px;"}
+*Premium–incurred r ≈ 0.07: individual outcomes are largely unpredictable — portfolio diversification is essential. Multivariate GLM or machine learning required for individual policy prediction.*
+:::
+::::
+::::::
+
+::: notes
+This slide synthesises the key findings into a prioritised action plan. Three high-priority actions: the 2024 loss ratio spike needs root cause analysis before any rate changes, COMP_N at 93.9% requires structural reform via a mandatory excess, and the Neutral-worse-than-Bad bonus score finding suggests the current segmentation needs redesigning. Medium-priority actions address the frequency-severity age trade-off and worsening urban-rural divergence. The very low premium-incurred correlation (r ≈ 0.07) confirms that visual analytics identifies portfolio-level patterns — individual policy prediction requires multivariate modelling.
+:::
