@@ -1,5 +1,0 @@
-Hands-on EX 05 links
-Hands-on EX 05a
-https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex05_17789148967870/Treemapofnumberofunitssoldandunitpricebygeography?publish=yes
-Hands-on EX 05b
-https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex05b_17789167119670/Treepmapofsalesandprofitbygeography?publish=yes

@@ -43,7 +43,7 @@ The dataset is organised into four variable groups as defined in the official da
 **Policy and Insured Characteristics** — variables describing the contract itself:
 
 | Variable | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | `insured_id` | Unique sequential ID per policy number; repeated policies share the same ID |
 | `year` | Calendar year of the record |
 | `policy_type` | Coverage structure: TP (basic liability), TPG (liability + glass), CC (liability + 2+ extra covers), COMP_N (comprehensive without excess), COMP_E (comprehensive with excess) |
@@ -55,7 +55,7 @@ The dataset is organised into four variable groups as defined in the official da
 **Driver and Vehicle Characteristics** — risk-rating variables:
 
 | Variable | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | `driver_age` | Age of the main driver in years |
 | `vehicle_age` | Age of the insured vehicle in years |
 | `age_driving_licence` | Calendar year the licence was issued *(not* years of experience held) |
