@@ -11,10 +11,10 @@ execute:
   eval: true
   echo: true
   warning: false
-freeze: true
-fig-width: 16
-fig-height: 18
-out-width: "100%"
+  freeze: true
+  fig-width: 12
+  fig-height: 6
+  out-width: "100%"
 ---
 
 # **Chapter 14: Modelling, Visualising and Analysing Network Data with R**
