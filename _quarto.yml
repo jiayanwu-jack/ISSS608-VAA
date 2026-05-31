@@ -33,6 +33,10 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html"
           - text: "Hands-on Exercise 5e: Treemap Visualisation with R"
             href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html"
+          - text: "Hands-on Exercise 7a: Visualising and Analysing Network Data"
+            href: "Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html"
+          - text: "Hands-on Exercise 7b: Visualising and Analysing Text Data"
+            href: "Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html"
       - text: "In-class Exercise"
         menu: 
           - text: "In-class Exercise 1"

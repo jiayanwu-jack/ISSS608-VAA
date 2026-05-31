@@ -59,3 +59,9 @@ Welcome to **ISSS608 Visual Analytics and Applications**. In this website, you w
 - [Hands-on Exercise 5d: Visual Multivariate Analysis with Parallel Coordinates Plot](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html)
 
 - [Hands-on Exercise 5e: Treemap Visualisation with R](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html)
+
+### Chapter 7: Visualising and Analysing Network and Text Data
+
+- [Hands-on Exercise 7a: Visualising and Analysing Network Data](Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html)
+
+- [Hands-on Exercise 7b: Visualising and Analysing Text Data](Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html)

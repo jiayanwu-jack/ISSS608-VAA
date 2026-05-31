@@ -13,7 +13,6 @@ format:
     code-fold: true
     code-summary: "Show R Code"
     self-contained: true
-    smooth-scroll: true
     fig-width: 16
     fig-height: 8
     fig-dpi: 150
@@ -443,7 +442,7 @@ kable(summary_tbl, align="cc") |>
 ### Key Entities and Context
 
 | Entity | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | **TenantThread** | Property technology company being acquired. Sells tenant management software including the "Retention Optimizer" -a scoring system flagging tenants as "high-friction." Publicly claims data is anonymised; internally acknowledged to enable re-identification at small properties. |
 | **CivicLoom Realty Partners** | The acquiring company. Identity under strict embargo until 6 PM Jun 5. |
 | **Project HarborCrest** | Internal codename for the CivicLoom-enantThread merger. |
@@ -878,7 +877,7 @@ build_plotly_network <- function(edge_df, title_str, show_legend=TRUE) {
   )
 }
 
-p_pre    <- build_plotly_network(net_pre,    "Pre-crisis network (May 17-un 4)",  show_legend=TRUE)
+p_pre    <- build_plotly_network(net_pre,    "Pre-crisis network (May 17-Jun 4)",  show_legend=TRUE)
 p_crisis <- build_plotly_network(net_crisis, "Crisis-day network (Jun 5)",          show_legend=FALSE)
 
 htmltools::tagList(p_pre, p_crisis)
