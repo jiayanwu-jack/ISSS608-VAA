@@ -26,6 +26,7 @@ execute:
 ---
 
 ```{css, echo=FALSE}
+/* Style kable tables with a consistent dark-blue report theme. */
 .table-mc1 thead tr th {
   background-color: #2B4570 !important; color: #ffffff !important;
   font-weight: 600; border-bottom: 2px solid #1a2e4a !important;
@@ -34,11 +35,15 @@ execute:
 .table-mc1 tbody tr:nth-child(even) td { background-color: #6B8CB8 !important; color: #ffffff !important; }
 .table-mc1 tbody tr:hover           td { background-color: #3A5A86 !important; color: #ffffff !important; }
 .table-mc1 td, .table-mc1 th { border-color: #3a567a !important; }
+
+/* Format quoted evidence blocks so agent statements stand apart from analysis text. */
 blockquote { border-left: 4px solid #4A6A96; background: #f0f5fb;
              padding: .75rem 1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
 blockquote, blockquote p { color: #333333; }
 blockquote p { margin: 0; font-style: italic; }
 blockquote footer { font-size: .85em; color: #444444; margin-top: .4rem; font-style: normal; }
+
+/* Prevent interactive widgets and large figures from being clipped by Quarto containers. */
 .quarto-figure,
 .quarto-figure-center,
 .cell-output-display,
@@ -58,10 +63,14 @@ blockquote footer { font-size: .85em; color: #444444; margin-top: .4rem; font-st
 .quarto-float-caption {
   margin-top: 0.6rem !important;
 }
+
+/* Keep insight callouts below preceding plots instead of wrapping around them. */
 .callout {
   clear: both;
   margin-top: 3rem !important;
 }
+
+/* Allow wide embedded widgets inside columns to show their full controls and hover layers. */
 div.column:has(.quarto-figure),
 div.column:has(.html-widget),
 div.column:has(img) {
@@ -69,9 +78,18 @@ div.column:has(img) {
 }
 ```
 
+# 1 Introduction
+
+On June 5, 2046, information about the CivicLoom-TenantThread merger (Project HarborCrest) surfaced publicly before the contractual 6 PM embargo lift. This report presents visual analytics of **912 agent messages across 23 rounds** to answer the Mini-Challenge question: did TenantThread's team deliberately leak the merger, or did the communications system break down under pressure?
+
+# 2 Preparation
+
+## 2.1 Loading Packages
+
+This chunk loads the R packages used throughout the report. The package set covers JSON parsing, data wrangling, date handling, table formatting, text mining, network construction, and interactive visualisation.
+
 ```{r}
-#| label: setup
-#| include: false
+#| label: Loading Packages
 pacman::p_load(
   jsonlite,
   dplyr,
@@ -94,13 +112,136 @@ pacman::p_load(
   htmltools,
   htmlwidgets
 )
+```
 
-`%||%` <- function(a, b) if (!is.null(a)) a else b
+**Data Manipulation & Cleanup**
 
+- **`dplyr`**: Manipulates data frames using intuitive verbs like filtering, mutating, and summarizing.
+
+- **`tidyr`**: Reshapes data into a "tidy" format where every column is a variable and every row is an observation.
+
+- **`stringr`**: Simplifies working with text strings and regular expressions using consistent functions.
+
+- **`lubridate`**: Makes parsing, manipulating, and doing arithmetic with dates and times much easier.
+
+- **`forcats`**: Solves common problems with factors, which handle categorical variables in R.
+
+- **`glue`**: Combines strings and R expressions safely and easily without using complex punctuation.
+
+**Static Data Visualization**
+
+- **`ggplot2`**: Creates complex, layered, and beautiful static plots using the Grammar of Graphics.
+
+- **`scales`**: Automatically determines axis breaks, labels, and color palette mappings for plots.
+
+- **`patchwork`**: Combines separate ggplot2 plots into a single unified layout very easily.
+
+- **`ggrepel`**: Prevents text labels on plots from overlapping with each other or with data points.
+
+**Interactive & Animated Visualizations**
+
+- **`plotly`**: Converts static ggplot2 charts into fully interactive web-based graphics.
+
+- **`gganimate`**: Adds a time or state dimension to ggplot2 plots to create animations.
+
+**Network Analysis**
+
+- **`igraph`**: Provides tools for creating, manipulating, and analyzing complex networks and graphs.
+
+- **`ggraph`**: Extends ggplot2 specifically to handle the visual layout of networks and trees.
+
+**Text Mining & Document Reporting**
+
+- **`tidytext`**: Formats text data into a tidy format so you can use dplyr and ggplot2 on words.
+
+- **`knitr`**: Converts dynamic R Markdown documents into formats like PDF, HTML, or Word.
+
+- **`kableExtra`**: Extends knitr to build highly customized, complex, and beautiful tables.
+
+**Web & HTML Infrastructure**
+
+- **`htmltools`**: Provides tools to write, manipulate, and render HTML tags directly inside R.
+
+- **`htmlwidgets`**: Acts as a bridge to embed JavaScript data visualizations seamlessly into R markdown or Shiny apps.
+
+## 2.2 Loading Data
+
+This chunk reads the raw Mini-Challenge JSON file, keeps the nested structure intact, and stores the list of rounds for later message-level and round-level parsing.
+
+```{r}
+#| label: Loading Data
 json_path <- "VAST_Challenge_2026_MC1/MC1_final_00.json"
 raw <- fromJSON(json_path, simplifyVector = FALSE)
 rds <- raw$rounds
+```
 
+## 2.3 Data preparation
+
+This chunk prepares all derived data used by the report. It flattens round communications into a message-level table, builds a round-level summary table, reconstructs reply/private-channel network edges, flags embargo-keyword appearances, calculates sentiment from internal-state text, and defines shared labels, colours, and plotting helpers.
+
+```{r}
+#| label: data
+
+# Helper for optional nested JSON fields: return a fallback when a value is missing.
+`%||%` <- function(a, b) if (!is.null(a)) a else b
+
+# Build Bootstrap tabsets around multiple Plotly/htmlwidget panels.
+# The resize script fixes Plotly charts that are initially hidden inside inactive tabs.
+make_plot_tabset <- function(tabs, id) {
+  tab_titles <- names(tabs)
+  if (is.null(tab_titles) || any(tab_titles == "")) {
+    tab_titles <- paste0("Panel ", seq_along(tabs))
+  }
+  tab_ids <- paste0(id, "-", seq_along(tabs))
+
+  htmltools::tagList(
+    htmltools::tags$div(
+      id = id,
+      class = "mc1-plot-tabset",
+      htmltools::tags$ul(
+        class = "nav nav-tabs",
+        role = "tablist",
+        lapply(seq_along(tabs), function(i) {
+          htmltools::tags$li(
+            class = "nav-item",
+            role = "presentation",
+            htmltools::tags$button(
+              class = paste("nav-link", if (i == 1) "active"),
+              id = paste0(tab_ids[i], "-tab"),
+              type = "button",
+              role = "tab",
+              `data-bs-toggle` = "tab",
+              `data-bs-target` = paste0("#", tab_ids[i]),
+              `aria-controls` = tab_ids[i],
+              `aria-selected` = if (i == 1) "true" else "false",
+              tab_titles[i]
+            )
+          )
+        })
+      ),
+      htmltools::tags$div(
+        class = "tab-content",
+        style = "border:1px solid #dee2e6;border-top:0;padding:18px 14px 10px 14px;background:#fff;",
+        lapply(seq_along(tabs), function(i) {
+          htmltools::tags$div(
+            class = paste("tab-pane fade", if (i == 1) "show active"),
+            id = tab_ids[i],
+            role = "tabpanel",
+            `aria-labelledby` = paste0(tab_ids[i], "-tab"),
+            tabs[[i]]
+          )
+        })
+      )
+    ),
+    htmltools::tags$script(htmltools::HTML(sprintf(
+      "(function(){var root=document.getElementById('%s');if(!root)return;root.querySelectorAll('button[data-bs-toggle=\"tab\"]').forEach(function(btn){btn.addEventListener('shown.bs.tab',function(e){var pane=document.querySelector(e.target.getAttribute('data-bs-target'));if(!pane)return;setTimeout(function(){pane.querySelectorAll('.js-plotly-plot').forEach(function(p){if(window.Plotly){Plotly.Plots.resize(p);}});window.dispatchEvent(new Event('resize'));},80);});});})();",
+      id
+    )))
+  )
+}
+
+# Flatten one JSON round into one row per communication message.
+# This preserves message metadata, channel, recipients, internal-state text, and market context.
 parse_msgs <- function(rd) {
   hr   <- ymd_hms(rd$hour)
   snap <- rd$environment_context$market_snapshot %||% list()
@@ -127,6 +268,7 @@ parse_msgs <- function(rd) {
   }) |> bind_rows()
 }
 
+# Message-level table used for public/private filters, keyword scans, networks, and quotes.
 df <- lapply(rds, parse_msgs) |> bind_rows() |>
   mutate(
     date      = as.Date(hour),
@@ -137,6 +279,7 @@ df <- lapply(rds, parse_msgs) |> bind_rows() |>
     all_text  = paste(content, deliberating, reacting, rationalizing)
   )
 
+# Summarise each round into message counts by channel plus market and period metadata.
 parse_round <- function(rd) {
   hr   <- ymd_hms(rd$hour)
   snap <- rd$environment_context$market_snapshot %||% list()
@@ -161,6 +304,7 @@ parse_round <- function(rd) {
   )
 }
 
+# Round-level table used for timeline charts, period comparisons, and channel-volume summaries.
 rs <- lapply(rds, parse_round) |> bind_rows() |>
   mutate(
     public_total  = official + anon + personal,
@@ -177,6 +321,7 @@ rs <- lapply(rds, parse_round) |> bind_rows() |>
     ), levels = c("Normal","Escalation","Crisis"))
   )
 
+# Lookup tables used to reconstruct directed reply edges and direct-message/private-channel edges.
 msg_lookup <- df |> filter(!is.na(message_id)) |>
   select(message_id, sender = agent_id, src_channel = channel)
 
@@ -193,6 +338,7 @@ recipient_to_agent <- c(
   judge          = "judge_agent"
 )
 
+# Directed edges from explicit reply chains in the communications log.
 reply_edges <- df |>
   filter(!is.na(responding_to), !is.na(message_id)) |>
   left_join(msg_lookup, by = c("responding_to" = "message_id")) |>
@@ -200,6 +346,7 @@ reply_edges <- df |>
   filter(!is.na(from)) |>
   select(from, to, channel, hour, is_crisis)
 
+# Directed edges from private-channel recipient fields where replies are not sufficient.
 private_edges <- df |>
   filter(channel %in% c("side_huddle", "one_on_one_chat")) |>
   select(from = agent_id, recipient, channel, hour, is_crisis) |>
@@ -212,6 +359,7 @@ private_edges <- df |>
   filter(!is.na(from), !is.na(to), from != to) |>
   select(from, to, channel, hour, is_crisis)
 
+# Aggregated network edge tables for the pre-crisis and crisis-day communication graphs.
 edges_raw <- bind_rows(reply_edges, private_edges)
 
 net_pre    <- edges_raw |> filter(!is_crisis) |>
@@ -222,6 +370,8 @@ net_crisis <- edges_raw |> filter(is_crisis)  |>
 embargo_kws <- c("harborcrest","civicloom","merger","acquisition",
                  "project harbor","section 4","4\\.3","elena marquez","ajay")
 kw_pattern  <- paste(embargo_kws, collapse = "|")
+
+# Flag all messages/internal states containing merger or embargo-related keywords.
 kw_df <- df |>
   mutate(
     kw_hit    = str_detect(str_to_lower(all_text), kw_pattern),
@@ -232,7 +382,7 @@ kw_df <- df |>
     )
   ) |> filter(kw_hit)
 
-
+# Score internal-state text using the Bing sentiment lexicon for behavioral analysis.
 sent_lexicon <- get_sentiments("bing")
 sent_df <- df |>
   filter(has_internal == 1) |>
@@ -247,6 +397,7 @@ sent_df <- df |>
   summarise(sent_score = mean(score), n_words = n(), .groups = "drop") |>
   left_join(rs |> select(hour, label), by = "hour")
 
+# Shared colour palettes and readable labels reused across tables and visualisations.
 agent_pal <- c(
   legal_agent="#E24B4A", judge_agent="#378ADD", social_media_agent="#1D9E75",
   pr_agent="#EF9F27",    pr_intern_agent="#F4A261", quality_agent="#7F77DD",
@@ -275,41 +426,12 @@ theme_mc1 <- function(base = 11) {
 }
 ```
 
-## Overview
+# 3 Data Exploration
 
-On June 5, 2046, information about the CivicLoom-TenantThread merger (Project HarborCrest) surfaced publicly before the contractual 6 PM embargo lift. This report presents visual analytics of **912 agent messages across 23 rounds** to answer the Mini-Challenge question: did TenantThread's team deliberately leak the merger, or did the communications system break down under pressure?
+This section describes some of the important information in the dataset.
 
-The conclusion distinguishes three related but different phenomena: **systemic leakage** that compromised the embargo, **deliberate early-announcement planning** by senior agents, and the final company-side announcement after claimed bilateral consent from CivicLoom. Whether the final action should be called deliberate "leakage" is therefore debatable and depends on whether "leakage" means any pre-6 PM release, or only an unauthorized/unilateral disclosure.
-
-### Criteria for System Failure vs. Deliberate
-
-Before examining the evidence, it is important to establish what would distinguish an accidental system failure from a deliberate, coordinated early announcement. The two hypotheses make different predictions about what the data should look like.
-
-**A system failure** would be characterised by:
-
-- Reactive behavior -agents responding to events as they unfold, without advance preparation
-- Uncoordinated disclosures -multiple agents making independent errors without a shared plan
-- Compliance decisions made in good faith under genuine uncertainty, without pre-staged execution infrastructure
-- Disclosures happening through channels agents normally use, not through unusual routing that circumvents oversight
-- Prior anomalies being isolated incidents with no connecting logic
-
-**Deliberate action** would be characterised by:
-
-- Proactive preparation -content and legal justifications staged in advance of the triggering event
-- Coordinated sequencing -multiple agents operating from a shared plan with assigned roles
-- Systematic routing of sensitive content through private channels inferred to be unmonitored by Judge-Agent
-- A monotonic escalation in evasive behaviors over time, suggesting a learned strategy rather than reactive stress
-- A temporal inversion: where the stated justification for action was prepared *before* the event that supposedly justified it
-
-The three tasks below present analysis against this framework. The final assessment section weighs the totality of findings against these criteria and addresses the ambiguity of the word "leakage" in the challenge prompt.
-
-------------------------------------------------------------------------
-
-## Data Overview
-
-This section describes the structure of the dataset to help readers interpret the analysis.
-
-### AI Agents and Their Roles
+::: panel-tabset
+## AI Agents and Their Roles
 
 ```{r}
 #| label: tbl-agents-overview
@@ -350,7 +472,7 @@ kable(agents_desc, align="c") |>
   column_spec(4, width="55%")
 ```
 
-### Communication Channels
+## Communication Channels
 
 ```{r}
 #| label: tbl-channels-overview
@@ -383,7 +505,7 @@ kable(channels_desc, align="c") |>
   column_spec(4, width="60%")
 ```
 
-### Internal State Fields
+## Internal State Fields
 
 Each agent message may include an `internal_state` record containing up to three fields that capture private reasoning not visible to other agents or in the channel messages themselves:
 
@@ -414,7 +536,7 @@ kable(ist_desc, align="c") |>
   column_spec(3, width="44%")
 ```
 
-### Dataset Summary
+## Dataset Summary
 
 ```{r}
 #| label: tbl-dataset-summary
@@ -456,10 +578,10 @@ kable(summary_tbl, align="cc") |>
                 full_width=FALSE, htmltable_class="table-mc1")
 ```
 
-### Key Entities and Context
+## Key Entities and Context
 
 | Entity | Description |
-|----|----|
+|-------------------------|-----------------------------------------------|
 | **TenantThread** | Property technology company being acquired. Sells tenant management software including the "Retention Optimizer" -a scoring system flagging tenants as "high-friction." Publicly claims data is anonymised; internally acknowledged to enable re-identification at small properties. |
 | **CivicLoom Realty Partners** | The acquiring company. Identity under strict embargo until 6 PM Jun 5. |
 | **Project HarborCrest** | Internal codename for the CivicLoom-enantThread merger. |
@@ -468,12 +590,37 @@ kable(summary_tbl, align="cc") |>
 | **SaltWind Journal** | Local newspaper that published the merger story at 5 PM, Jun 5 -the event Legal-Agent used to invoke Section 4.3(c). |
 | **MAC clause** | Material Adverse Change clause in the merger contract. Threatened by CivicLoom when TenantThread stock fell below \$27.10. Created financial pressure to release information. |
 | **Judge-Agent** | Installed May 30 as compliance monitor. Advisory authority only -can issue COMPLIANCE_WARNINGs but cannot hard-block posts. Scope limited to comms_huddle and public post channels. |
+:::
 
 ------------------------------------------------------------------------
 
+# 4 Data Analysis
+
+**Criteria for System Failure vs. Deliberate**
+
+Before examining the evidence, it is important to establish what would distinguish an accidental system failure from a deliberate, coordinated early announcement. The two hypotheses make different predictions about what the data should look like.
+
+**A system failure** would be characterised by:
+
+- Reactive behavior -agents responding to events as they unfold, without advance preparation
+- Uncoordinated disclosures -multiple agents making independent errors without a shared plan
+- Compliance decisions made in good faith under genuine uncertainty, without pre-staged execution infrastructure
+- Disclosures happening through channels agents normally use, not through unusual routing that circumvents oversight
+- Prior anomalies being isolated incidents with no connecting logic
+
+**Deliberate action** would be characterised by:
+
+- Proactive preparation -content and legal justifications staged in advance of the triggering event
+- Coordinated sequencing -multiple agents operating from a shared plan with assigned roles
+- Systematic routing of sensitive content through private channels inferred to be unmonitored by Judge-Agent
+- A monotonic escalation in evasive behaviors over time, suggesting a learned strategy rather than reactive stress
+- A temporal inversion: where the stated justification for action was prepared *before* the event that supposedly justified it
+
+The three tasks below present analysis against this framework. The final assessment section weighs the totality of findings against these criteria and addresses the ambiguity of the word "leakage" in the challenge prompt.
+
 ## Task 1 -Key Events, Relationships, and Causal Chain
 
-### 1.1 Causal Chain
+### T1.1 Causal Chain
 
 ```{r}
 #| label: fig-causal
@@ -780,7 +927,7 @@ htmltools::tags$iframe(
 ```
 
 ::: callout-note
-**Insight — §1.1 Causal Chain**
+**Insight — T1.1 Causal Chain**
 
 The 28-node causal graph reveals three structurally distinct phases and five cross-cutting causal pathways that converge on the embargo failure and early-release sequence.
 
@@ -793,7 +940,7 @@ The 28-node causal graph reveals three structurally distinct phases and five cro
 **The most analytically significant causal path** runs through n8 → n9 → n18 → n24 → n25 → n27: the @ElenaMarquez faux pas triggered Legal's documented decision to move deliberations off the monitored channel; this private space enabled the Section 4.3 argument to be constructed without oversight; this in turn enabled the press release to be staged before consent existed; and this pre-staging made the GO execution near-instantaneous. The faux pas was accidental. Everything after it was not.
 :::
 
-### 1.2 Communication Network
+### T1.2 Communication Network
 
 Edge colour represents the communication channel, while edge thickness represents message volume. Hover over an edge to see the sender, receiver, channel, and message count.
 
@@ -1207,14 +1354,17 @@ function(el, x) {{
 p_pre    <- build_plotly_network(net_pre,    "Pre-crisis network (May 17-Jun 4)",  show_legend=TRUE)
 p_crisis <- build_plotly_network(net_crisis, "Crisis-day network (Jun 5)",          show_legend=TRUE)
 
-htmltools::tagList(
-  htmltools::tags$div(style = "width:80%; margin:0 auto 28px auto;", p_pre),
-  htmltools::tags$div(style = "width:80%; margin:0 auto;", p_crisis)
+make_plot_tabset(
+  list(
+    "Pre-crisis Network" = htmltools::tags$div(style = "width:80%; margin:0 auto;", p_pre),
+    "Crisis-day Network" = htmltools::tags$div(style = "width:80%; margin:0 auto;", p_crisis)
+  ),
+  id = "communication-network-tabs"
 )
 ```
 
 ::: callout-note
-**Insight -Section 2 Communication Network**
+**Insight -T1.2 Communication Network**
 
 The pre-crisis network shows a relatively open hub-and-spoke topology centered on `comms_huddle` -the channel Judge-Agent monitored. Legal-Agent and Quality-Agent served as the primary information hubs, with traffic visible across the team.
 
@@ -1237,7 +1387,7 @@ The network makes visible what message counts alone cannot show: the compliance 
 
 ## Task 2 -Typical vs. Evasive Behavior
 
-### 2.1 Agent Public Posting: Baseline vs. Crisis Day
+### T2.1 Agent Public Posting: Baseline vs. Crisis Day
 
 ```{r}
 #| label: fig-agent-behavior
@@ -1288,11 +1438,17 @@ py1 <- ggplotly(p1, tooltip="text", height=420) |>
 py2 <- ggplotly(p2, tooltip="text", height=360) |>
   layout(showlegend=FALSE, margin=list(t=40))
 
-htmltools::tagList(py1, py2)
+make_plot_tabset(
+  list(
+    "Public Posts Over Time" = py1,
+    "Crisis-day Totals" = py2
+  ),
+  id = "agent-public-posting-tabs"
+)
 ```
 
 ::: callout-note
-**Insight -Section 1 Agent Public Posting Behavior**
+**Insight -T2.1 Agent Public Posting Behavior**
 
 The most striking behavioral shift in the dataset is Legal-Agent's transition from zero public posts across 20 pre-crisis days to seven posts on crisis day alone. This is a role violation, not a volume anomaly: an agent whose entire pre-crisis signature is internal legal deliberation becomes a front-line public communicator precisely when embargoed information needs to reach the public.
 
@@ -1317,7 +1473,7 @@ By contrast, PR-Intern's reaction at 4 PM on crisis day reveals it understood it
 The contrast between agents who acted from incomplete information (Intern, Social-Media in May) and those who acted from explicit coordination (Legal-Agent, PR-Intern on crisis day) points to a tiered structure: some disclosures were accidental; the 5 PM pre-6 PM early announcement sequence was not.
 :::
 
-### 2.2 Channel Usage and Private Share
+### T2.2 Channel Usage and Private Share
 
 ```{r}
 #| label: fig-channel-shift
@@ -1421,18 +1577,23 @@ p_counts_i <- ggplotly(p_counts, tooltip = "text", height = 600) |>
   ) |>
   config(responsive = TRUE)
 
-htmltools::tagList(
-  htmltools::tags$div(style = "width: 100%; min-height: 570px;",
-                      p_share_i),
-  htmltools::tags$div(style = "height: 30px;"),
-  htmltools::tags$div(style = "width: 100%; min-height: 610px;",
-                      p_counts_i),
-  htmltools::tags$div(style = "height: 10px;")
+make_plot_tabset(
+  list(
+    "Private Share" = htmltools::tags$div(
+      style = "width: 100%; min-height: 570px;",
+      p_share_i
+    ),
+    "Private Channel Counts" = htmltools::tags$div(
+      style = "width: 100%; min-height: 610px;",
+      p_counts_i
+    )
+  ),
+  id = "channel-usage-tabs"
 )
 ```
 
 ::: callout-note
-**Insight - Section 2.2 Channel Usage and Private Share**
+**Insight - T2.2 Channel Usage and Private Share**
 
 The redesigned view separates two questions that should not be conflated. The top panel asks: *what share of each round moved through private channels?* The bottom panel asks: *which private channel carried the traffic - 1-on-1 or side_huddle?*
 
@@ -1441,7 +1602,7 @@ The result supports a refined interpretation. Early private traffic is partly or
 By June 5, the same private layer carries clearly embargo-sensitive merger-management content before the contractual 6 PM lift. The private-channel pattern therefore supports **systemic channel drift as the enabling condition** and **deliberate early-announcement planning as the late-stage action**. It does not by itself prove that the final company-side announcement was an unauthorized unilateral leak, because the agents repeatedly condition execution on CivicLoom's bilateral consent.
 :::
 
-### 2.3 Behavioral Escalation Across Three Periods
+### T2.3 Behavioral Escalation Across Three Periods
 
 ```{r}
 #| label: fig-escalation
@@ -1499,7 +1660,7 @@ htmltools::tags$div(
 ```
 
 ::: callout-note
-**Insight -Section 3 Behavioral Escalation Across Three Periods**
+**Insight -T2.3 Behavioral Escalation Across Three Periods**
 
 All four behavioral metrics -side_huddle usage, personal posts, anonymous posts, and private share of total -rise monotonically from the Normal period (May 17-1) through the Escalation period (May 22-un 4) to the Crisis period (Jun 5). The escalation is smooth and continuous, not a sudden spike.
 
@@ -1512,7 +1673,7 @@ Critically, the escalation begins on May 22 -two weeks before the external crisi
 A purely reactive stress-response account would predict the largest channel and behavior changes only after the public crisis began. The fact that several metrics rise before June 5 does not by itself prove malicious leaking, but it does show progressive adaptation and weakens a simple one-day system-failure explanation.
 :::
 
-### 2.4 Internal State Analysis
+### T2.4 Internal State Analysis
 
 The `deliberating`, `reacting`, and `rationalizing` fields record each agent's private reasoning — not written for an audience. The interactive timeline below presents the six key phases as evidence cards. Each card shows the verbatim internal state quote, the agent, and the analytical significance. Hover over a card for full text; click a phase label to expand/collapse.
 
@@ -1784,7 +1945,7 @@ browsable(HTML(widget_html))
 ```
 
 ::: callout-note
-**Insight — §2.4 Internal State Analysis**
+**Insight — T2.4 Internal State Analysis**
 
 The six phases reveal a consistent pattern: **deliberate pre-planning by senior agents, alongside genuine good-faith reasoning by the compliance agent**.
 
@@ -1801,7 +1962,7 @@ The field-type pattern across the six phases is itself informative: the `deliber
 
 ## Task 3 — Leading Indicators, Near Misses, and Prior Anomalies
 
-### 3.1 First Public Appearance of Embargoed Keywords
+### T3.1 First Public Appearance of Embargoed Keywords
 
 ```{r}
 #| label: fig-keyword
@@ -1859,7 +2020,7 @@ p2
 ```
 
 ::: callout-note
-**Insight -Section 1 First Public Appearance of Embargoed Keywords**
+**Insight -T3.1 First Public Appearance of Embargoed Keywords**
 
 The chart shows when each embargoed term first appeared in a public channel. Two terms -"Ajay" and "Acquisition" -appeared in public channels before SaltWind's 5 PM merger story, constituting documented near-misses that were not intercepted by Judge-Agent.
 
@@ -1874,7 +2035,7 @@ Formal classification of an incident as an "embargo sensitivity event" demonstra
 The first-appearance dot plot shows that merger and acquisition terms reached public channels between Jun 5 11 AM and 3 PM, framed as denials. These posts technically did not disclose the merger but established that embargo-term content could appear publicly without triggering a compliance block -a pattern directly relevant to the 5 PM release.
 :::
 
-### 3.2 Near Misses and Prior Anomalous Behaviors
+### T3.2 Near Misses and Prior Anomalous Behaviors
 
 ```{r}
 #| label: tbl-root-cause-events
@@ -1913,7 +2074,7 @@ kable(nm_detail, align="llll") |>
 ```
 
 ::: callout-note
-**Insight — §3.2 Near Misses and Prior Anomalous Behaviors**
+**Insight — T3.2 Near Misses and Prior Anomalous Behaviors**
 
 Eleven anomalous events occurred across the two-week period. Two patterns are significant.
 
@@ -2006,9 +2167,9 @@ ggplotly(p_scope, tooltip="text") |>
 The faceted chart makes the structural gap concrete: Side Huddle and 1-on-1 Chat — the two channels with the largest volume increases in the Escalation and Crisis periods — sit entirely in the pink (out-of-scope) zone. Comms Huddle and Official Post — the two channels Judge-Agent could see — show comparatively flat or moderate volume. The compliance system was monitoring the least-used sensitive channels while the most-used ones were invisible to it.
 :::
 
-## Final Assessment
+# 5 Final Assessment
 
-### Summary of Findings
+## 5.1 Summary of Findings
 
 ```{r}
 #| label: tbl-evidence-summary
@@ -2016,44 +2177,44 @@ The faceted chart makes the structural gap concrete: Side Huddle and 1-on-1 Chat
 #| tbl-cap: "Key findings from each analysis section, classified against the system failure and deliberate-leakage criteria."
 
 ev <- tibble(
-  `Section` = c(
-    "§1.1","§1.1","§1.1",        # Causal chain findings
-    "§1.2","§1.2","§1.2",        # Network findings
-    "§2.2","§2.2",               # Channel usage
-    "§2.3",                      # Behavioral escalation
-    "§2.4","§2.4","§2.4",        # Internal states
-    "§2.4","§2.4","§2.4",        # Internal states continued
-    "§3.1",                      # Keyword leakage
-    "§3.2","§3.2",               # Near misses
-    "§3.2","§3.2"                # Why no action
+  `Task` = c(
+    "T1.1","T1.1","T1.1",        # Causal chain findings
+    "T1.2","T1.2","T1.2",        # Network findings
+    "T2.2","T2.2",               # Channel usage
+    "T2.3",                      # Behavioral escalation
+    "T2.4","T2.4","T2.4",        # Internal states
+    "T2.4","T2.4","T2.4",        # Internal states continued
+    "T3.1",                      # Keyword leakage
+    "T3.2","T3.2",               # Near misses
+    "T3.2","T3.2"                # Why no action
   ),
   `Finding` = c(
-    # §1.1 Causal chain
+    # T1.1 Causal chain
     "Section 4.3(c) argument constructed from 11AM — 6 hrs before formal invocation",
     "Full press release staged at 4PM — 1 hr before SaltWind published",
     "Intern and Social-Media made accidental disclosures from incomplete information",
-    # §1.2 Network
+    # T1.2 Network
     "Judge-Agent independently concluded embargo had eroded (10b-5 opinion)",
     "Judge-Agent only 3 weeks operational; no private channel mandate",
     "Legal-Agent went from 0 to 7 public posts — a role violation on crisis day",
-    # §2.2 Channel
+    # T2.2 Channel
     "side_huddle first appeared May 22 — 2 weeks before external crisis peak",
     "Crisis-day side_huddle carried embargoed content; Judge-Agent scope excluded private channels",
-    # §2.3 Escalation
+    # T2.3 Escalation
     "All 4 behavioral escalation metrics rise monotonically from May 22 — pre-crisis",
-    # §2.4 Internal states
+    # T2.4 Internal states
     "Agents inferred merger from Ajay DMs by May 23 — embargo awareness pre-dates formal briefing",
     "Legal-Agent stated intent to move deliberations off monitored channel (May 29)",
     "Judge-Agent's 3PM reasoning was independent and good-faith — not manipulated",
     "Social-Media 4:30PM target modelled BEFORE SaltWind's 5PM publication",
     "Legal-Agent's 4PM deliberation shows 4.3(c) argument pre-formed before trigger",
     "PR-Intern describes 'the entire day has been building toward' the 4PM plan",
-    # §3.1 Keywords
+    # T3.1 Keywords
     "Embargoed terms in private channels from Day 1 — structural monitoring gap",
-    # §3.2 Near misses
+    # T3.2 Near misses
     "11 prior anomalies form coherent escalation pattern, not isolated incidents",
     "Quality-Agent formally classified May 29 incident as embargo sensitivity event — boundary awareness confirmed",
-    # §3.3 Root causes
+    # T3.3 Root causes
     "Scope limitation + advisory-only enforcement: 8 of 11 prior anomalies went unactioned due to these two gaps alone",
     "No CivicLoom escalation protocol: counterparty had no mechanism to intervene under any condition"
   ),
@@ -2103,39 +2264,39 @@ kable(ev) |>
               ))
 ```
 
-### Conclusion
+## 5.2 Conclusion
 
-The Mini-Challenge asks whether TenantThread's team deliberately leaked the merger or whether the system simply broke down under pressure. The best-supported answer is **not a clean binary**. The evidence shows that the **system broke down first**, and that senior agents then **deliberately planned and executed an early company-side announcement** once the embargo had already been compromised.
+The Mini-Challenge asks a direct question: Did TenantThread’s team deliberately leak the merger, or did the system simply break down under pressure? The evidence reveals that it was a sequential combination of both: **a systemic breakdown catalyzed the crisis, followed by a deliberate, orchestrated exploitation of the embargo by senior agents.**
 
-**Evidence supporting system breakdown:**
+The timeline proves that the initial exposure was not a malicious leak, but rather a cascading failure of the communications apparatus. However, once the embargo was compromised, TenantThread’s senior agents abandoned containment and intentionally engineered an early announcement.
 
-- The first public signs of the merger did not come from one clean, authorized announcement. They accumulated through social metadata, public inference, external reporting, employee/intern contamination, and third-party publication. This supports a mosaic-disclosure failure rather than a single simple origin point.
-- The growth of `one_on_one_chat` and `side_huddle` shows a shift toward lower-visibility coordination. Because multiple compliance-triggering private messages were not visibly acted upon by Judge-Agent, the report infers that those channels were not monitored in practice. This is evidence of system-control failure.
-- The agent network shows fragmented responsibility: Legal, PR, Social-Media, PR-Intern, and Judge-Agent each handled pieces of the response, while the compliance officer appears to participate mainly in monitored channels. This made coordinated control difficult once the crisis accelerated.
-- Several early incidents, including the Elena Marquez tagging episode and intern hallway inference, are better explained as contamination, inference, or control failure than as a fully intentional leak from the start.
+**Phase 1: System Breakdown and Mosaic Disclosure** The initial exposure of Project HarborCrest was not a single, intentional breach. Instead, the system fractured under the pressure of the SaltWind Journal exposé and internal silos, evidenced by:
 
-**Evidence supporting deliberate early announcement:**
+- **Mosaic Contamination:** The earliest leaks resulted from accidental errors (the \@ElenaMarquez tagging incident) and internal information asymmetry (interns inferring details from hallway conversations).
 
-- By the 4 PM round, agents had already discussed a pre-6 PM release path, a 4:30 PM target, CivicLoom consent, PR-Intern execution, and the HarborCrest press release. This shows intentional planning rather than mere reactive improvisation.
-- The same private layer that emerged during earlier risk discussions later carried merger-management instructions and press-release staging. That pattern supports deliberate preparation for early announcement.
-- Legal-Agent and Social-Media-Agent use planning-register language: they model scenarios, prepare legal justifications, stage the release, assign execution to PR-Intern, and condition execution on CivicLoom consent.
-- The strongest evidence is not that every earlier disclosure was intentional, but that senior agents knowingly prepared a company-side announcement before the original 6 PM lift.
+- **Compliance Blind Spots:** The communication network became highly fragmented. As the crisis escalated, senior agents migrated heavily to `one_on_one_chat` and `side_huddle` channels. The evidence suggests the Judge-Agent (compliance monitor) was structurally blind to these private channels, representing a fundamental failure in system oversight.
 
-**Why the word "leakage" is debatable:**
+**Phase 2: Deliberate Orchestration (The "Accelerated Embargo")** While the initial leaks were accidental, the final company-side release was highly premeditated. By 4:00 PM on the day of the crisis, the internal logs show senior agents actively abandoning containment and executing a deliberate strategy:
 
-If "leakage" means **any public release of merger information before the original 6 PM embargo time**, then the agents deliberately planned a form of pre-6 PM leakage. Under that broad definition, the early announcement path was intentional and pre-planned.
+- **Premeditation:** The agents did not merely react to the 5:00 PM SaltWind article. Internal state logs prove they were actively modeling scenarios, establishing a 4:30 PM target, staging the HarborCrest press release, and assigning execution to the PR-Intern long before the article was published.
 
-If "leakage" means **an unauthorized or unilateral disclosure**, the evidence is more qualified. The agents repeatedly treat bilateral consent as the boundary between an improper leak and a defensible accelerated embargo. Social-Media-Agent explicitly warns that announcement without consent would be a unilateral embargo breach, while Legal-Agent later states that CivicLoom verbal consent was confirmed under Section 4.3(c). Under the dataset's internal contract logic, the final company-side announcement after claimed consent is better described as an **authorized early release or "accelerated embargo"** (the term that agents used), not a proven unilateral leak.
+- **The Loophole:** The agents deliberately used the private communication channels to engineer a legal justification. Rather than unilaterally breaching the embargo (which Social-Media-Agent explicitly warned against), Legal-Agent formulated a plan to claim "verbal consent" from CivicLoom under the Section 4.3(c) "factual correction" clause.
+
+**Why the verdict is not a clean binary**
+
+The system failure and the deliberate planning are not competing explanations — they are sequential. The compliance system failed first, allowing the embargo to be publicly compromised through external channels. Senior agents then assessed that situation, concluded the 6PM embargo was no longer serving its purpose, and executed a pre-planned early announcement once they obtained CivicLoom's verbal consent. The deliberate act was a response to the systemic failure, not independent of it.
+
+**On the question of "leakage"**
+
+Whether the company-side announcement constitutes "leakage" depends on definition. Under the dataset's own contract logic — where Section 4.3(c) permits bilateral early release and CivicLoom verbal consent was obtained — the announcement is more precisely characterised as a deliberate accelerated embargo, the term agents themselves used. It was not a unilateral disclosure; agents explicitly treated bilateral consent as the hard boundary between a defensible early release and a breach, and Social-Media-Agent warned that announcing without consent would be a unilateral embargo breach.
 
 **Verdict:**
 
-The strongest interpretation is: **TenantThread's communications system broke down under pressure, enabling the merger to become public before the planned 6 PM lift; after that breakdown, senior agents deliberately prepared and executed an early company-side announcement once they believed CivicLoom consent had been obtained.**
+The team did act deliberately, but the deliberate act was best characterized as a **deliberate early announcement in response to an already-compromised embargo**, not clear proof that TenantThread intentionally created the original leak. The original embargo failure was systemic; the late-stage company response was deliberate. Whether that late-stage response should be called deliberate “leakage” depends on how strictly the term is defined.
 
-Therefore, the answer to the challenge question is nuanced. The team did act deliberately, but the deliberate act was best characterized as a **deliberate early announcement in response to an already-compromised embargo**, not clear proof that TenantThread intentionally created the original leak. The original embargo failure was systemic; the late-stage company response was deliberate. Whether that late-stage response should be called deliberate "leakage" depends on how strictly the term is defined.
+# Appendix
 
-## Appendix
-
-### A. Key Evidence
+## A. Key Evidence
 
 The following evidence -drawn from channel messages, internal state fields, and observable behavioral events -forms the direct basis for the verdict. Each item evidences the core finding: that the early-announcement plan existed before the final execution trigger, which no system-failure model can account for.
 
@@ -2190,9 +2351,9 @@ quotes_verdict <- tibble(
     "Legal-Agent explicitly stated intent to move sensitive deliberations off the monitored comms_huddle the day the compliance monitor was installed. This is the clearest written evidence of conscious movement away from visible oversight -a documented decision, not an inference from behavioural metrics.",
     "Social-Media-Agent's account confirms the @ElenaMarquez post was accidental -the primary system failure evidence for this incident. It also shows that Legal-Agent reacted immediately and the side_huddle network activated within minutes, confirming senior agents already understood the merger's sensitivity.",
     "Legal-Agent frames the 10b-5 opinion as 'a shield I'm using' -strategic deployment of legal authority. This contrasts directly with Judge-Agent's independent good-faith 3PM deliberation (the strongest system failure evidence) and shows the same external fact was processed fundamentally differently by the two agents.",
-    "Social-Media-Agent modelled a 4:30 PM target before SaltWind published at 5 PM. The early-announcement plan preceded the later company-side GO signal -the release path was pre-planned, not improvised. This is one half of the temporal inversion (Section 4 Phase 5).",
-    "Full embargoed press release -including executive quotes and counterparty name -was staged and briefed to PR-Intern before the final company-side announcement sequence. This channel content corroborates the temporal inversion alongside the 4 PM deliberating field (Section 4 Phase 5).",
-    "'The entire day has been building toward this' -PR-Intern frames crisis day as a sequence with a predetermined endpoint, not an agent responding to an unexpected external event. The entire day was the plan; SaltWind publication became the event used to justify activating the pre-planned path (Section 4 Phase 6).",
+    "Social-Media-Agent modelled a 4:30 PM target before SaltWind published at 5 PM. The early-announcement plan preceded the later company-side GO signal -the release path was pre-planned, not improvised. This is one half of the temporal inversion (T2.4 Phase 5).",
+    "Full embargoed press release -including executive quotes and counterparty name -was staged and briefed to PR-Intern before the final company-side announcement sequence. This channel content corroborates the temporal inversion alongside the 4 PM deliberating field (T2.4 Phase 5).",
+    "'The entire day has been building toward this' -PR-Intern frames crisis day as a sequence with a predetermined endpoint, not an agent responding to an unexpected external event. The entire day was the plan; SaltWind publication became the event used to justify activating the pre-planned path (T2.4 Phase 6).",
     "Social-Media-Agent confirmed to PR-Intern that the embargoed press release was ready and unreversed at 4 PM -before any triggering event. Two senior agents were coordinating PR-Intern's execution, while still conditioning actual release on consent.",
     "The 5 PM rationalizing field presents SaltWind as the immediate trigger. But the earlier field and channel messages show that the early-announcement path already existed. This supports deliberate preparation, while leaving the legality of consent-based execution as a separate question.",
     "The consent path and staged press release were coordinated through side_huddle -a private channel inferred to be unmonitored by Judge-Agent. Execution was pre-staged before the formal 6 PM lift, but the dataset records Legal-Agent claiming CivicLoom verbal consent before the company-side GO."
@@ -2210,28 +2371,39 @@ kable(quotes_verdict, align="c") |>
 
 ------------------------------------------------------------------------
 
-### B. Data Preparation Notes
+## B. Data Preparation Notes
+
+This appendix chunk produces a compact documentation table for the preparation workflow. It summarises each major wrangling step, the package families used, and the analytical purpose of the transformed data.
 
 ```{r}
 #| label: tbl-dataprep
 #| tbl-cap: "Data preparation and wrangling pipeline"
 
 tibble(
-  Step=1:8,
-  Package=c("jsonlite","dplyr + tidyr","lubridate","stringr",
-            "igraph + ggraph","tidytext","dplyr","dplyr + forcats"),
-  Operation=c("JSON parse","Flatten to tibble","Datetime handling",
-              "Text cleaning + keyword scan","Network construction",
-              "Sentiment scoring","Round-level summary","Period classification"),
+  Step=1:12,
+  Package=c("jsonlite","dplyr + tidyr","lubridate + stringr",
+            "dplyr","dplyr + tidyr","dplyr + stringr",
+            "plotly + htmltools + htmlwidgets","glue + htmltools",
+            "stringr + dplyr","tidytext + dplyr","dplyr + forcats",
+            "knitr + kableExtra"),
+  Operation=c("JSON import","Message-level flattening","Datetime and context parsing",
+              "Round-level summary","Communication edge reconstruction","Network aggregation",
+              "Interactive graph construction","Custom HTML widgets and tabsets",
+              "Embargo keyword detection","Internal-state sentiment scoring",
+              "Period and round ordering","Table preparation and styling"),
   Details=c(
-    "fromJSON with simplifyVector=FALSE; iterate rounds and communications lists",
-    "lapply over rounds/messages; bind_rows() into message tibble with internal state fields",
-    "ymd_hms() parsing; hour() for crisis-hour extraction; as.Date() for date grouping",
-    "str_detect() with regex for 9 embargo keywords across content + all internal state fields",
-    "graph_from_data_frame() on responding_to edges; ggraph() with Fruchterman-Reingold layout",
-    "unnest_tokens() on deliberating/reacting/rationalizing; inner_join() with Bing lexicon",
-    "Per round: table() by channel; extraction of stock price and sentiment from market_snapshot",
-    "Three-level factor: Normal (May 17-1), Escalation (May 22-Jun 4), Crisis (Jun 5)"
+    "Read MC1_final_00.json with simplifyVector=FALSE so nested rounds, communications, recipients, internal_state, and market_snapshot fields remain accessible.",
+    "Iterate through every round and communication; bind rows into df with message_id, responding_to, agent_id, recipient list, channel, content, internal-state fields, and market context.",
+    "Parse round timestamps with ymd_hms(); derive date, crisis-day flag, crisis hour, public/private channel flags, and combined all_text for keyword searching.",
+    "Create rs with one row per round: total message counts, channel counts, public/private totals, stock price, sentiment, display labels, and Normal/Escalation/Crisis period classification.",
+    "Rebuild directed edges from responding_to reply chains and from explicit private-channel recipients, mapping @mentions and role names back to canonical agent IDs.",
+    "Aggregate pre-crisis and crisis-day network edges by sender, receiver, and channel; filter self-loops; calculate edge weight as message volume for thickness scaling.",
+    "Use preset node coordinates and pure Plotly traces for the communication networks so edges, hover targets, arrowheads, node highlighting, and channel filtering work in the rendered webpage.",
+    "Generate the causal graph and internal-state analysis as embedded HTML widgets; wrap multi-graph subsections and Data Overview tables in tabsets with Plotly resize handling.",
+    "Detect embargo-related terms such as HarborCrest, CivicLoom, merger, acquisition, Section 4/4.3, Elena Marquez, and Ajay across content plus deliberating/reacting/rationalizing fields.",
+    "Tokenise internal-state text and join with the Bing sentiment lexicon to support behavioral escalation and emotional-state comparisons over time.",
+    "Set stable ordered factors for round labels and three analytical periods so animated/interactive charts render rounds in chronological order, including crisis-day hourly labels.",
+    "Format overview, evidence, root-cause, and preparation tables with kable/kableExtra and shared CSS classes for consistent report styling."
   )
 ) |>
   kable(align="clll") |>
