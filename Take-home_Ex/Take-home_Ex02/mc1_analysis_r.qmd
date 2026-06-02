@@ -626,6 +626,7 @@ Code chunk below plots an interactive graph to explore the causal relationship b
 
 ```{r}
 #| label: fig-causal
+#| fig-cap: "Events Causal Chain"
 
 # ── 1. NODE TABLE with PRESET POSITIONS ───────────────────────────────────────
 # px / py: pixel coordinates in the Cytoscape canvas (top-left = 0,0)
@@ -806,6 +807,13 @@ body{{font-family:"Segoe UI",Arial,sans-serif;background:#f4f7fb;}}
 .cyb{{width:15px;height:11px;border-radius:3px;border:1.5px solid rgba(0,0,0,.18);}}
 #cy-main{{flex:1;position:relative;background:#f9fbfd;}}
 #cy{{width:100%;height:100%;}}
+#cy-controls{{position:absolute;right:12px;top:12px;z-index:50;display:flex;gap:6px;
+  background:rgba(255,255,255,.90);border:1px solid #cfd8e3;border-radius:6px;
+  padding:5px;box-shadow:0 2px 8px rgba(0,0,0,.12);}}
+.cybtn{{min-width:30px;height:28px;border:1px solid #b8c4d2;background:#fff;color:#1a3a5c;
+  border-radius:4px;font-size:15px;font-weight:700;line-height:1;cursor:pointer;}}
+.cybtn:hover{{background:#eaf2fb;border-color:#7aa6d8;}}
+.cyreset{{min-width:52px;font-size:12px;font-weight:600;}}
 #cy-tip{{position:absolute;display:none;z-index:999;max-width:370px;
   background:#1a2535;color:#e8f0fc;border-radius:7px;
   box-shadow:0 4px 18px rgba(0,0,0,.45);padding:11px 14px;
@@ -826,10 +834,21 @@ Drag to pan &nbsp;|&nbsp; Click node to highlight subgraph</span></div>
 <div class="cyl"><div class="cyb" style="background:#c0ddb0;border-color:#3a7a3a;"></div>Resolution</div>
 <div class="cyl" style="color:#888">&rarr; Edge = causal link (hover for evidence)</div>
 </div>
-<div id="cy-main"><div id="cy"></div><div id="cy-tip"></div></div>
+<div id="cy-main">
+  <div id="cy-controls" aria-label="Graph zoom controls">
+    <button type="button" class="cybtn" id="cy-zoom-in" title="Zoom in">+</button>
+    <button type="button" class="cybtn" id="cy-zoom-out" title="Zoom out">-</button>
+    <button type="button" class="cybtn cyreset" id="cy-reset" title="Reset graph">Reset</button>
+  </div>
+  <div id="cy"></div><div id="cy-tip"></div>
+</div>
 </div>
 <script>
 (function(){{
+var header=document.getElementById("cy-header");
+if(header && header.firstChild) header.firstChild.nodeValue="Events Causal Chain ";
+var legendItems=document.querySelectorAll("#cy-legend .cyl");
+if(legendItems.length) legendItems[legendItems.length-1].innerHTML="&rarr; Edge = causal link (hover for details)";
 var ND={nodes_js};
 var ED={edges_js};
 var cyNodes=ND.map(function(n){{
@@ -844,6 +863,7 @@ var cy=cytoscape({{
   container:document.getElementById("cy"),
   elements:{{nodes:cyNodes,edges:cyEdges}},
   layout:{{name:"preset"}},
+  wheelSensitivity:0.1,
   style:[
     {{selector:"node",style:{{shape:"round-rectangle",width:"label",height:"label",padding:"10px",
       label:"data(label)","text-valign":"center","text-halign":"center",
@@ -861,9 +881,19 @@ var cy=cytoscape({{
   userZoomingEnabled:true,userPanningEnabled:true
 }});
 window.tenantThreadCy=cy;
+var defaultZoom=null;
+var defaultPan=null;
 function resizeAndFit(){{
   cy.resize();
   cy.fit(cy.elements(),30);
+  cy.zoom({{level:cy.zoom()*1.3, renderedPosition:{{x:cy.width()/2,y:cy.height()/2}}}});
+  var n1=cy.getElementById("n1");
+  if(n1 && n1.length){{
+    var p=n1.position();
+    cy.pan({{x:cy.width()/2 - p.x*cy.zoom(), y:90 - p.y*cy.zoom()}});
+  }}
+  defaultZoom=cy.zoom();
+  defaultPan=cy.pan();
 }}
 cy.ready(function(){{
   resizeAndFit();
@@ -876,6 +906,18 @@ window.addEventListener("resize",resizeAndFit);
 if(window.ResizeObserver){{
   new ResizeObserver(resizeAndFit).observe(document.getElementById("cy-main"));
 }}
+function zoomBy(mult){{
+  cy.zoom({{level:cy.zoom()*mult, renderedPosition:{{x:cy.width()/2,y:cy.height()/2}}}});
+}}
+document.getElementById("cy-zoom-in").addEventListener("click",function(){{zoomBy(1.1);}});
+document.getElementById("cy-zoom-out").addEventListener("click",function(){{zoomBy(1/1.1);}});
+document.getElementById("cy-reset").addEventListener("click",function(){{
+  cy.elements().removeClass("dimmed");
+  hideTip();
+  if(defaultZoom===null || defaultPan===null){{resizeAndFit();return;}}
+  cy.zoom(defaultZoom);
+  cy.pan(defaultPan);
+}});
 var tip=document.getElementById("cy-tip");
 function showTip(x,y,h){{tip.innerHTML=h;tip.style.display="block";moveTip(x,y);}}
 function moveTip(x,y){{
@@ -917,13 +959,13 @@ cy.on("tap",function(e){{if(e.target===cy)cy.elements().removeClass("dimmed");}}
 ', .open="{", .close="}")
 }
 
-causal_graph_height <- 1700
+causal_graph_height <- 2300
 html_causal <- make_causal_graph(height=causal_graph_height)
 writeLines(html_causal, "causal_graph_preset.html")
 htmltools::tags$iframe(
   srcdoc = html_causal,
   style = glue::glue("width:100%; height:{causal_graph_height}px; border:0; border-radius:8px; overflow:hidden;"),
-  title = "TenantThread Embargo Breach causal event graph"
+  title = "Events Causal Chain"
 )
 
 ```
