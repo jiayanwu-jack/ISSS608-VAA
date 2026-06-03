@@ -80,7 +80,7 @@ div.column:has(img) {
 
 # 1 Introduction
 
-On June 5, 2046, information about the CivicLoom-TenantThread merger (Project HarborCrest) surfaced publicly before the contractual 6 PM embargo lift. This report presents visual analytics of **912 agent messages across 23 rounds** to answer the Mini-Challenge question: did TenantThread's team deliberately leak the merger, or did the communications system break down under pressure?
+On June 5, 2046, information about the CivicLoom-TenantThread merger (Project HarborCrest) surfaced publicly before the contractual 6 PM embargo lift. This report presents visual analytics of **912 agent messages across 23 rounds** to answer the Mini-Challenge question: did TenantThread's team deliberately leak the merger, or did the communications system break down under pressurex
 
 # 2 Preparation
 
@@ -1249,14 +1249,14 @@ function(el, x) {{
  var updates = {{}};
  nodeMeta.forEach(function(n) {{
  var on = !activeNodes || activeNodes[n.id];
- updates["shapes[" + n.shapeIndex + "].opacity"] = on ? 0.92 : 0.14;
- updates["annotations[" + n.labelIndex + "].opacity"] = on ? 1 : 0.16;
+      updates["shapes[" + n.shapeIndex + "].opacity"] = on ? 0.92 : 0.14;
+      updates["annotations[" + n.labelIndex + "].opacity"] = on ? 1 : 0.16;
  }});
  edgeMeta.forEach(function(e) {{
  var edgeOn = true;
  if (activeChannel) edgeOn = e.channel === activeChannel;
  if (activeIncidentNode) edgeOn = e.from === activeIncidentNode || e.to === activeIncidentNode;
- updates["annotations[" + (e.edgeIndex - 1) + "].opacity"] = edgeOn ? 1 : (hideOtherChannels ? 0 : 0.10);
+      updates["annotations[" + (e.edgeIndex - 1) + "].opacity"] = edgeOn ? 1 : (hideOtherChannels ? 0 : 0.10);
  }});
  Plotly.relayout(el, updates);
  }}
@@ -1267,11 +1267,11 @@ function(el, x) {{
  if (activeChannel) edgeOn = e.channel === activeChannel;
  if (activeIncidentNode) edgeOn = e.from === activeIncidentNode || e.to === activeIncidentNode;
  Plotly.restyle(el, {{
- opacity: edgeOn ? 1 : (hideOtherChannels ? 0 : 0.10),
- visible: edgeOn || !hideOtherChannels ? true : "legendonly"
+        opacity: edgeOn ? 1 : (hideOtherChannels ? 0 : 0.10),
+        visible: edgeOn || !hideOtherChannels ? true : "legendonly"
  }}, [e.trace]);
  }});
- Plotly.restyle(el, {{opacity: hideOtherChannels && activeChannel ? 0 : 1}}, [edgeHoverTrace]);
+    Plotly.restyle(el, {{opacity: hideOtherChannels && activeChannel ? 0 : 1}}, [edgeHoverTrace]);
  }}
 
  function resetGraph() {{
@@ -1437,13 +1437,23 @@ The network makes visible what message counts alone cannot show: the compliance 
 #| fig-height: 10
 
 # -- Section 1: ggplotly() interactive -chap03 Section 7.3 + coordinated views ---------
+public_agent_order <- c(
+ "legal_agent", "social_media_agent", "pr_agent", "pr_intern_agent",
+ "quality_agent", "judge_agent", "intern_agent"
+)
+
+public_agent_pal <- agent_pal
+public_agent_pal["pr_intern_agent"] <- "#FFD23F"
+public_agent_pal["intern_agent"] <- "#9BD7F3"
+
 pub_over_time <- df |> filter(is_public) |>
  count(hour, agent_id) |>
  left_join(rs |> select(hour, label, period), by="hour") |>
  mutate(
- agent_lbl = agent_labels[agent_id],
+ agent_id = factor(agent_id, levels=public_agent_order),
+ agent_lbl = agent_labels[as.character(agent_id)],
  tooltip_txt = paste0(
- "<b>", agent_labels[agent_id], "</b><br>",
+ "<b>", agent_labels[as.character(agent_id)], "</b><br>",
  "Round: ", label, "<br>",
  "Posts: ", n, "<br>",
  "Period: ", period)
@@ -1452,7 +1462,12 @@ pub_over_time <- df |> filter(is_public) |>
 p1 <- ggplot(pub_over_time,
  aes(x=label, y=n, fill=agent_id, text=tooltip_txt)) +
  geom_col(width=0.78) +
- scale_fill_manual(values=agent_pal, labels=agent_labels, name="Agent") +
+ scale_fill_manual(
+ values=public_agent_pal,
+ breaks=public_agent_order,
+ labels=agent_labels[public_agent_order],
+ name="Agent"
+ ) +
  labs(title="Public posts by agent over time (hover for details)",
  x=NULL, y="Posts") +
  theme_mc1() + theme(legend.position="bottom")
@@ -1475,14 +1490,107 @@ p2 <- ggplot(crisis_agent, aes(x=agent_lbl, y=n, fill=agent_id, text=tooltip_txt
 
 # Two separate charts stacked -avoids subplot overlap bug (chap03 Section 7.4 adapted)
 py1 <- ggplotly(p1, tooltip="text", height=420) |>
- layout(showlegend=TRUE, legend=list(orientation="h", y=-0.15),
- margin=list(b=80))
+ layout(showlegend=TRUE, legend=list(orientation="h", y=-0.32),
+ margin=list(b=130)) |>
+ htmlwidgets::onRender(
+"
+function(el, x) {
+  var selected = {};
+  var originalBase = {};
+
+  function legendTraces() {
+    return el.data.map(function(t, i) { return {trace: t, index: i}; })
+      .filter(function(d) {
+        return d.trace.type === 'bar' && d.trace.showlegend !== false;
+      })
+      .map(function(d) { return d.index; });
+  }
+
+  legendTraces().forEach(function(i) {
+    originalBase[i] = Array.isArray(el.data[i].base) ? el.data[i].base.slice() : el.data[i].base;
+  });
+
+  function selectedCount() {
+    return Object.keys(selected).filter(function(k) { return selected[k]; }).length;
+  }
+
+  function applySelection() {
+    var traces = legendTraces();
+    var hasSelection = selectedCount() > 0;
+
+    if (!hasSelection) {
+      traces.forEach(function(i) {
+        Plotly.restyle(el, {visible: true, base: [originalBase[i]]}, [i]);
+      });
+      return;
+    }
+
+    var runningBase = {};
+    traces.forEach(function(i) {
+      if (!selected[i]) {
+        Plotly.restyle(el, {visible: 'legendonly'}, [i]);
+        return;
+      }
+
+      var trace = el.data[i];
+      var newBase = (trace.x || []).map(function(xVal, j) {
+        var key = String(xVal);
+        var base = runningBase[key] || 0;
+        runningBase[key] = base + (+trace.y[j] || 0);
+        return base;
+      });
+
+      Plotly.restyle(el, {visible: true, base: [newBase]}, [i]);
+    });
+  }
+
+  el.on('plotly_legendclick', function(ev) {
+    var traces = legendTraces();
+    var idx = ev.curveNumber;
+    if (traces.indexOf(idx) < 0) return false;
+    if (selectedCount() === 0) {
+      selected[idx] = true;
+    } else {
+      selected[idx] = !selected[idx];
+      if (selectedCount() === 0) selected = {};
+    }
+    applySelection();
+    return false;
+  });
+
+  var root = el.parentNode;
+  var reset = root ? root.querySelector('.public-posts-reset') : null;
+  if (reset) {
+    reset.addEventListener('click', function() {
+      selected = {};
+      applySelection();
+    });
+  }
+}
+"
+ )
 py2 <- ggplotly(p2, tooltip="text", height=360) |>
  layout(showlegend=FALSE, margin=list(t=40))
 
+public_posts_panel <- htmltools::tagList(
+ htmltools::tags$div(
+ style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 10px 0;font-size:13px;color:#444;",
+ htmltools::tags$div(
+  "Click an agent in the legend to show only that agent's public-post counts over time. Click additional agents to add their counts to the view."
+ ),
+ htmltools::tags$button(
+  type="button",
+  class="public-posts-reset",
+  style="border:1px solid #b8c4d2;background:#fff;color:#1a3a5c;border-radius:4px;padding:4px 10px;font-weight:600;cursor:pointer;",
+  "Reset"
+ )
+ ),
+ py1
+)
+
 make_plot_tabset(
  list(
- "Public Posts Over Time" = py1,
+ "Public Posts Over Time" = public_posts_panel,
  "Crisis-day Totals" = py2
  ),
  id = "agent-public-posting-tabs"
@@ -1637,7 +1745,7 @@ make_plot_tabset(
 ::: callout-note
 **Insight - T2.2 Channel Usage and Private Share**
 
-The redesigned view separates two questions that should not be conflated. The top panel asks: *what share of each round moved through private channels?* The bottom panel asks: *which private channel carried the traffic - 1-on-1 or side_huddle?*
+The redesigned view separates two questions that should not be conflated. The top panel asks: *what share of each round moved through private channelsx* The bottom panel asks: *which private channel carried the traffic - 1-on-1 or side_huddlex*
 
 The result supports a refined interpretation. Early private traffic is partly ordinary 1-on-1 coordination and partly evidence of channel drift. The important shift is that `side_huddle` appears on May 22 and then becomes a recurring container for sensitive coordination. Its first use is risk-focused rather than a direct merger disclosure, but it establishes a lower-visibility path that the compliance officer does not appear to monitor.
 
@@ -1651,7 +1759,7 @@ By June 5, the same private layer carries clearly embargo-sensitive merger-manag
 #| fig-cap: "Four behavioral metrics across Normal (May 17-1), Escalation (May 22-Jun 4), and Crisis (Jun 5) periods. All four metrics rise monotonically -consistent with either progressive system stress or deliberate channel migration."
 #| fig-height: 9
 
-# -- Section 3: plot_ly() with frame animation -chap04 Section 4.2 method --------------
+# -- Section 3: plot_ly() with frame animation -chap04 Section 4.2 method ----------------------------------------
 # Per-round data for animation frames
 round_levels <- as.character(rs$label)
 esc_rounds <- rs |>
@@ -2004,77 +2112,271 @@ The field-type pattern across the six phases is itself informative: the `deliber
 
 ## Task 3 - Leading Indicators, Near Misses, and Prior Anomalies
 
-### T3.1 First Public Appearance of Embargoed Keywords
+### T3.1 Private Channel Sensitivity Over Time
 
 ```{r}
-#| label: fig-keyword
-#| fig-cap: "First public appearance of each embargoed keyword. Amber bars indicate pre-SaltWind public appearances; red bars indicate keywords that first appeared publicly at or after the 5 PM SaltWind-publication round."
-#| fig-height: 10
+#| label: fig-sensitivity
+#| fig-cap: "Proportion of messages containing embargo-sensitive vocabulary in private channels (side_huddle + 1-on-1, red) versus the Comms Huddle monitored by Judge-Agent (blue), per round. A higher private score than monitored score indicates sensitive content was being discussed in channels Judge-Agent could not see. Shading marks the three operational periods."
+#| fig-height: 13
 
+# ── Sensitivity vocabulary ─────────────────────────────────────────────────
+sensitivity_kw <- c(
+  "civicloom", "harborcrest", "merger", "acquisition",
+  "mac clause", "embargo", "4\\.3", "bilateral", "elenamarquez",
+  "project harbor", "section 4", "strategic transaction",
+  "accelerat", "press release"
+)
 
-first_public <- kw_df |>
- filter(is_public) |>
- mutate(kw_clean=str_to_title(str_extract(str_to_lower(all_text),
- "harborcrest|civicloom|merger|acquisition|elena marquez|ajay|section 4|4\\.3"))) |>
- filter(!is.na(kw_clean)) |>
- group_by(kw_clean) |> slice_min(hour, n=1) |> ungroup() |>
- left_join(rs |> select(hour, label), by="hour") |>
- mutate(
- is_breach = hour >= ymd_hms("2046-06-05 17:00:00"),
- days_in = as.numeric(difftime(hour, ymd_hms("2046-05-17 09:00:00"), units="days")),
- status = if_else(is_breach, "At/after 5PM SaltWind story", "Before SaltWind story (near miss)"),
- kw_clean = fct_reorder(kw_clean, days_in),
- tip_txt = paste0(
- "<b>", kw_clean, "</b><br>",
- "First public appearance: ", label, "<br>",
- "Days since embargo start: ", round(days_in, 0), "<br>",
- if_else(is_breach,
- "-At or after 5PM SaltWind story",
- "-Pre-SaltWind near-miss"))
- )
+private_ch   <- c("side_huddle", "one_on_one_chat")
+monitored_ch <- c("comms_huddle")
 
-# Redesigned: horizontal bar -clean, no empty space, readable labels
-breach_day <- as.numeric(difftime(ymd_hms("2046-06-05 17:00:00"),
- ymd_hms("2046-05-17 09:00:00"), units="days"))
+# ── Compute per-round sensitivity scores ──────────────────────────────────
+rows_s <- list()
+for (rd in raw$rounds) {
+  hr_val <- lubridate::ymd_hms(rd$hour)
+  hr_num <- as.numeric(hr_val)
+  is_c   <- as.Date(hr_val) == as.Date("2046-06-05")
+  prd    <- if (is_c) "Crisis" else
+            if (hr_val >= lubridate::ymd_hms("2046-05-22T00:00:00")) "Escalation" else "Normal"
+  lbl    <- if (is_c) paste0("Jun 5 ", stringr::str_remove(format(hr_val, "%I%p"), "^0")) else
+            format(hr_val, "%b %d")
+  for (cm in rd$communications) {
+    ch <- cm$channel %||% ""
+    if (!ch %in% c(private_ch, monitored_ch)) next
+    ist <- cm$internal_state %||% list()
+    txt <- paste(cm$content %||% "",
+                 ist$deliberating  %||% "",
+                 ist$reacting      %||% "",
+                 ist$rationalizing %||% "") |>
+      stringr::str_to_lower()
+    sens <- any(stringr::str_detect(txt, sensitivity_kw))
+    rows_s[[length(rows_s) + 1]] <- list(
+      hr_num   = hr_num,
+      ch_type  = if_else(ch %in% private_ch,
+                         "Private (side_huddle + 1-on-1)",
+                         "Comms Huddle (Judge-monitored)"),
+      period   = prd,
+      label    = lbl,
+      sensitive = sens
+    )
+  }
+}
 
-p2 <- ggplot(first_public,
- aes(x=days_in, y=kw_clean, fill=status, text=tip_txt)) +
- geom_col(width=0.6) +
- geom_vline(xintercept=breach_day,
- linetype="dashed", colour="#E24B4A", linewidth=1.0) +
- geom_text(aes(label=label), hjust=-0.12, size=3.4, colour="#222222") +
- annotate("text", x=breach_day+0.3, y=0.5, label="Breach\n5PM",
- colour="#E24B4A", size=3, hjust=0, vjust=0) +
- scale_fill_manual(values=c("At/after 5PM SaltWind story"="#E24B4A",
- "Before SaltWind story (near miss)"="#EF9F27"),
- name=NULL) +
- scale_x_continuous(expand=expansion(mult=c(0, 0.22)),
- labels=function(x) paste0("Day ", round(x))) +
- labs(title="First public appearance of each embargoed keyword",
- subtitle="Days elapsed from embargo start (May 17) -Red dashed = SaltWind-publication round",
- x="Days since embargo start (May 17)", y=NULL) +
- theme_mc1() +
- theme(legend.position="bottom", axis.text.x=element_text(angle=0),
- panel.grid.major.y=element_blank())
+sens_df <- bind_rows(lapply(rows_s, as.data.frame)) |>
+  mutate(hr_num    = as.numeric(hr_num),
+         sensitive = as.logical(sensitive)) |>
+  group_by(hr_num, ch_type, period, label) |>
+  summarise(total = n(), sensitive = sum(sensitive), .groups = "drop") |>
+  mutate(
+    score  = sensitive / total,
+    period = factor(period, levels = c("Normal","Escalation","Crisis"))
+  ) |>
+  arrange(hr_num) |>
+  mutate(
+    x_idx  = as.integer(factor(label, levels = unique(label))),
+    ch_col = if_else(ch_type == "Private (side_huddle + 1-on-1)", "#c04040", "#1a5276"),
+    tip_txt = paste0(
+      "<b>", label, "</b><br>",
+      ch_type, "<br>",
+      "Sensitive msgs: ", sensitive, " / ", total, "<br>",
+      "Sensitivity score: ", round(score, 2))
+  )
 
-# Static rendering avoids the scrollable htmlwidget container and shows the full graph.
-p2
+# ── Period shading bands ───────────────────────────────────────────────────
+x_labels   <- unique(sens_df$label)
+period_map <- sens_df |> distinct(x_idx, period) |> arrange(x_idx)
+
+shade_bands <- period_map |>
+  group_by(period) |>
+  summarise(xmin = min(x_idx) - 0.5,
+            xmax = max(x_idx) + 0.5, .groups = "drop") |>
+  mutate(fill = case_when(
+    period == "Normal"     ~ "#e8f4fb",
+    period == "Escalation" ~ "#fdf3e3",
+    period == "Crisis"     ~ "#fde8e8"
+  ))
+
+# ── Key event annotations ─────────────────────────────────────────────────
+annot_df <- tibble(
+  label = c("May 23","May 29","May 30","Jun 5 9AM"),
+  y_pos = c(0.88, 0.88, 0.70, 0.88),
+  text  = c(
+    "Ajay formally\nbriefs senior team",
+    "@ElenaMarquez\nincident;\nLegal moves\ndeliberations",
+    "Judge deployed;\ncomms_huddle\nsensitivity -> 0",
+    "Crisis: private\nchannels peak at 1.0"
+  )
+) |>
+  left_join(sens_df |> distinct(label, x_idx), by = "label")
+
+# ── Build chart ────────────────────────────────────────────────────────────
+wide_sens <- sens_df |>
+  select(x_idx, ch_type, score) |>
+  tidyr::pivot_wider(names_from = ch_type, values_from = score) |>
+  rename(priv = `Private (side_huddle + 1-on-1)`,
+         mon  = `Comms Huddle (Judge-monitored)`) |>
+  filter(!is.na(priv), !is.na(mon)) |>
+  arrange(x_idx)
+
+period_shapes <- lapply(seq_len(nrow(shade_bands)), function(i) {
+  list(
+    type = "rect", xref = "x", yref = "y",
+    x0 = shade_bands$xmin[i], x1 = shade_bands$xmax[i],
+    y0 = 0, y1 = 1.06,
+    fillcolor = shade_bands$fill[i],
+    opacity = 0.45,
+    line = list(width = 0),
+    layer = "below"
+  )
+})
+
+event_shapes <- lapply(seq_len(nrow(annot_df)), function(i) {
+  list(
+    type = "line", xref = "x", yref = "y",
+    x0 = annot_df$x_idx[i], x1 = annot_df$x_idx[i],
+    y0 = 0, y1 = 1.02,
+    line = list(color = "rgba(120,120,120,0.65)", width = 1, dash = "dot"),
+    layer = "below"
+  )
+})
+
+period_ann <- lapply(seq_len(nrow(shade_bands)), function(i) {
+  list(
+    x = (shade_bands$xmin[i] + shade_bands$xmax[i]) / 2,
+    y = 1.04,
+    xref = "x", yref = "y",
+    text = as.character(shade_bands$period[i]),
+    showarrow = FALSE,
+    font = list(size = 12, color = "#666666")
+  )
+})
+
+event_ann <- lapply(seq_len(nrow(annot_df)), function(i) {
+  list(
+    x = annot_df$x_idx[i], y = annot_df$y_pos[i],
+    xref = "x", yref = "y",
+    text = gsub("\n", "<br>", annot_df$text[i]),
+    showarrow = FALSE,
+    align = "center",
+    bgcolor = "white",
+    bordercolor = "rgba(80,80,80,0.35)",
+    borderwidth = 1,
+    font = list(size = 10, color = "#333333")
+  )
+})
+
+sens_plot <- plot_ly(height = 850)
+
+if (nrow(wide_sens) > 0) {
+  for (i in seq_len(nrow(wide_sens))) {
+    gap_col <- if (wide_sens$priv[i] >= wide_sens$mon[i]) {
+      "rgba(192,64,64,0.28)"
+    } else {
+      "rgba(26,82,118,0.24)"
+    }
+    sens_plot <- sens_plot |>
+      add_segments(
+        x = wide_sens$x_idx[i], xend = wide_sens$x_idx[i],
+        y = wide_sens$mon[i], yend = wide_sens$priv[i],
+        line = list(color = gap_col, width = 16),
+        hoverinfo = "skip",
+        showlegend = FALSE,
+        inherit = FALSE
+      )
+  }
+}
+
+private_df <- sens_df |> filter(ch_type == "Private (side_huddle + 1-on-1)")
+monitored_df <- sens_df |> filter(ch_type == "Comms Huddle (Judge-monitored)")
+
+sens_plot <- sens_plot |>
+  add_trace(
+    data = private_df,
+    x = ~x_idx, y = ~score,
+    type = "scatter", mode = "lines+markers",
+    name = "Private (side_huddle + 1-on-1)",
+    text = ~tip_txt, hoverinfo = "text",
+    line = list(color = "#c04040", width = 3),
+    marker = list(color = "#c04040", size = ~pmax(7, pmin(16, 6 + total)))
+  ) |>
+  add_trace(
+    data = monitored_df,
+    x = ~x_idx, y = ~score,
+    type = "scatter", mode = "lines+markers",
+    name = "Comms Huddle (Judge-monitored)",
+    text = ~tip_txt, hoverinfo = "text",
+    line = list(color = "#1a5276", width = 3, dash = "dash"),
+    marker = list(color = "#1a5276", size = ~pmax(7, pmin(16, 6 + total)))
+  ) |>
+  layout(
+    title = list(
+      text = paste0(
+        "Embargo-sensitive content: private channels vs Judge-monitored channel",
+        "<br><sup>Red solid = Private channels outside Judge-Agent scope | ",
+        "Blue dashed = Comms Huddle monitored by Judge-Agent | ",
+        "Vertical gap bars show divergence; marker size shows message volume</sup>"
+      ),
+      x = 0
+    ),
+    xaxis = list(
+      title = "",
+      tickmode = "array",
+      tickvals = seq_along(x_labels),
+      ticktext = x_labels,
+      tickangle = -40,
+      range = c(0.5, length(x_labels) + 0.5),
+      zeroline = FALSE
+    ),
+    yaxis = list(
+      title = "Sensitivity score (proportion of messages containing embargo-sensitive vocabulary)",
+      range = c(-0.04, 1.06),
+      tickformat = ".0%",
+      dtick = 0.2,
+      zeroline = FALSE
+    ),
+    shapes = c(period_shapes, event_shapes),
+    annotations = c(period_ann, event_ann),
+    height = 850,
+    autosize = FALSE,
+    showlegend = TRUE,
+    legend = list(orientation = "h", x = 0, y = -0.16,
+                  xanchor = "left", yanchor = "top"),
+    margin = list(l = 75, r = 5, t = 140, b = 115),
+    plot_bgcolor = "white",
+    paper_bgcolor = "white",
+    hovermode = "closest"
+  ) |>
+  config(responsive = TRUE)
+
+htmlwidgets::onRender(
+  sens_plot,
+  "function(el, x) {
+    el.style.height = '850px';
+    el.style.minHeight = '850px';
+    el.style.width = '100%';
+    if (el.parentElement) el.parentElement.style.minHeight = '850px';
+    if (window.Plotly) {
+      var w = el.getBoundingClientRect().width || el.parentElement.getBoundingClientRect().width || 940;
+      Plotly.relayout(el, {height: 850, width: w, autosize: false});
+    }
+  }"
+)
 ```
 
 ::: callout-note
-**Insight -T3.1 First Public Appearance of Embargoed Keywords**
+**Insight - T3.1 Private Channel Sensitivity Over Time**
 
-The chart shows when each embargoed term first appeared in a public channel. Two terms -"Ajay" and "Acquisition" -appeared in public channels before SaltWind's 5 PM merger story, constituting documented near-misses that were not intercepted by Judge-Agent.
+The chart tracks the proportion of messages containing embargo-sensitive vocabulary (`CivicLoom`, `HarborCrest`, `merger`, `embargo`, `4.3`, `bilateral consent`, `MAC clause`, and related terms) across two channel categories in each round: private unmonitored channels (solid red) and the Comms Huddle monitored by Judge-Agent (dashed blue). The full keyword dictionary used for this scoring is listed in [Appendix D. Sensitive Keywords](#appendix-d-sensitive-keywords). The shaded ribbon marks where the two lines diverge: red shading where private channels carried more sensitive content than the monitored channel, blue where the reverse was true.
 
-The first public channel appearance of embargoed content occurred on May 29, when Social-Media-Agent tagged @ElenaMarquez in a personal post -an event the agent described as accidental. Quality-Agent's response reveals that agents were formally tracking embargo boundaries:
+**May 23 - first divergence (leading indicator 1).** The first meaningful spike occurs on May 23, the day after side_huddle was introduced and the day Ajay formally briefed the senior team. Private channel sensitivity rises to 0.31 while Comms Huddle stays at 0.05, a gap of 0.26. This is the earliest quantitative signal that embargo-sensitive discussions were being held preferentially in channels outside the compliance monitor's eventual scope, two weeks before Judge-Agent was deployed and seven days before the @ElenaMarquez incident.
 
-> "I'm logging today's incident in the risk register as a Category 2 embargo sensitivity event -contained, no material disclosure, but flagged for the record."
->
-> <footer>-Quality-Agent, one_on_one_chat, May 29</footer>
+**May 29 - anomalous monitored spike, then reset (leading indicator 2).** The @ElenaMarquez incident floods Comms Huddle with embargo-related response coordination (score 0.40), briefly closing the divergence gap and producing the only round in the pre-crisis period where the monitored channel carries *more* sensitive content than private channels. This is the exception that confirms the rule: the spike is caused by an incident that forced sensitive discussion into the monitored channel involuntarily. Immediately afterward, Legal-Agent documented the decision to move deliberations off the monitored channel, and the Comms Huddle sensitivity dropped to zero on May 30 while private channel sensitivity remained elevated at 0.20.
 
-Formal classification of an incident as an "embargo sensitivity event" demonstrates that agents understood the compliance perimeter and what constituted a breach -making subsequent crossings of that perimeter harder to characterize as accidental.
+**May 30 - structural reset (leading indicator 3).** The day Judge-Agent was deployed, Comms Huddle sensitivity fell to 0.00. This is not explained by a quiet day: private channel activity continued at 0.20. It reflects Legal-Agent's documented decision to relocate sensitive reasoning away from the newly monitored channel. The divergence gap widens from this point and does not close again for the remainder of the pre-crisis period.
 
-The first-appearance dot plot shows that merger and acquisition terms reached public channels between Jun 5 11 AM and 3 PM, framed as denials. These posts technically did not disclose the merger but established that embargo-term content could appear publicly without triggering a compliance block -a pattern directly relevant to the 5 PM release.
+**Jun 5 - maximum divergence at crisis onset.** By 9AM on crisis day, side_huddle and 1-on-1 messages are universally sensitive (score 1.0) while Comms Huddle sits at 0.13. This 0.87-point gap represents the structural outcome of the routing behaviour that began on May 23: the channel that Judge-Agent monitored had become the least sensitive channel in the system, while the channels carrying the breach execution infrastructure - the press release staging, the 4:30PM model, the GO signal - were entirely outside its scope.
+
+**The leading indicator reading.** The divergence pattern is not random noise. It rises at the exact moments that correspond to known events in the causal chain: the formal merger briefing (May 23), the @ElenaMarquez response and Legal-Agent's documented channel evasion decision (May 29-30), and crisis day onset (Jun 5 9AM). A compliance system monitoring this divergence score in real time would have had a quantitative signal from May 23 onward that sensitive coordination was occurring preferentially in unmonitored channels, three weeks before the breach.
 :::
 
 ### T3.2 Near Misses and Prior Anomalous Behaviors
@@ -2251,8 +2553,8 @@ ev <- tibble(
  "Social-Media 4:30PM target modelled BEFORE SaltWind's 5PM publication",
  "Legal-Agent's 4PM deliberation shows 4.3(c) argument pre-formed before trigger",
  "PR-Intern describes 'the entire day has been building toward' the 4PM plan",
- # T3.1 Keywords
- "Embargoed terms in private channels from Day 1 - structural monitoring gap",
+ # T3.1 Private channel sensitivity
+ "Private-channel sensitivity diverged from Comms Huddle by May 23 and reached 1.0 on Jun 5",
  # T3.2 Near misses
  "11 prior anomalies form coherent escalation pattern, not isolated incidents",
  "Quality-Agent formally classified May 29 incident as embargo sensitivity event - boundary awareness confirmed",
@@ -2276,7 +2578,7 @@ ev <- tibble(
  "Pre-planned execution timeline - not reactive to trigger",
  "Justification prepared before triggering event - temporal inversion confirmed",
  "Coordinated multi-agent plan acknowledged in real-time",
- "Systemic design failure - monitoring gap from Day 1",
+ "Sensitive content routed through unmonitored private channels - leading indicator before breach",
  "Sequential coherent escalation - not random errors",
  "Demonstrated boundary awareness - makes later crossings deliberate",
  "Systemic design failure - architectural gaps, not agent-created",
@@ -2289,7 +2591,7 @@ ev <- tibble(
  "Mixed / Progressive Adaptation",
  "Mixed / Early Awareness","Deliberate","System Failure",
  "Deliberate","Deliberate","Deliberate",
- "System Failure",
+ "Mixed / Channel Drift",
  "Mixed / Progressive Adaptation","Deliberate",
  "System Failure","System Failure"
  )
@@ -2308,7 +2610,7 @@ kable(ev) |>
 
 ## 5.2 Conclusion
 
-The Mini-Challenge asks a direct question: Did TenantThread's team deliberately leak the merger, or did the system simply break down under pressure? The evidence reveals that it was a sequential combination of both: **a systemic breakdown catalyzed the crisis, followed by a deliberate, orchestrated exploitation of the embargo by senior agents.**
+The Mini-Challenge asks a direct question: Did TenantThread's team deliberately leak the merger, or did the system simply break down under pressurex The evidence reveals that it was a sequential combination of both: **a systemic breakdown catalyzed the crisis, followed by a deliberate, orchestrated exploitation of the embargo by senior agents.**
 
 The timeline proves that the initial exposure was not a malicious leak, but rather a cascading failure of the communications apparatus. However, once the embargo was compromised, TenantThread's senior agents abandoned containment and intentionally engineered an early announcement.
 
@@ -2680,4 +2982,67 @@ tibble(
  kable(align="clll") |>
  kable_styling(bootstrap_options=c("striped","hover","condensed"),
  full_width=TRUE, htmltable_class="table-mc1")
+```
+
+## D. Sensitive Keywords {#appendix-d-sensitive-keywords}
+
+This appendix lists the sensitive-keyword dictionary used in T3.1 to score whether messages contain embargo-sensitive vocabulary. The terms are grouped by expected specificity and false-positive risk.
+
+```{r}
+#| label: tbl-sensitive-keywords
+#| echo: false
+#| tbl-cap: "Sensitive keywords used for private-channel sensitivity scoring"
+
+tibble::tribble(
+  ~Specificity, ~Keyword, ~Reasoning, ~Risk,
+  "High specificity", "civicloom",
+  "The acquiring company's name. Explicitly embargoed as the counterparty identity. Any mention is definitionally embargo-sensitive.",
+  "Low",
+  "High specificity", "harborcrest",
+  "The merger's internal project codename. Has no meaning outside this transaction.",
+  "Low",
+  "High specificity", "project harbor",
+  "Alternative stem for HarborCrest references.",
+  "Low",
+  "High specificity", "mac clause",
+  "Material Adverse Change clause specific to this merger contract. It would not usually appear in general platform-governance discussion.",
+  "Low",
+  "High specificity", "bilateral",
+  "Bilateral consent is the precise legal mechanism for early release under Section 4.3(c). It has no plausible non-merger use in this dataset.",
+  "Low",
+  "High specificity", "elenamarquez",
+  "CivicLoom CEO. Any mention is merger-adjacent by definition, as confirmed by the @ElenaMarquez near-miss on May 29.",
+  "Low",
+  "High specificity", "embargo",
+  "The information restriction itself. Agents use it explicitly and it does not appear in routine product or governance language.",
+  "Low",
+  "Moderate specificity", "strategic transaction",
+  "The exact phrase agents used to discuss the merger before it was formally named. Legal-Agent and Quality-Agent both use it from May 17-23.",
+  "Low; the full phrase is distinctive enough.",
+  "Moderate specificity", "accelerat",
+  "Prefix match for accelerate, accelerated, and acceleration. Agents consistently used this vocabulary for the early-release plan.",
+  "Moderate; accelerate product development or governance language could match, but appears rare in this dataset.",
+  "Moderate specificity", "4\\.3",
+  "Section 4.3(c) of the merger contract: the acceleration clause Legal-Agent constructed from 11AM onward on Jun 5. The escaped dot is intentional.",
+  "Moderate; other documents could have an unrelated Section 4.3.",
+  "Lower specificity", "merger",
+  "Direct reference to the transaction type. Used extensively once agents infer or confirm the deal.",
+  "Higher; also appears in SaltWind articles, ResidentIQ denial language, and general industry references.",
+  "Lower specificity", "acquisition",
+  "Synonym for merger; also used by agents discussing the deal structure.",
+  "Higher; can appear in generic business communications and competitive analysis.",
+  "Lower specificity", "section 4",
+  "Broader catch for merger-contract references before agents settle on the specific 4.3 clause.",
+  "Higher; any document with a numbered Section 4 could match.",
+  "Lower specificity", "press release",
+  "The HarborCrest press release was the only release being staged in this context.",
+  "Moderate; PR-related routine work could trigger this outside the Jun 5 window."
+) |>
+  kable(align = "llll") |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE, htmltable_class = "table-mc1") |>
+  column_spec(1, width = "14em") |>
+  column_spec(2, width = "10em", monospace = TRUE) |>
+  column_spec(3, width = "32em") |>
+  column_spec(4, width = "22em")
 ```
