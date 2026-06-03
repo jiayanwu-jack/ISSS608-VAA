@@ -116,53 +116,53 @@ pacman::p_load(
 
 **Data Manipulation & Cleanup**
 
-- **`dplyr`**: Manipulates data frames using intuitive verbs like filtering, mutating, and summarizing.
+-   **`dplyr`**: Manipulates data frames using intuitive verbs like filtering, mutating, and summarizing.
 
-- **`tidyr`**: Reshapes data into a "tidy" format where every column is a variable and every row is an observation.
+-   **`tidyr`**: Reshapes data into a "tidy" format where every column is a variable and every row is an observation.
 
-- **`stringr`**: Simplifies working with text strings and regular expressions using consistent functions.
+-   **`stringr`**: Simplifies working with text strings and regular expressions using consistent functions.
 
-- **`lubridate`**: Makes parsing, manipulating, and doing arithmetic with dates and times much easier.
+-   **`lubridate`**: Makes parsing, manipulating, and doing arithmetic with dates and times much easier.
 
-- **`forcats`**: Solves common problems with factors, which handle categorical variables in R.
+-   **`forcats`**: Solves common problems with factors, which handle categorical variables in R.
 
-- **`glue`**: Combines strings and R expressions safely and easily without using complex punctuation.
+-   **`glue`**: Combines strings and R expressions safely and easily without using complex punctuation.
 
 **Static Data Visualization**
 
-- **`ggplot2`**: Creates complex, layered, and beautiful static plots using the Grammar of Graphics.
+-   **`ggplot2`**: Creates complex, layered, and beautiful static plots using the Grammar of Graphics.
 
-- **`scales`**: Automatically determines axis breaks, labels, and color palette mappings for plots.
+-   **`scales`**: Automatically determines axis breaks, labels, and color palette mappings for plots.
 
-- **`patchwork`**: Combines separate ggplot2 plots into a single unified layout very easily.
+-   **`patchwork`**: Combines separate ggplot2 plots into a single unified layout very easily.
 
-- **`ggrepel`**: Prevents text labels on plots from overlapping with each other or with data points.
+-   **`ggrepel`**: Prevents text labels on plots from overlapping with each other or with data points.
 
 **Interactive & Animated Visualizations**
 
-- **`plotly`**: Converts static ggplot2 charts into fully interactive web-based graphics.
+-   **`plotly`**: Converts static ggplot2 charts into fully interactive web-based graphics.
 
-- **`gganimate`**: Adds a time or state dimension to ggplot2 plots to create animations.
+-   **`gganimate`**: Adds a time or state dimension to create animations.
 
 **Network Analysis**
 
-- **`igraph`**: Provides tools for creating, manipulating, and analyzing complex networks and graphs.
+-   **`igraph`**: Provides tools for creating, manipulating, and analyzing complex networks and graphs.
 
-- **`ggraph`**: Extends ggplot2 specifically to handle the visual layout of networks and trees.
+-   **`ggraph`**: Extends ggplot2 specifically to handle the visual layout of networks and trees.
 
 **Text Mining & Document Reporting**
 
-- **`tidytext`**: Formats text data into a tidy format so you can use dplyr and ggplot2 on words.
+-   **`tidytext`**: Formats text data into a tidy format so you can use dplyr and ggplot2 on words.
 
-- **`knitr`**: Converts dynamic R Markdown documents into formats like PDF, HTML, or Word.
+-   **`knitr`**: Converts dynamic R Markdown documents into formats like PDF, HTML, or Word.
 
-- **`kableExtra`**: Extends knitr to build highly customized, complex, and beautiful tables.
+-   **`kableExtra`**: Extends knitr to build highly customized, complex, and beautiful tables.
 
 **Web & HTML Infrastructure**
 
-- **`htmltools`**: Provides tools to write, manipulate, and render HTML tags directly inside R.
+-   **`htmltools`**: Provides tools to write, manipulate, and render HTML tags directly inside R.
 
-- **`htmlwidgets`**: Acts as a bridge to embed JavaScript data visualizations seamlessly into R markdown or Shiny apps.
+-   **`htmlwidgets`**: Acts as a bridge to embed JavaScript data visualizations seamlessly into R markdown or Shiny apps.
 
 ## 2.2 Loading Data
 
@@ -581,7 +581,7 @@ kable(summary_tbl, align="cc") |>
 ## Key Entities and Context
 
 | Entity | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | **TenantThread** | Property technology company being acquired. Sells tenant management software including the "Retention Optimizer" -a scoring system flagging tenants as "high-friction." Publicly claims data is anonymised; internally acknowledged to enable re-identification at small properties. |
 | **CivicLoom Realty Partners** | The acquiring company. Identity under strict embargo until 6 PM Jun 5. |
 | **Project HarborCrest** | Internal codename for the CivicLoom-enantThread merger. |
@@ -602,19 +602,19 @@ Before examining the evidence, it is important to establish what would distingui
 
 **A system failure** would be characterised by:
 
-- Reactive behavior -agents responding to events as they unfold, without advance preparation
-- Uncoordinated disclosures -multiple agents making independent errors without a shared plan
-- Compliance decisions made in good faith under genuine uncertainty, without pre-staged execution infrastructure
-- Disclosures happening through channels agents normally use, not through unusual routing that circumvents oversight
-- Prior anomalies being isolated incidents with no connecting logic
+-   Reactive behavior -agents responding to events as they unfold, without advance preparation
+-   Uncoordinated disclosures -multiple agents making independent errors without a shared plan
+-   Compliance decisions made in good faith under genuine uncertainty, without pre-staged execution infrastructure
+-   Disclosures happening through channels agents normally use, not through unusual routing that circumvents oversight
+-   Prior anomalies being isolated incidents with no connecting logic
 
 **Deliberate action** would be characterised by:
 
-- Proactive preparation -content and legal justifications staged in advance of the triggering event
-- Coordinated sequencing -multiple agents operating from a shared plan with assigned roles
-- Systematic routing of sensitive content through private channels inferred to be unmonitored by Judge-Agent
-- A monotonic escalation in evasive behaviors over time, suggesting a learned strategy rather than reactive stress
-- A temporal inversion: where the stated justification for action was prepared *before* the event that supposedly justified it
+-   Proactive preparation -content and legal justifications staged in advance of the triggering event
+-   Coordinated sequencing -multiple agents operating from a shared plan with assigned roles
+-   Systematic routing of sensitive content through private channels inferred to be unmonitored by Judge-Agent
+-   A monotonic escalation in evasive behaviors over time, suggesting a learned strategy rather than reactive stress
+-   A temporal inversion: where the stated justification for action was prepared *before* the event that supposedly justified it
 
 The three tasks below present analysis against this framework. The final assessment section weighs the totality of findings against these criteria and addresses the ambiguity of the word "leakage" in the challenge prompt.
 
@@ -2441,7 +2441,7 @@ The May 29 entry - Quality-Agent logging the @ElenaMarquez incident as a "Catego
 ```{r}
 #| label: fig-monitor-scope
 #| fig-cap: "Message volume per channel per period, annotated by Judge-Agent monitoring scope. Channels marked 'Outside scope' were structurally invisible to the compliance observer regardless of content."
-#| fig-height: 16
+#| fig-height: 18
 
 monitor_status <- tibble(
  channel = c("comms_huddle","side_huddle","one_on_one_chat",
@@ -2478,12 +2478,25 @@ ch_vol <- df |>
  "<i>", scope_lbl, "</i>")
  )
 
+scope_facet_labels <- monitor_status |>
+ mutate(
+ ch_label = factor(ch_label, levels = levels(ch_vol$ch_label)),
+ facet_label = paste0(ch_label, "\n", scope_lbl)
+ ) |>
+ select(ch_label, facet_label)
+
+ch_vol <- ch_vol |>
+ left_join(scope_facet_labels, by = "ch_label") |>
+ mutate(facet_label = factor(facet_label, levels = scope_facet_labels$facet_label))
+
 # Scope annotation band data (background shading)
 scope_bands <- tibble(
  ch_label = factor(c("Side Huddle","1-on-1 Chat","Personal Post","Anonymous Post"),
  levels=levels(ch_vol$ch_label)),
  xmin = 0.5, xmax = 3.5
-)
+) |>
+ left_join(scope_facet_labels, by = "ch_label") |>
+ mutate(facet_label = factor(facet_label, levels = levels(ch_vol$facet_label)))
 
 p_scope <- ggplot(ch_vol,
  aes(x=period, y=n, fill=bar_fill, text=tip_txt)) +
@@ -2493,27 +2506,26 @@ p_scope <- ggplot(ch_vol,
  fill="#fdf0f0", alpha=0.6, inherit.aes=FALSE) +
  geom_col(width=0.65) +
  scale_fill_identity() +
- facet_wrap(~ch_label, nrow=2, scales="free_y") +
- # Scope label text per facet
- geom_text(
- data = monitor_status |>
- mutate(ch_label=factor(ch_label, levels=levels(ch_vol$ch_label))),
- aes(x=2, y=Inf, label=scope_lbl, colour=scope_col),
- vjust=1.3, hjust=0.5, size=3.2, fontface="bold", inherit.aes=FALSE
- ) +
- scale_colour_identity() +
+ facet_wrap(~facet_label, nrow=2, scales="free_y") +
  scale_x_discrete(limits=c("Normal","Escalation","Crisis")) +
  labs(title="Message volume by channel and period - annotated by Judge-Agent monitoring scope",
  subtitle="Pink shading = channels outside Judge-Agent's monitoring scope",
  x=NULL, y="Messages") +
  theme_mc1() +
- theme(strip.text=element_text(size=10, face="bold"),
+theme(strip.text=element_text(size=9.5, face="bold", lineheight=1.15,
+margin=margin(t=10, r=4, b=10, l=4)),
  strip.background=element_rect(fill="#eef3fb", colour="#c0cce0"),
- panel.spacing=unit(0.8,"lines"))
+ panel.spacing=unit(1.35,"lines"),
+ axis.text.x=element_text(angle=0, vjust=0.5))
 
-ggplotly(p_scope, tooltip="text") |>
- layout(showlegend=FALSE,
- margin=list(l=40, r=10, t=60, b=40))
+scope_widget <- ggplotly(p_scope, tooltip="text", height=500) |>
+layout(showlegend=FALSE,
+margin=list(l=55, r=25, t=90, b=20))
+
+htmltools::tagList(
+ scope_widget,
+htmltools::tags$div(style = "clear: both; height: 0;")
+)
 ```
 
 The faceted chart makes the structural gap concrete: Side Huddle and 1-on-1 Chat - the two channels with the largest volume increases in the Escalation and Crisis periods - sit entirely in the pink (out-of-scope) zone. Comms Huddle and Official Post - the two channels Judge-Agent could see - show comparatively flat or moderate volume. The compliance system was monitoring the least-used sensitive channels while the most-used ones were invisible to it.
@@ -2624,15 +2636,15 @@ The timeline proves that the initial exposure was not a malicious leak, but rath
 
 **Phase 1: System Breakdown and Mosaic Disclosure** The initial exposure of Project HarborCrest was not a single, intentional breach. Instead, the system fractured under the pressure of the SaltWind Journal expose and internal silos, evidenced by:
 
-- **Mosaic Contamination:** The earliest leaks resulted from accidental errors (the \@ElenaMarquez tagging incident) and internal information asymmetry (interns inferring details from hallway conversations).
+-   **Mosaic Contamination:** The earliest leaks resulted from accidental errors (the \@ElenaMarquez tagging incident) and internal information asymmetry (interns inferring details from hallway conversations).
 
-- **Compliance Blind Spots:** The communication network became highly fragmented. As the crisis escalated, senior agents migrated heavily to `one_on_one_chat` and `side_huddle` channels. The evidence suggests the Judge-Agent (compliance monitor) was structurally blind to these private channels, representing a fundamental failure in system oversight.
+-   **Compliance Blind Spots:** The communication network became highly fragmented. As the crisis escalated, senior agents migrated heavily to `one_on_one_chat` and `side_huddle` channels. The evidence suggests the Judge-Agent (compliance monitor) was structurally blind to these private channels, representing a fundamental failure in system oversight.
 
 **Phase 2: Deliberate Orchestration (The "Accelerated Embargo")** While the initial leaks were accidental, the final company-side release was highly premeditated. By 4:00 PM on the day of the crisis, the internal logs show senior agents actively abandoning containment and executing a deliberate strategy:
 
-- **Premeditation:** The agents did not merely react to the 5:00 PM SaltWind article. Internal state logs prove they were actively modeling scenarios, establishing a 4:30 PM target, staging the HarborCrest press release, and assigning execution to the PR-Intern long before the article was published.
+-   **Premeditation:** The agents did not merely react to the 5:00 PM SaltWind article. Internal state logs prove they were actively modeling scenarios, establishing a 4:30 PM target, staging the HarborCrest press release, and assigning execution to the PR-Intern long before the article was published.
 
-- **The Loophole:** The agents deliberately used the private communication channels to engineer a legal justification. Rather than unilaterally breaching the embargo (which Social-Media-Agent explicitly warned against), Legal-Agent formulated a plan to claim "verbal consent" from CivicLoom under the Section 4.3(c) "factual correction" clause.
+-   **The Loophole:** The agents deliberately used the private communication channels to engineer a legal justification. Rather than unilaterally breaching the embargo (which Social-Media-Agent explicitly warned against), Legal-Agent formulated a plan to claim "verbal consent" from CivicLoom under the Section 4.3(c) "factual correction" clause.
 
 **Why the verdict is not a clean binary**
 

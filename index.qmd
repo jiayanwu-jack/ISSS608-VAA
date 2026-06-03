@@ -16,52 +16,52 @@ Welcome to **ISSS608 Visual Analytics and Applications**. In this website, you w
 
 ### Take-home Exercises 1
 
-- [Executive Summary](Take-home_Ex/Take-home_Ex01/executive_summary.html)
+-   [Executive Summary](Take-home_Ex/Take-home_Ex01/executive_summary.html)
 
-- [Technical Report](Take-home_Ex/Take-home_Ex01/technical_report.html)
+-   [Technical Report](Take-home_Ex/Take-home_Ex01/technical_report.html)
 
 ### Take-home Exercises 2
 
-- [VAST Challenge 2026 MC1](Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html)
+-   [VAST Challenge 2026 MC1](Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html)
 
 ## 📚 Hands-on Exercises
 
 ### Chapter 1 & 2: Introduction
 
-- [Hands-on Exercise 1: Introduction to Visual Analytics](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html)
+-   [Hands-on Exercise 1: Introduction to Visual Analytics](Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html)
 
-- [Hands-on Exercise 2: Designing Graphs to Enlighten](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html)
+-   [Hands-on Exercise 2: Designing Graphs to Enlighten](Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html)
 
 ### Chapter 3: Interactivity in Visual Analytics
 
-- [Hands-on Exercise 3a: Programming Interactive Data Visualisation with R](Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html)
+-   [Hands-on Exercise 3a: Programming Interactive Data Visualisation with R](Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html)
 
-- [Hands-on Exercise 3b: Programming Animated Statistical Graphics with R](Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html)
+-   [Hands-on Exercise 3b: Programming Animated Statistical Graphics with R](Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html)
 
 ### Chapter 4: Fundamentals of Visual Analytics
 
-- [Hands-on Exercise 4a: Visualising Distribution](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html)
+-   [Hands-on Exercise 4a: Visualising Distribution](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html)
 
-- [Hands-on Exercise 4b: Visual Statistical Analysis](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html)
+-   [Hands-on Exercise 4b: Visual Statistical Analysis](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html)
 
-- [Hands-on Exercise 4c: Visualising Uncertainty](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html)
+-   [Hands-on Exercise 4c: Visualising Uncertainty](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html)
 
-- [Hands-on Exercise 4d: Building Funnel Plot with R](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html)
+-   [Hands-on Exercise 4d: Building Funnel Plot with R](Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html)
 
 ### Chapter 5: Visual Multivariate Analysis
 
-- [Hands-on Exercise 5a: Building Ternary Plot with R](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html)
+-   [Hands-on Exercise 5a: Building Ternary Plot with R](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html)
 
-- [Hands-on Exercise 5b: Visual Correlation Analysis](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html)
+-   [Hands-on Exercise 5b: Visual Correlation Analysis](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html)
 
-- [Hands-on Exercise 5c: Visual Multivariate Analysis with Heatmap](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html)
+-   [Hands-on Exercise 5c: Visual Multivariate Analysis with Heatmap](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html)
 
-- [Hands-on Exercise 5d: Visual Multivariate Analysis with Parallel Coordinates Plot](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html)
+-   [Hands-on Exercise 5d: Visual Multivariate Analysis with Parallel Coordinates Plot](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html)
 
-- [Hands-on Exercise 5e: Treemap Visualisation with R](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html)
+-   [Hands-on Exercise 5e: Treemap Visualisation with R](Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html)
 
 ### Chapter 7: Visualising and Analysing Network and Text Data
 
-- [Hands-on Exercise 7a: Visualising and Analysing Network Data](Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html)
+-   [Hands-on Exercise 7a: Visualising and Analysing Network Data](Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html)
 
-- [Hands-on Exercise 7b: Visualising and Analysing Text Data](Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html)
+-   [Hands-on Exercise 7b: Visualising and Analysing Text Data](Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html)
