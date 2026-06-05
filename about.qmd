@@ -2,18 +2,102 @@
 title: "R Resources"
 ---
 
-## **Getting Started with R**
+```{=html}
+<style>
+  .quarto-title { margin-bottom: 0.25rem; }
+</style>
 
--   [R for Data Science](https://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham.
+<p class="page-intro">
+  A curated set of references used throughout ISSS608 Visual Analytics and Applications.
+  These resources cover the R programming ecosystem, the tidyverse, and modern data visualisation practices.
+</p>
 
--   [Modern R with the tidyverse](https://b-rodrigues.github.io/modern_R/) by Bruno Rodrigues. [Chapter 2](https://b-rodrigues.github.io/modern_R/objects-types-and-useful-r-functions-to-get-started.html) provides a detail discussion on R data objects.
+<!-- Getting Started -->
+<div class="resource-section">
+  <div class="section-header" style="margin-top:0;">
+    <div class="section-dot handson"></div>
+    <span class="section-label">Getting Started with R</span>
+  </div>
+  <div class="resource-grid">
 
--   Brendan R. E. Ansell [Introduction to R - tidyverse](https://bookdown.org/ansellbr/WEHI_tidyR_course_book/)
+    <div class="resource-card">
+      <div class="resource-icon">📘</div>
+      <div>
+        <a href="https://r4ds.had.co.nz/" target="_blank" rel="noopener">R for Data Science</a>
+        <p class="resource-desc">
+          Garrett Grolemund &amp; Hadley Wickham. The definitive guide to the tidyverse —
+          covers data import, wrangling, visualisation, and modelling workflows.
+        </p>
+      </div>
+    </div>
 
--   [The Comprehensive Guide to Installing R Packages from CRAN, Bioconductor, GitHub and Co.](https://thomasadventure.blog/posts/install-r-packages/). This article provides useful tips on how to install R packages from different sources.
+    <div class="resource-card">
+      <div class="resource-icon">📗</div>
+      <div>
+        <a href="https://b-rodrigues.github.io/modern_R/" target="_blank" rel="noopener">Modern R with the tidyverse</a>
+        <p class="resource-desc">
+          Bruno Rodrigues. Practical introduction to modern R programming.
+          <a href="https://b-rodrigues.github.io/modern_R/objects-types-and-useful-r-functions-to-get-started.html" target="_blank" rel="noopener">Chapter 2</a>
+          offers a thorough overview of R data objects and types.
+        </p>
+      </div>
+    </div>
 
--   [R Workflow](https://hbiostat.org/rflow/)
+    <div class="resource-card">
+      <div class="resource-icon">📙</div>
+      <div>
+        <a href="https://bookdown.org/ansellbr/WEHI_tidyR_course_book/" target="_blank" rel="noopener">Introduction to R – tidyverse</a>
+        <p class="resource-desc">
+          Brendan R. E. Ansell. A beginner-friendly course book focused on tidy data principles
+          and practical data manipulation with dplyr and tidyr.
+        </p>
+      </div>
+    </div>
 
-## **Blog post**
+    <div class="resource-card">
+      <div class="resource-icon">📦</div>
+      <div>
+        <a href="https://thomasadventure.blog/posts/install-r-packages/" target="_blank" rel="noopener">Installing R Packages from CRAN, Bioconductor, GitHub and Co.</a>
+        <p class="resource-desc">
+          Comprehensive guide to installing R packages from multiple sources,
+          including common troubleshooting tips.
+        </p>
+      </div>
+    </div>
 
--   [R Workflow](https://www.fharrell.com/post/rflow/) from Statistical Thinking.
+  </div>
+</div>
+
+<!-- Workflow -->
+<div class="resource-section">
+  <div class="section-header">
+    <div class="section-dot inclass"></div>
+    <span class="section-label">Workflow &amp; Best Practices</span>
+  </div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="resource-icon">⚙️</div>
+      <div>
+        <a href="https://hbiostat.org/rflow/" target="_blank" rel="noopener">R Workflow</a>
+        <p class="resource-desc">
+          Frank Harrell's guide to reproducible, project-oriented R workflows —
+          covers project structure, naming conventions, and literate programming.
+        </p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">✍️</div>
+      <div>
+        <a href="https://www.fharrell.com/post/rflow/" target="_blank" rel="noopener">R Workflow — Blog Post</a>
+        <p class="resource-desc">
+          Statistical Thinking blog by Frank Harrell. A readable summary of
+          the R Workflow principles with practical advice for analysts.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+```

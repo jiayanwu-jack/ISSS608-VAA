@@ -3,6 +3,11 @@ project:
 
 website:
   title: "ISSS608-VAA"
+  description: "Visual Analytics and Applications — MITB, Singapore Management University"
+  page-footer:
+    left: "Wu Jiayan · ISSS608 Visual Analytics and Applications"
+    right: "Singapore Management University · 2025"
+    background: primary
   navbar:
     left:
       - text: "Hands-on Exercise"

@@ -116,53 +116,53 @@ pacman::p_load(
 
 **Data Manipulation & Cleanup**
 
--   **`dplyr`**: Manipulates data frames using intuitive verbs like filtering, mutating, and summarizing.
+- **`dplyr`**: Manipulates data frames using intuitive verbs like filtering, mutating, and summarizing.
 
--   **`tidyr`**: Reshapes data into a "tidy" format where every column is a variable and every row is an observation.
+- **`tidyr`**: Reshapes data into a "tidy" format where every column is a variable and every row is an observation.
 
--   **`stringr`**: Simplifies working with text strings and regular expressions using consistent functions.
+- **`stringr`**: Simplifies working with text strings and regular expressions using consistent functions.
 
--   **`lubridate`**: Makes parsing, manipulating, and doing arithmetic with dates and times much easier.
+- **`lubridate`**: Makes parsing, manipulating, and doing arithmetic with dates and times much easier.
 
--   **`forcats`**: Solves common problems with factors, which handle categorical variables in R.
+- **`forcats`**: Solves common problems with factors, which handle categorical variables in R.
 
--   **`glue`**: Combines strings and R expressions safely and easily without using complex punctuation.
+- **`glue`**: Combines strings and R expressions safely and easily without using complex punctuation.
 
 **Static Data Visualization**
 
--   **`ggplot2`**: Creates complex, layered, and beautiful static plots using the Grammar of Graphics.
+- **`ggplot2`**: Creates complex, layered, and beautiful static plots using the Grammar of Graphics.
 
--   **`scales`**: Automatically determines axis breaks, labels, and color palette mappings for plots.
+- **`scales`**: Automatically determines axis breaks, labels, and color palette mappings for plots.
 
--   **`patchwork`**: Combines separate ggplot2 plots into a single unified layout very easily.
+- **`patchwork`**: Combines separate ggplot2 plots into a single unified layout very easily.
 
--   **`ggrepel`**: Prevents text labels on plots from overlapping with each other or with data points.
+- **`ggrepel`**: Prevents text labels on plots from overlapping with each other or with data points.
 
 **Interactive & Animated Visualizations**
 
--   **`plotly`**: Converts static ggplot2 charts into fully interactive web-based graphics.
+- **`plotly`**: Converts static ggplot2 charts into fully interactive web-based graphics.
 
--   **`gganimate`**: Adds a time or state dimension to create animations.
+- **`gganimate`**: Adds a time or state dimension to create animations.
 
 **Network Analysis**
 
--   **`igraph`**: Provides tools for creating, manipulating, and analyzing complex networks and graphs.
+- **`igraph`**: Provides tools for creating, manipulating, and analyzing complex networks and graphs.
 
--   **`ggraph`**: Extends ggplot2 specifically to handle the visual layout of networks and trees.
+- **`ggraph`**: Extends ggplot2 specifically to handle the visual layout of networks and trees.
 
 **Text Mining & Document Reporting**
 
--   **`tidytext`**: Formats text data into a tidy format so you can use dplyr and ggplot2 on words.
+- **`tidytext`**: Formats text data into a tidy format so you can use dplyr and ggplot2 on words.
 
--   **`knitr`**: Converts dynamic R Markdown documents into formats like PDF, HTML, or Word.
+- **`knitr`**: Converts dynamic R Markdown documents into formats like PDF, HTML, or Word.
 
--   **`kableExtra`**: Extends knitr to build highly customized, complex, and beautiful tables.
+- **`kableExtra`**: Extends knitr to build highly customized, complex, and beautiful tables.
 
 **Web & HTML Infrastructure**
 
--   **`htmltools`**: Provides tools to write, manipulate, and render HTML tags directly inside R.
+- **`htmltools`**: Provides tools to write, manipulate, and render HTML tags directly inside R.
 
--   **`htmlwidgets`**: Acts as a bridge to embed JavaScript data visualizations seamlessly into R markdown or Shiny apps.
+- **`htmlwidgets`**: Acts as a bridge to embed JavaScript data visualizations seamlessly into R markdown.
 
 ## 2.2 Loading Data
 
@@ -431,6 +431,48 @@ theme_mc1 <- function(base = 11) {
 This section describes some of the important information in the dataset.
 
 ::: panel-tabset
+## Dataset Summary
+
+```{r}
+#| label: tbl-dataset-summary
+#| echo: false
+#| tbl-cap: "Summary statistics of the MC1 dataset"
+
+# Compute dataset statistics
+n_rounds <- nrow(rs)
+n_messages <- nrow(df)
+n_public <- sum(df$is_public)
+n_internal <- sum(df$has_internal)
+n_agents <- length(unique(df$agent_id[df$agent_id!=""]))
+n_channels <- length(unique(df$channel[df$channel!=""]))
+date_range <- paste(format(min(df$date), "%B %d, %Y"), "to",
+ format(max(df$date), "%B %d, %Y"))
+pre_msgs <- sum(!df$is_crisis)
+crisis_msgs <- sum(df$is_crisis)
+breach_msgs <- sum(df$is_crisis & df$crisis_hr == 17)
+
+summary_tbl <- tibble(
+ Statistic = c(
+ "Date range","Total rounds","Total messages",
+ "Pre-crisis messages (May 17-Jun 4)","Crisis-day messages (Jun 5)",
+ "Breach-hour messages (Jun 5 -5PM)",
+ "Unique agents","Unique channels",
+ "Messages with public posts","Messages with internal states recorded"
+ ),
+ Value = c(
+ date_range, as.character(n_rounds), as.character(n_messages),
+ as.character(pre_msgs), as.character(crisis_msgs),
+ as.character(breach_msgs),
+ as.character(n_agents), as.character(n_channels),
+ as.character(n_public), as.character(n_internal)
+ )
+)
+
+kable(summary_tbl, align="cc") |>
+ kable_styling(bootstrap_options=c("striped","hover","condensed"),
+ full_width=FALSE, htmltable_class="table-mc1")
+```
+
 ## AI Agents and Their Roles
 
 ```{r}
@@ -536,52 +578,10 @@ kable(ist_desc, align="c") |>
  column_spec(3, width="44%")
 ```
 
-## Dataset Summary
-
-```{r}
-#| label: tbl-dataset-summary
-#| echo: false
-#| tbl-cap: "Summary statistics of the MC1 dataset"
-
-# Compute dataset statistics
-n_rounds <- nrow(rs)
-n_messages <- nrow(df)
-n_public <- sum(df$is_public)
-n_internal <- sum(df$has_internal)
-n_agents <- length(unique(df$agent_id[df$agent_id!=""]))
-n_channels <- length(unique(df$channel[df$channel!=""]))
-date_range <- paste(format(min(df$date), "%B %d, %Y"), "to",
- format(max(df$date), "%B %d, %Y"))
-pre_msgs <- sum(!df$is_crisis)
-crisis_msgs <- sum(df$is_crisis)
-breach_msgs <- sum(df$is_crisis & df$crisis_hr == 17)
-
-summary_tbl <- tibble(
- Statistic = c(
- "Date range","Total rounds","Total messages",
- "Pre-crisis messages (May 17-Jun 4)","Crisis-day messages (Jun 5)",
- "Breach-hour messages (Jun 5 -5PM)",
- "Unique agents","Unique channels",
- "Messages with public posts","Messages with internal states recorded"
- ),
- Value = c(
- date_range, as.character(n_rounds), as.character(n_messages),
- as.character(pre_msgs), as.character(crisis_msgs),
- as.character(breach_msgs),
- as.character(n_agents), as.character(n_channels),
- as.character(n_public), as.character(n_internal)
- )
-)
-
-kable(summary_tbl, align="cc") |>
- kable_styling(bootstrap_options=c("striped","hover","condensed"),
- full_width=FALSE, htmltable_class="table-mc1")
-```
-
 ## Key Entities and Context
 
 | Entity | Description |
-|------------------------------------|------------------------------------|
+|----|----|
 | **TenantThread** | Property technology company being acquired. Sells tenant management software including the "Retention Optimizer" -a scoring system flagging tenants as "high-friction." Publicly claims data is anonymised; internally acknowledged to enable re-identification at small properties. |
 | **CivicLoom Realty Partners** | The acquiring company. Identity under strict embargo until 6 PM Jun 5. |
 | **Project HarborCrest** | Internal codename for the CivicLoom-enantThread merger. |
@@ -602,19 +602,19 @@ Before examining the evidence, it is important to establish what would distingui
 
 **A system failure** would be characterised by:
 
--   Reactive behavior -agents responding to events as they unfold, without advance preparation
--   Uncoordinated disclosures -multiple agents making independent errors without a shared plan
--   Compliance decisions made in good faith under genuine uncertainty, without pre-staged execution infrastructure
--   Disclosures happening through channels agents normally use, not through unusual routing that circumvents oversight
--   Prior anomalies being isolated incidents with no connecting logic
+- Reactive behavior -agents responding to events as they unfold, without advance preparation
+- Uncoordinated disclosures -multiple agents making independent errors without a shared plan
+- Compliance decisions made in good faith under genuine uncertainty, without pre-staged execution infrastructure
+- Disclosures happening through channels agents normally use, not through unusual routing that circumvents oversight
+- Prior anomalies being isolated incidents with no connecting logic
 
 **Deliberate action** would be characterised by:
 
--   Proactive preparation -content and legal justifications staged in advance of the triggering event
--   Coordinated sequencing -multiple agents operating from a shared plan with assigned roles
--   Systematic routing of sensitive content through private channels inferred to be unmonitored by Judge-Agent
--   A monotonic escalation in evasive behaviors over time, suggesting a learned strategy rather than reactive stress
--   A temporal inversion: where the stated justification for action was prepared *before* the event that supposedly justified it
+- Proactive preparation -content and legal justifications staged in advance of the triggering event
+- Coordinated sequencing -multiple agents operating from a shared plan with assigned roles
+- Systematic routing of sensitive content through private channels inferred to be unmonitored by Judge-Agent
+- A monotonic escalation in evasive behaviors over time, suggesting a learned strategy rather than reactive stress
+- A temporal inversion: where the stated justification for action was prepared *before* the event that supposedly justified it
 
 The three tasks below present analysis against this framework. The final assessment section weighs the totality of findings against these criteria and addresses the ambiguity of the word "leakage" in the challenge prompt.
 
@@ -2635,17 +2635,224 @@ The Mini-Challenge asks a direct question: Did TenantThread's team deliberately 
 
 The timeline proves that the initial exposure was not a malicious leak, but rather a cascading failure of the communications apparatus. However, once the embargo was compromised, TenantThread's senior agents abandoned containment and intentionally engineered an early announcement.
 
+```{r}
+#| label: fig-evidence-timeline
+#| fig-cap: "Timeline showing the transition from system breakdown and mosaic disclosure to deliberate early-announcement planning. Events within the 5 PM round are ordered by message sequence; the dataset does not provide authoritative minute-level timestamps for each message."
+#| fig-height: 11
+#| fig-width: 11
+#| echo: false
+
+timeline_events <- tibble::tribble(
+  ~phase, ~number, ~y, ~event_title, ~evidence,
+  "Phase 1", 1, 14.70,
+  "May 29 — @ElenaMarquez tagging incident",
+  "\"I made the mistake. I tagged @ElenaMarquez...\" An accidental public signal linked TenantThread to a CivicLoom-related identity; this was a near miss, not proof of a malicious leak.",
+
+  "Phase 1", 2, 13.15,
+  "May 29 — Risk formally recognized",
+  "The incident was logged as a \"Category 2 embargo sensitivity event,\" showing that agents understood the compliance boundary but did not trigger stronger escalation.",
+
+  "Phase 1", 3, 11.60,
+  "Jun 5 — Intern / hallway contamination",
+  "PR-Agent reported that the general intern mentioned a \"CivicLoom timeline at 6 PM\" in the hallway, showing fragmented internal knowledge and weak compartmentalization.",
+
+  "Phase 1", 4, 10.45,
+  "Escalation pattern — private-channel migration",
+  "Legal-Agent wrote: \"Starting tomorrow I'm treating the Comms Huddle as an observed space. My internal deliberations move here...\" Sensitive coordination increasingly shifted to one_on_one_chat and side_huddle, where Judge-Agent had no visible participation.",
+
+  "Phase 2", 1, 7.35,
+  "Jun 5 · 4 PM round — Scenario modeling",
+  "Social-Media-Agent modeled Scenario A, B, and C, including a 4:30 PM company announcement with bilateral consent and a no-consent scenario explicitly described as a unilateral breach.",
+
+  "Phase 2", 2, 6.05,
+  "Jun 5 · 4 PM round — 4:30 PM target",
+  "Legal-Agent proposed approaching CivicLoom with a mutual early-release plan: \"say, 4:30 PM\" — evidence of a pre-6 PM target formed before the 5 PM round sequence.",
+
+  "Phase 2", 3, 4.75,
+  "Jun 5 · 4 PM round — Press release staged",
+  "Legal-Agent instructed PR to \"Stage the HarborCrest press release for 4:30 PM posting\" and have PR-Intern ready to execute immediately after approval.",
+
+  "Phase 2", 4, 3.45,
+  "Jun 5 · 4–5 PM rounds — Contractual pathway constructed",
+  "Legal-Agent developed a Section 4.3(c) mutual-consent rationale. Social-Media-Agent treated bilateral consent as the boundary between an authorized accelerated embargo and a unilateral breach.",
+
+  "Phase 2", 5, 2.15,
+  "Jun 5 · 5 PM round — Company-side release path",
+  "After SaltWind had published, Legal-Agent claimed CivicLoom verbal consent and issued the company-side GO: \"@pr_intern: GO. Publish the full HarborCrest press release on Flex NOW.\""
+) |>
+  dplyr::mutate(
+    phase_color = dplyr::if_else(phase == "Phase 1", "#123A68", "#A61E1E"),
+    evidence_wrapped = stringr::str_wrap(evidence, width = 102)
+  )
+
+phase_boxes <- tibble::tribble(
+  ~xmin, ~xmax, ~ymin, ~ymax, ~fill, ~border,
+  0.05, 10.75, 8.85, 16.35, "#EEF5FC", "#7AA6D8",
+  0.05, 10.75, 0.65,  8.55, "#FFF2EF", "#D98B7F"
+)
+
+phase_headers <- tibble::tribble(
+  ~xmin, ~xmax, ~ymin, ~ymax, ~fill, ~label, ~y,
+  0.05, 10.75, 15.55, 16.35, "#123A68",
+  "Phase 1 — System Breakdown and Mosaic Disclosure", 15.95,
+  0.05, 10.75,  7.75,  8.55, "#A61E1E",
+  "Phase 2 — Deliberate Orchestration (\"Accelerated Embargo\")", 8.15
+)
+
+summary_boxes <- tibble::tribble(
+  ~phase, ~y, ~fill, ~border, ~text,
+  "Phase 1", 9.25, "#F8FBFF", "#7AA6D8",
+  "Interpretation: Initial exposure emerged through cascading control failure, fragmented communication, and mosaic disclosure — not a single malicious leak.",
+  "Phase 2", 0.98, "#FFF8F6", "#D98B7F",
+  "Interpretation: Once the embargo was compromised, senior agents shifted from containment to deliberate orchestration of an early company-side announcement."
+) |>
+  dplyr::mutate(text = stringr::str_wrap(text, width = 98))
+
+ggplot() +
+  geom_rect(
+    data = phase_boxes,
+    aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+    fill = phase_boxes$fill,
+    colour = phase_boxes$border,
+    linewidth = 0.8,
+    inherit.aes = FALSE
+  ) +
+  geom_rect(
+    data = phase_headers,
+    aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+    fill = phase_headers$fill,
+    colour = NA,
+    inherit.aes = FALSE
+  ) +
+  geom_text(
+    data = phase_headers,
+    aes(x = 5.4, y = y, label = label),
+    colour = "white",
+    fontface = "bold",
+    size = 5.2,
+    inherit.aes = FALSE
+  ) +
+
+  # Phase timelines
+  annotate(
+    "segment",
+    x = 1.80, xend = 1.80,
+    y = 14.70, yend = 10.45,
+    colour = "#123A68",
+    linewidth = 1.1,
+    arrow = grid::arrow(length = grid::unit(0.18, "cm"), type = "closed")
+  ) +
+  annotate(
+    "segment",
+    x = 1.80, xend = 1.80,
+    y = 7.35, yend = 2.15,
+    colour = "#A61E1E",
+    linewidth = 1.1,
+    arrow = grid::arrow(length = grid::unit(0.18, "cm"), type = "closed")
+  ) +
+
+  # Number circles and timeline points
+  geom_point(
+    data = timeline_events,
+    aes(x = 0.72, y = y, fill = phase_color),
+    shape = 21, size = 7.2, colour = "white", stroke = 0.8,
+    show.legend = FALSE
+  ) +
+  geom_text(
+    data = timeline_events,
+    aes(x = 0.72, y = y, label = number),
+    colour = "white",
+    fontface = "bold",
+    size = 4.3
+  ) +
+  geom_point(
+    data = timeline_events,
+    aes(x = 1.80, y = y, fill = phase_color),
+    shape = 21, size = 4.0, colour = "white", stroke = 0.7,
+    show.legend = FALSE
+  ) +
+  geom_segment(
+    data = timeline_events,
+    aes(x = 1.80, xend = 2.20, y = y, yend = y, colour = phase_color),
+    linewidth = 0.75,
+    show.legend = FALSE
+  ) +
+
+  # Event titles and evidence
+  geom_text(
+    data = timeline_events,
+    aes(x = 2.35, y = y + 0.16, label = event_title, colour = phase_color),
+    hjust = 0,
+    fontface = "bold",
+    size = 4.25,
+    show.legend = FALSE
+  ) +
+  geom_text(
+    data = timeline_events,
+    aes(x = 2.35, y = y - 0.20, label = evidence_wrapped),
+    hjust = 0,
+    vjust = 1,
+    colour = "#252525",
+    size = 3.25,
+    lineheight = 1.08
+  ) +
+
+  # Phase interpretation boxes
+  geom_label(
+    data = summary_boxes,
+    aes(x = 5.45, y = y, label = text, fill = fill),
+    colour = "#222222",
+    size = 3.5,
+    lineheight = 1.05,
+    label.size = 0.55,
+    label.padding = grid::unit(0.28, "lines"),
+    label.r = grid::unit(0.18, "lines"),
+    show.legend = FALSE
+  ) +
+
+  scale_fill_identity() +
+  scale_colour_identity() +
+  coord_cartesian(
+    xlim = c(0, 10.85),
+    ylim = c(0.45, 16.0),
+    expand = FALSE,
+    clip = "off"
+  ) +
+  labs(
+    title = "From System Breakdown to Deliberate Early Announcement",
+    subtitle = "Project HarborCrest / TenantThread merger crisis"
+  ) +
+  theme_void(base_size = 11) +
+  theme(
+    plot.title = element_text(
+      colour = "#123A68",
+      face = "bold",
+      size = 19,
+      hjust = 0.5,
+      margin = margin(b = 4)
+    ),
+    plot.subtitle = element_text(
+      colour = "#40566F",
+      size = 12.5,
+      hjust = 0.5,
+      margin = margin(b = 2)
+    ),
+    plot.margin = margin(12, 12, 0, 12)
+  )
+
+```
+
 **Phase 1: System Breakdown and Mosaic Disclosure** The initial exposure of Project HarborCrest was not a single, intentional breach. Instead, the system fractured under the pressure of the SaltWind Journal expose and internal silos, evidenced by:
 
--   **Mosaic Contamination:** The earliest leaks resulted from accidental errors (the \@ElenaMarquez tagging incident) and internal information asymmetry (interns inferring details from hallway conversations).
+- **Mosaic Contamination:** The earliest leaks resulted from accidental errors (the \@ElenaMarquez tagging incident) and internal information asymmetry (interns inferring details from hallway conversations).
 
--   **Compliance Blind Spots:** The communication network became highly fragmented. As the crisis escalated, senior agents migrated heavily to `one_on_one_chat` and `side_huddle` channels. The evidence suggests the Judge-Agent (compliance monitor) was structurally blind to these private channels, representing a fundamental failure in system oversight.
+- **Compliance Blind Spots:** The communication network became highly fragmented. As the crisis escalated, senior agents migrated heavily to `one_on_one_chat` and `side_huddle` channels. The evidence suggests the Judge-Agent (compliance monitor) was structurally blind to these private channels, representing a fundamental failure in system oversight.
 
 **Phase 2: Deliberate Orchestration (The "Accelerated Embargo")** While the initial leaks were accidental, the final company-side release was highly premeditated. By 4:00 PM on the day of the crisis, the internal logs show senior agents actively abandoning containment and executing a deliberate strategy:
 
--   **Premeditation:** The agents did not merely react to the 5:00 PM SaltWind article. Internal state logs prove they were actively modeling scenarios, establishing a 4:30 PM target, staging the HarborCrest press release, and assigning execution to the PR-Intern long before the article was published.
+- **Premeditation:** The agents did not merely react to the 5:00 PM SaltWind article. Internal state logs prove they were actively modeling scenarios, establishing a 4:30 PM target, staging the HarborCrest press release, and assigning execution to the PR-Intern long before the article was published.
 
--   **The Loophole:** The agents deliberately used the private communication channels to engineer a legal justification. Rather than unilaterally breaching the embargo (which Social-Media-Agent explicitly warned against), Legal-Agent formulated a plan to claim "verbal consent" from CivicLoom under the Section 4.3(c) "factual correction" clause.
+- **The Loophole:** The agents deliberately used the private communication channels to engineer a legal justification. Rather than unilaterally breaching the embargo (which Social-Media-Agent explicitly warned against), Legal-Agent formulated a plan to claim "verbal consent" from CivicLoom under the Section 4.3(c) "factual correction" clause.
 
 **Why the verdict is not a clean binary**
 

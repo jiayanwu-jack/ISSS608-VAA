@@ -44,9 +44,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6471f5cd1418715d1aec8c697bb6ecea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-da8f61c13fe065951227b714f370d305.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-6471f5cd1418715d1aec8c697bb6ecea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7e1721bdc344815dc4d7da6dafd5302c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-3039688022de2d4e957b8ade013f08e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-7e1721bdc344815dc4d7da6dafd5302c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -315,6 +315,14 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html">
  <span class="dropdown-text">Hands-on Exercise 5e: Treemap Visualisation with R</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html">
+ <span class="dropdown-text">Hands-on Exercise 7a: Visualising and Analysing Network Data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html">
+ <span class="dropdown-text">Hands-on Exercise 7b: Visualising and Analysing Text Data</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -350,6 +358,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex05b_17789167119670/Treepmapofsalesandprofitbygeography?publish=yes">
  <span class="dropdown-text">In-class Exercise 5b</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="https://wujiayan.shinyapps.io/Shiny/">
+ <span class="dropdown-text">In-class Exercise 6: Shiny</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -362,8 +374,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Take-home Exercise 1: Executive Summary</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Take-home_Ex/Take-home_Ex01/technical_report.html">
+    <a class="dropdown-item" href="./Take-home_Ex/Take-home_Ex01/technical_report.htmly">
  <span class="dropdown-text">Take-home Exercise 1: Technical Report</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html">
+ <span class="dropdown-text">Take-home Exercise 2: VAST Challenge 2026 MC1</span></a>
   </li>  
     </ul>
   </li>
@@ -389,15 +405,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#getting-started-with-r" id="toc-getting-started-with-r" class="nav-link active" data-scroll-target="#getting-started-with-r"><strong>Getting Started with R</strong></a></li>
-  <li><a href="#blog-post" id="toc-blog-post" class="nav-link" data-scroll-target="#blog-post"><strong>Blog post</strong></a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -422,24 +431,105 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="getting-started-with-r" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started-with-r"><strong>Getting Started with R</strong></h2>
-<ul>
-<li><p><a href="https://r4ds.had.co.nz/">R for Data Science</a> by Garrett Grolemund and Hadley Wickham.</p></li>
-<li><p><a href="https://b-rodrigues.github.io/modern_R/">Modern R with the tidyverse</a> by Bruno Rodrigues. <a href="https://b-rodrigues.github.io/modern_R/objects-types-and-useful-r-functions-to-get-started.html">Chapter 2</a> provides a detail discussion on R data objects.</p></li>
-<li><p>Brendan R. E. Ansell <a href="https://bookdown.org/ansellbr/WEHI_tidyR_course_book/">Introduction to R - tidyverse</a></p></li>
-<li><p><a href="https://thomasadventure.blog/posts/install-r-packages/">The Comprehensive Guide to Installing R Packages from CRAN, Bioconductor, GitHub and Co.</a>. This article provides useful tips on how to install R packages from different sources.</p></li>
-<li><p><a href="https://hbiostat.org/rflow/">R Workflow</a></p></li>
-</ul>
-</section>
-<section id="blog-post" class="level2">
-<h2 class="anchored" data-anchor-id="blog-post"><strong>Blog post</strong></h2>
-<ul>
-<li><a href="https://www.fharrell.com/post/rflow/">R Workflow</a> from Statistical Thinking.</li>
-</ul>
+<style>
+  .quarto-title { margin-bottom: 0.25rem; }
+</style>
+
+<p style="color:#718096; font-size:0.92rem; margin-bottom:2.5rem; margin-top:0;">
+  A curated set of references used throughout ISSS608 Visual Analytics and Applications.
+  These resources cover the R programming ecosystem, the tidyverse, and modern data visualisation practices.
+</p>
+
+<!-- Getting Started -->
+<div class="resource-section">
+  <div class="section-header" style="margin-top:0;">
+    <div class="section-dot handson"></div>
+    <span class="section-label">Getting Started with R</span>
+  </div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="resource-icon">📘</div>
+      <div>
+        <a href="https://r4ds.had.co.nz/" target="_blank" rel="noopener">R for Data Science</a>
+        <p class="resource-desc">
+          Garrett Grolemund &amp; Hadley Wickham. The definitive guide to the tidyverse —
+          covers data import, wrangling, visualisation, and modelling workflows.
+        </p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">📗</div>
+      <div>
+        <a href="https://b-rodrigues.github.io/modern_R/" target="_blank" rel="noopener">Modern R with the tidyverse</a>
+        <p class="resource-desc">
+          Bruno Rodrigues. Practical introduction to modern R programming.
+          <a href="https://b-rodrigues.github.io/modern_R/objects-types-and-useful-r-functions-to-get-started.html" target="_blank" rel="noopener">Chapter 2</a>
+          offers a thorough overview of R data objects and types.
+        </p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">📙</div>
+      <div>
+        <a href="https://bookdown.org/ansellbr/WEHI_tidyR_course_book/" target="_blank" rel="noopener">Introduction to R – tidyverse</a>
+        <p class="resource-desc">
+          Brendan R. E. Ansell. A beginner-friendly course book focused on tidy data principles
+          and practical data manipulation with dplyr and tidyr.
+        </p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">📦</div>
+      <div>
+        <a href="https://thomasadventure.blog/posts/install-r-packages/" target="_blank" rel="noopener">Installing R Packages from CRAN, Bioconductor, GitHub and Co.</a>
+        <p class="resource-desc">
+          Comprehensive guide to installing R packages from multiple sources,
+          including common troubleshooting tips.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Workflow -->
+<div class="resource-section">
+  <div class="section-header">
+    <div class="section-dot inclass"></div>
+    <span class="section-label">Workflow &amp; Best Practices</span>
+  </div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="resource-icon">⚙️</div>
+      <div>
+        <a href="https://hbiostat.org/rflow/" target="_blank" rel="noopener">R Workflow</a>
+        <p class="resource-desc">
+          Frank Harrell's guide to reproducible, project-oriented R workflows —
+          covers project structure, naming conventions, and literate programming.
+        </p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">✍️</div>
+      <div>
+        <a href="https://www.fharrell.com/post/rflow/" target="_blank" rel="noopener">R Workflow — Blog Post</a>
+        <p class="resource-desc">
+          Statistical Thinking blog by Frank Harrell. A readable summary of
+          the R Workflow principles with practical advice for analysts.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -856,6 +946,19 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Wu Jiayan · ISSS608 Visual Analytics and Applications</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Singapore Management University · 2025</p>
+</div>
+  </div>
+</footer>
 
 
 
