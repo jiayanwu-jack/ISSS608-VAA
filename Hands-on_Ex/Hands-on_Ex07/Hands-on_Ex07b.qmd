@@ -18,19 +18,19 @@ execute:
 
 Learning Objectives:
 
-- understand tidytext framework for processing, analysing and visualising text data,
+-   understand tidytext framework for processing, analysing and visualising text data,
 
-- write function for importing multiple files into R,
+-   write function for importing multiple files into R,
 
-- combine multiple files into a single data frame,
+-   combine multiple files into a single data frame,
 
-- clean and wrangle text data by using tidyverse approach,
+-   clean and wrangle text data by using tidyverse approach,
 
-- visualise words with Word Cloud,
+-   visualise words with Word Cloud,
 
-- compute term frequency–inverse document frequency (TF-IDF) using tidytext method, and
+-   compute term frequency–inverse document frequency (TF-IDF) using tidytext method, and
 
-- visualising texts and terms relationship.
+-   visualising texts and terms relationship.
 
 ## **15.2 Getting Started**
 
@@ -38,17 +38,17 @@ Learning Objectives:
 
 In this hands-on exercise, the following R packages for handling, processing, wrangling, analysing and visualising text data will be used:
 
-- tidytext, tidyverse (mainly readr, purrr, stringr, ggplot2)
+-   tidytext, tidyverse (mainly readr, purrr, stringr, ggplot2)
 
-- widyr,
+-   widyr,
 
-- wordcloud and ggwordcloud,
+-   wordcloud and ggwordcloud,
 
-- textplot (required igraph, tidygraph and ggraph, )
+-   textplot (required igraph, tidygraph and ggraph, )
 
-- DT,
+-   DT,
 
-- lubridate and hms.
+-   lubridate and hms.
 
 The code chunk:
 
@@ -98,17 +98,17 @@ write_rds(raw_text, "data/rds/news20.rds")
 **\
 Things to learn from the code chunk above:**
 
-- [`read_lines()`](https://readr.tidyverse.org/reference/read_lines.html) of [**readr**](https://readr.tidyverse.org/) package is used to read up to n_max lines from a file.
+-   [`read_lines()`](https://readr.tidyverse.org/reference/read_lines.html) of [**readr**](https://readr.tidyverse.org/) package is used to read up to n_max lines from a file.
 
-- [`map()`](https://purrr.tidyverse.org/reference/map.html) of [**purrr**](https://purrr.tidyverse.org/) package is used to transform their input by applying a function to each element of a list and returning an object of the same length as the input.
+-   [`map()`](https://purrr.tidyverse.org/reference/map.html) of [**purrr**](https://purrr.tidyverse.org/) package is used to transform their input by applying a function to each element of a list and returning an object of the same length as the input.
 
-- [`unnest()`](https://tidyr.tidyverse.org/reference/nest.html) of **dplyr** package is used to flatten a list-column of data frames back out into regular columns.
+-   [`unnest()`](https://tidyr.tidyverse.org/reference/nest.html) of **dplyr** package is used to flatten a list-column of data frames back out into regular columns.
 
-- [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) of **dplyr** is used to add new variables and preserves existing ones;
+-   [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) of **dplyr** is used to add new variables and preserves existing ones;
 
-- [`transmute()`](https://dplyr.tidyverse.org/reference/mutate.html) of **dplyr** is used to add new variables and drops existing ones.
+-   [`transmute()`](https://dplyr.tidyverse.org/reference/mutate.html) of **dplyr** is used to add new variables and drops existing ones.
 
-- [`read_rds()`](https://readr.tidyverse.org/reference/read_rds.html) is used to save the extracted and combined data frame as rds file for future use.
+-   [`read_rds()`](https://readr.tidyverse.org/reference/read_rds.html) is used to save the extracted and combined data frame as rds file for future use.
 
 ## **15.5 Initial EDA**
 
@@ -125,9 +125,9 @@ raw_text %>%
 
 ## **15.6 Introducing tidytext**
 
-- Using tidy data principles in processing, analysing and visualising text data.
+-   Using tidy data principles in processing, analysing and visualising text data.
 
-- Much of the infrastructure needed for text mining with tidy data frames already exists in packages like ‘dplyr’, ‘broom’, ‘tidyr’, and ‘ggplot2’.
+-   Much of the infrastructure needed for text mining with tidy data frames already exists in packages like ‘dplyr’, ‘broom’, ‘tidyr’, and ‘ggplot2’.
 
 Figure below shows the workflow using tidytext approach for processing and visualising text data.
 
@@ -148,9 +148,9 @@ cleaned_text <- raw_text %>%
 
 **Things to learn from the code chunk:**
 
-- [`cumsum()`](https://rdrr.io/r/base/cumsum.html) of base R is used to return a vector whose elements are the cumulative sums of the elements of the argument.
+-   [`cumsum()`](https://rdrr.io/r/base/cumsum.html) of base R is used to return a vector whose elements are the cumulative sums of the elements of the argument.
 
-- [`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) from **stringr** is used to detect the presence or absence of a pattern in a string.
+-   [`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) from **stringr** is used to detect the presence or absence of a pattern in a string.
 
 ### **15.6.2 Removing lines with nested text representing quotes from other users.**
 
@@ -169,9 +169,9 @@ cleaned_text <- cleaned_text %>%
 
 **Things to learn from the code chunk:**
 
-- [`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) from **stringr** is used to detect the presence or absence of a pattern in a string.
+-   [`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) from **stringr** is used to detect the presence or absence of a pattern in a string.
 
-- [`filter()`](https://dplyr.tidyverse.org/reference/filter.html) of **dplyr** package is used to subset a data frame, retaining all rows that satisfy the specified conditions.
+-   [`filter()`](https://dplyr.tidyverse.org/reference/filter.html) of **dplyr** package is used to subset a data frame, retaining all rows that satisfy the specified conditions.
 
 ### **15.6.3 Text Data Processing**
 
@@ -245,7 +245,7 @@ words_by_newsgroup %>%
 
 ## **15.7 Basic Concept of TF-IDF**
 
-- [tf–idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), short for term frequency–inverse document frequency, is a numerical statistic that is intended to reflect how important a word is to a document in a collection of [corpus](https://en.wikipedia.org/wiki/Text_corpus).
+-   [tf–idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), short for term frequency–inverse document frequency, is a numerical statistic that is intended to reflect how important a word is to a document in a collection of [corpus](https://en.wikipedia.org/wiki/Text_corpus).
 
 ![](images/clipboard-508796412.png)
 
@@ -292,11 +292,11 @@ DT::datatable(tf_idf, filter = 'top') %>%
 
 **Things to learn from the code chunk:**
 
-- `filter()` argument is used to turn control the filter UI.
+-   `filter()` argument is used to turn control the filter UI.
 
-- `formatRound()` is used to customise the values format. The argument *digits* define the number of decimal places.
+-   `formatRound()` is used to customise the values format. The argument *digits* define the number of decimal places.
 
-- `formatStyle()` is used to customise the output table. In this example, the arguments *target* and *lineHeight* are used to reduce the line height by 25%.
+-   `formatStyle()` is used to customise the output table. In this example, the arguments *target* and *lineHeight* are used to reduce the line height by 25%.
 
 To learn more about customising DT’s table, visit this [link](https://rstudio.github.io/DT/functions.html).
 
@@ -327,11 +327,11 @@ tf_idf %>%
 
 ### **15.7.5 Counting and correlating pairs of words with the widyr package**
 
-- To count the number of times that two words appear within the same document, or to see how correlated they are.
+-   To count the number of times that two words appear within the same document, or to see how correlated they are.
 
-- Most operations for finding pairwise counts or correlations need to turn the data into a wide matrix first.
+-   Most operations for finding pairwise counts or correlations need to turn the data into a wide matrix first.
 
-- [**widyr**](https://cran.r-project.org/web/packages/widyr/index.html) package first ‘casts’ a tidy dataset into a wide matrix, performs an operation such as a correlation on it, then re-tidies the result.
+-   [**widyr**](https://cran.r-project.org/web/packages/widyr/index.html) package first ‘casts’ a tidy dataset into a wide matrix, performs an operation such as a correlation on it, then re-tidies the result.
 
 ![](images/clipboard-920136260.png)
 
@@ -478,8 +478,8 @@ ggraph(bigram_graph,
 
 #### 15.8.0.1 widyr
 
-- Reference guide
+-   Reference guide
 
-  - [widyr: Widen, process, and re-tidy a dataset](https://cran.r-project.org/web/packages/widyr/vignettes/intro.html)
+    -   [widyr: Widen, process, and re-tidy a dataset](https://cran.r-project.org/web/packages/widyr/vignettes/intro.html)
 
-  - [United Nations Voting Correlations](https://cran.r-project.org/web/packages/widyr/vignettes/united_nations.html)
+    -   [United Nations Voting Correlations](https://cran.r-project.org/web/packages/widyr/vignettes/united_nations.html)
