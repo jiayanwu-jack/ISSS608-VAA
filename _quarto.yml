@@ -44,6 +44,12 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html"
           - text: "Hands-on Exercise 8: Visualising and Analysing Time-Oriented Data"
             href: "Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html"
+          - text: "Hands-on Exercise 9a: Choropleth Mapping with R"
+            href: "Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html"
+          - text: "Hands-on Exercise 9b: Visualising Geospatial Point Data"
+            href: "Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html"
+          - text: "Hands-on Exercise 9c: Analytical Mapping"
+            href: "Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html"
       - text: "In-class Exercise"
         menu: 
           - text: "In-class Exercise 1"

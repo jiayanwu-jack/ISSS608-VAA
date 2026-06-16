@@ -17,7 +17,7 @@ title: "ISSS608 Visual Analytics and Applications"
   </p>
   <div class="hero-stats">
     <div class="hero-stat">
-      <span class="stat-number">16</span>
+      <span class="stat-number">19</span>
       <span class="stat-label">Hands-on Exercises</span>
     </div>
     <div class="hero-stat">
@@ -85,7 +85,7 @@ title: "ISSS608 Visual Analytics and Applications"
   <summary class="section-header">
     <div class="section-dot handson"></div>
     <span class="section-label">Hands-on Exercises</span>
-    <span class="section-count">16 exercises</span>
+    <span class="section-count">19 exercises</span>
     <span class="section-chevron">&#8250;</span>
   </summary>
 
@@ -208,6 +208,28 @@ title: "ISSS608 Visual Analytics and Applications"
         <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html">
           <div class="ex-tag">Exercise 8</div>
           <p class="ex-title">Visualising and Analysing Time-Oriented Data</p>
+          <span class="ex-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Ch 9 -->
+    <div class="chapter-group">
+      <p class="chapter-label">Chapter 9 · Visualising and Analysing Geographic Data</p>
+      <div class="exercise-grid">
+        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html">
+          <div class="ex-tag">Exercise 9a</div>
+          <p class="ex-title">Choropleth Mapping with R</p>
+          <span class="ex-arrow">→</span>
+        </a>
+        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html">
+          <div class="ex-tag">Exercise 9b</div>
+          <p class="ex-title">Visualising Geospatial Point Data</p>
+          <span class="ex-arrow">→</span>
+        </a>
+        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html">
+          <div class="ex-tag">Exercise 9c</div>
+          <p class="ex-title">Analytical Mapping</p>
           <span class="ex-arrow">→</span>
         </a>
       </div>
