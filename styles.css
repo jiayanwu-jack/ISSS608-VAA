@@ -607,6 +607,53 @@ pre.sourceCode {
   font-size: 0.83rem;
 }
 
+/* ---- Previous / next hands-on exercise navigation ---- */
+.chapter-navigation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.chapter-nav-button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.15rem;
+  color: var(--color-text-title);
+  background: var(--bs-body-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+}
+
+.chapter-nav-button:hover {
+  color: var(--color-text-title);
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 18px rgba(41, 128, 185, 0.12);
+  transform: translateY(-2px);
+}
+
+.chapter-nav-next {
+  text-align: right;
+}
+
+.chapter-nav-direction {
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.chapter-nav-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
   .hero-section { padding: 44px 24px; }
@@ -614,4 +661,7 @@ pre.sourceCode {
   .hero-stats   { gap: 1.75rem; }
   .project-grid, .exercise-grid { grid-template-columns: 1fr; }
   .author-links { display: none; }
+  .chapter-navigation { grid-template-columns: 1fr; }
+  .chapter-navigation > span:empty { display: none; }
+  .chapter-nav-next { text-align: left; }
 }

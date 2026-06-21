@@ -17,7 +17,7 @@ title: "ISSS608 Visual Analytics and Applications"
   </p>
   <div class="hero-stats">
     <div class="hero-stat">
-      <span class="stat-number">19</span>
+      <span class="stat-number">20</span>
       <span class="stat-label">Hands-on Exercises</span>
     </div>
     <div class="hero-stat">
@@ -85,7 +85,7 @@ title: "ISSS608 Visual Analytics and Applications"
   <summary class="section-header">
     <div class="section-dot handson"></div>
     <span class="section-label">Hands-on Exercises</span>
-    <span class="section-count">19 exercises</span>
+    <span class="section-count">20 exercises</span>
     <span class="section-chevron">&#8250;</span>
   </summary>
 
@@ -230,6 +230,18 @@ title: "ISSS608 Visual Analytics and Applications"
         <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html">
           <div class="ex-tag">Exercise 9c</div>
           <p class="ex-title">Analytical Mapping</p>
+          <span class="ex-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Ch 10 -->
+    <div class="chapter-group">
+      <p class="chapter-label">Chapter 10 · Information Dashboard Design</p>
+      <div class="exercise-grid">
+        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html">
+          <div class="ex-tag">Exercise 10</div>
+          <p class="ex-title">Information Dashboard Design</p>
           <span class="ex-arrow">→</span>
         </a>
       </div>
