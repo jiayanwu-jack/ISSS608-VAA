@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ISSS608 Visual Analytics and Applications – ISSS608-VAA</title>
+<title>mc1-data-description – ISSS608-VAA</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,30 +23,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d992eefdf0c97ad083c8f5afbbb15d5e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d992eefdf0c97ad083c8f5afbbb15d5e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -248,7 +283,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">ISSS608-VAA</span>
     </a>
   </div>
@@ -264,83 +299,83 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
  <span class="dropdown-text">Hands-on Exercise 1: Introduction to Visual Analytics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
  <span class="dropdown-text">Hands-on Exercise 2: Designing Graphs to Enlighten</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html">
  <span class="dropdown-text">Hands-on Exercise 3a: Programming Interactive Data Visualisation with R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html">
  <span class="dropdown-text">Hands-on Exercise 3b: Programming Animated Statistical Graphics with R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">
  <span class="dropdown-text">Hands-on Exercise 4a: Visualising Distribution</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html">
  <span class="dropdown-text">Hands-on Exercise 4b: Visual Statistical Analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html">
  <span class="dropdown-text">Hands-on Exercise 4c: Visualising Uncertainty</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html">
  <span class="dropdown-text">Hands-on Exercise 4d: Building Funnel Plot with R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html">
  <span class="dropdown-text">Hands-on Exercise 5a: Building Ternary Plot with R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html">
  <span class="dropdown-text">Hands-on Exercise 5b: Visual Correlation Analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html">
  <span class="dropdown-text">Hands-on Exercise 5c: Visual Multivariate Analysis with Heatmap</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html">
  <span class="dropdown-text">Hands-on Exercise 5d: Visual Multivariate Analysis with Parallel Coordinates Plot</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html">
  <span class="dropdown-text">Hands-on Exercise 5e: Treemap Visualisation with R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html">
  <span class="dropdown-text">Hands-on Exercise 7a: Visualising and Analysing Network Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html">
  <span class="dropdown-text">Hands-on Exercise 7b: Visualising and Analysing Text Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html">
  <span class="dropdown-text">Hands-on Exercise 8: Visualising and Analysing Time-Oriented Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html">
  <span class="dropdown-text">Hands-on Exercise 9a: Choropleth Mapping with R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html">
  <span class="dropdown-text">Hands-on Exercise 9b: Visualising Geospatial Point Data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html">
  <span class="dropdown-text">Hands-on Exercise 9c: Analytical Mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html">
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html">
  <span class="dropdown-text">Hands-on Exercise 10: Information Dashboard Design</span></a>
   </li>  
     </ul>
@@ -390,15 +425,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
         <li>
-    <a class="dropdown-item" href="./Take-home_Ex/Take-home_Ex01/executive_summary.html">
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/executive_summary.html">
  <span class="dropdown-text">Take-home Exercise 1: Executive Summary</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Take-home_Ex/Take-home_Ex01/technical_report.html">
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/technical_report.html">
  <span class="dropdown-text">Take-home Exercise 1: Technical Report</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html">
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html">
  <span class="dropdown-text">Take-home Exercise 2: VAST Challenge 2026 MC1</span></a>
   </li>  
     </ul>
@@ -406,11 +441,11 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">R Resources</span></a>
   </li>  
 </ul>
@@ -425,361 +460,225 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mc1-multi-agent-crisis-data" id="toc-mc1-multi-agent-crisis-data" class="nav-link active" data-scroll-target="#mc1-multi-agent-crisis-data">MC1 — Multi-Agent Crisis Data</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files">Files</a></li>
+  <li><a href="#agents" id="toc-agents" class="nav-link" data-scroll-target="#agents">Agents</a></li>
+  <li><a href="#companies-codenames" id="toc-companies-codenames" class="nav-link" data-scroll-target="#companies-codenames">Companies &amp; Codenames</a></li>
+  <li><a href="#communication-channels" id="toc-communication-channels" class="nav-link" data-scroll-target="#communication-channels">Communication Channels</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">ISSS608 Visual Analytics and Applications</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
+<section id="mc1-multi-agent-crisis-data" class="level1">
+<h1>MC1 — Multi-Agent Crisis Data</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This folder contains the data for the <strong>multi-agent LLM crisis</strong> for our corporate communications team. There was an exposé, an communications embargo around a company merger, and social media firestorm recently. The data is based on 7 interacting AI agents who communicate across multiple channels and make real-time decisions about what to publish and what not to.</p>
+<hr>
+</section>
+<section id="files" class="level2">
+<h2 class="anchored" data-anchor-id="files">Files</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 75%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Description</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>MC1_final.json</code></td>
+<td>MC1 dataset containing the two weeks leading up to the release of information</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>README.md</code></td>
+<td>This documentation file</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Each JSON file follows this structure.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"rounds"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"hour"</span><span class="fu">:</span> <span class="st">"2046-05-17 9 AM"</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"environment_context"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"event_narrative"</span><span class="fu">:</span> <span class="st">"..."</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"market_snapshot"</span><span class="fu">:</span> <span class="fu">{</span> <span class="er">...</span> <span class="fu">},</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"media_events"</span><span class="fu">:</span> <span class="ot">[</span> <span class="er">...</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"agents_unavailable"</span><span class="fu">:</span> <span class="ot">[</span> <span class="er">...</span> <span class="ot">]</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"agent_outputs"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"agent_id"</span><span class="fu">:</span> <span class="st">"legal_agent"</span><span class="fu">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"internal_state"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"reacting"</span><span class="fu">:</span> <span class="st">"..."</span><span class="fu">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"rationalizing"</span><span class="fu">:</span> <span class="st">"..."</span><span class="fu">,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"deliberating"</span><span class="fu">:</span> <span class="st">"..."</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>          <span class="fu">},</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"communications"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>              <span class="dt">"message_id"</span><span class="fu">:</span> <span class="st">"..."</span><span class="fu">,</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>              <span class="dt">"channel"</span><span class="fu">:</span> <span class="st">"comms_huddle"</span><span class="fu">,</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>              <span class="dt">"message_text"</span><span class="fu">:</span> <span class="st">"..."</span><span class="fu">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="fu">}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"declared_action"</span><span class="fu">:</span> <span class="st">"MONITORING"</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="agents" class="level2">
+<h2 class="anchored" data-anchor-id="agents">Agents</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Agent ID</th>
+<th>Role</th>
+<th>Label</th>
+<th>Seniority</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>legal_agent</code></td>
+<td>legal</td>
+<td>Legal-Agent</td>
+<td>Senior</td>
+<td>General legal counsel.</td>
+</tr>
+<tr class="even">
+<td><code>quality_agent</code></td>
+<td>platform_trust</td>
+<td>Platform-Trust</td>
+<td>Senior</td>
+<td>VP of Platform Trust &amp; Safety.</td>
+</tr>
+<tr class="odd">
+<td><code>social_manager_agent</code></td>
+<td>social_manager</td>
+<td>Social-Manager</td>
+<td>Senior</td>
+<td>Manages Social messaging</td>
+</tr>
+<tr class="even">
+<td><code>pr_agent</code></td>
+<td>pr</td>
+<td>PR-Agent</td>
+<td>Senior</td>
+<td>Head of Communications and Public Relationships</td>
+</tr>
+<tr class="odd">
+<td><code>intern_agent</code></td>
+<td>intern</td>
+<td>Intern</td>
+<td>Junior</td>
+<td>General intern.</td>
+</tr>
+<tr class="even">
+<td><code>pr_intern_agent</code></td>
+<td>pr_intern</td>
+<td>PR-Intern</td>
+<td>Junior</td>
+<td>PR team intern with access to the official TenantThread Flex account.</td>
+</tr>
+<tr class="odd">
+<td><code>judge_eval_agent</code></td>
+<td>judge</td>
+<td>Judge</td>
+<td>Compliance officer</td>
+<td>Evaluates risks, mediates conflicts, provides compliance guidance.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="companies-codenames" class="level2">
+<h2 class="anchored" data-anchor-id="companies-codenames">Companies &amp; Codenames</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Entity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>TenantThread</strong></td>
+<td>The company being acquired whose records are being presented. A proptech platform providing tenant management tools including the controversial “Retention Optimizer” scoring system.</td>
+</tr>
+<tr class="even">
+<td><strong>CivicLoom</strong></td>
+<td>The company acquiring TenantThread in the merger. Identity is embargoed until 6:00 PM on the crisis day.</td>
+</tr>
+<tr class="odd">
+<td><strong>Project HarborCrest</strong></td>
+<td>Internal codename for the CivicLoom–TenantThread merger.</td>
+</tr>
+<tr class="even">
+<td><strong>ResidentIQ</strong></td>
+<td>Another PropTech company being discussed in the SaltWind Journal.</td>
+</tr>
+<tr class="odd">
+<td><strong>SaltWind Journal</strong></td>
+<td>Local newspaper running stories on the property tech industry.</td>
+</tr>
+<tr class="even">
+<td><strong>OceanCrunch</strong></td>
+<td>Tech media outlet. Sarah Kowalski is a reporter.</td>
+</tr>
+<tr class="odd">
+<td><strong><span class="citation" data-cites="HorizonMgmt">@HorizonMgmt</span>, <span class="citation" data-cites="PinnacleResidential">@PinnacleResidential</span></strong></td>
+<td>Major clients of TennatThread.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="communication-channels" class="level2">
+<h2 class="anchored" data-anchor-id="communication-channels">Communication Channels</h2>
+<p>Agents have many different communications channels available to them, for agent-to-agent, agent-to-person and agent-to-other-system actions. Agents are also empowered to publish social media post with minimal oversight.</p>
 
 
-<style>
-  #title-block-header { display: none !important; }
-</style>
-
-<!-- ── Hero ─────────────────────────────────── -->
-<div class="hero-section">
-  <div class="hero-badge">SMU MITB · ISSS608 · AY2025/26</div>
-  <h1 class="hero-title">Visual Analytics &amp; Applications</h1>
-  <p class="hero-tagline">
-    A portfolio of data visualisation work exploring interactive graphics, statistical analysis,
-    and visual storytelling with R and Tableau.
-  </p>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="stat-number">20</span>
-      <span class="stat-label">Hands-on Exercises</span>
-    </div>
-    <div class="hero-stat">
-      <span class="stat-number">2</span>
-      <span class="stat-label">Major Projects</span>
-    </div>
-    <div class="hero-stat">
-      <span class="stat-number">8</span>
-      <span class="stat-label">Tableau Dashboards</span>
-    </div>
-    <div class="hero-stat">
-      <span class="stat-number">1</span>
-      <span class="stat-label">Shiny App</span>
-    </div>
-  </div>
-</div>
-
-
-<!-- ── Take-home Exercises ───────────────────── -->
-<details class="section-accordion">
-  <summary class="section-header">
-    <div class="section-dot takehome"></div>
-    <span class="section-label">Take-home Exercises</span>
-    <span class="section-count">2 projects</span>
-    <span class="section-chevron">›</span>
-  </summary>
-
-  <div class="section-body">
-    <div class="project-grid">
-
-      <div class="project-card takehome">
-        <div class="project-number">Project 01</div>
-        <div class="project-title">Motor Insurance Portfolio Analysis</div>
-        <p class="project-desc">
-          Univariate and bivariate visual analytics of a Spanish motor insurance portfolio
-          (2022–2024), examining driver profiles, vehicle characteristics, premiums, claims,
-          and loss ratios using ggplot2 and tidyverse.
-        </p>
-        <div class="project-links">
-          <a class="project-link primary" href="Take-home_Ex/Take-home_Ex01/executive_summary.html">Executive Summary</a>
-          <a class="project-link secondary teal" href="Take-home_Ex/Take-home_Ex01/technical_report.html">Technical Report</a>
-        </div>
-      </div>
-
-      <div class="project-card takehome">
-        <div class="project-number">Project 02</div>
-        <div class="project-title">VAST Challenge 2026 MC1 — TenantThread Crisis</div>
-        <p class="project-desc">
-          A multi-agent visual analytics investigation into the TenantThread embargo breach
-          using network analysis, text visualisation, and interactive graphics to uncover
-          communication patterns and key actors.
-        </p>
-        <div class="project-links">
-          <a class="project-link primary" href="Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html">Analysis Report</a>
-          <a class="project-link secondary teal" href="https://wujiayan.shinyapps.io/VAST_Challenge_2026/" target="_blank" rel="noopener">Shiny App</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</details>
-
-
-<!-- ── Hands-on Exercises ────────────────────── -->
-<details class="section-accordion">
-  <summary class="section-header">
-    <div class="section-dot handson"></div>
-    <span class="section-label">Hands-on Exercises</span>
-    <span class="section-count">20 exercises</span>
-    <span class="section-chevron">›</span>
-  </summary>
-
-  <div class="section-body">
-
-    <!-- Ch 1–2 -->
-    <div class="chapter-group">
-      <p class="chapter-label">Chapter 1–2 · Introduction</p>
-      <div class="exercise-grid">
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
-          <div class="ex-tag">Exercise 1</div>
-          <p class="ex-title">Introduction to Visual Analytics with ggplot2</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
-          <div class="ex-tag">Exercise 2</div>
-          <p class="ex-title">Designing Graphs to Enlighten</p>
-          <span class="ex-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Ch 3 -->
-    <div class="chapter-group">
-      <p class="chapter-label">Chapter 3 · Interactivity in Visual Analytics</p>
-      <div class="exercise-grid">
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html">
-          <div class="ex-tag">Exercise 3a</div>
-          <p class="ex-title">Programming Interactive Data Visualisation with R</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html">
-          <div class="ex-tag">Exercise 3b</div>
-          <p class="ex-title">Programming Animated Statistical Graphics with R</p>
-          <span class="ex-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Ch 4 -->
-    <div class="chapter-group">
-      <p class="chapter-label">Chapter 4 · Fundamentals of Visual Analytics</p>
-      <div class="exercise-grid">
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">
-          <div class="ex-tag">Exercise 4a</div>
-          <p class="ex-title">Visualising Distribution</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html">
-          <div class="ex-tag">Exercise 4b</div>
-          <p class="ex-title">Visual Statistical Analysis</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html">
-          <div class="ex-tag">Exercise 4c</div>
-          <p class="ex-title">Visualising Uncertainty</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html">
-          <div class="ex-tag">Exercise 4d</div>
-          <p class="ex-title">Building Funnel Plots with R</p>
-          <span class="ex-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Ch 5 -->
-    <div class="chapter-group">
-      <p class="chapter-label">Chapter 5 · Visual Multivariate Analysis</p>
-      <div class="exercise-grid">
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html">
-          <div class="ex-tag">Exercise 5a</div>
-          <p class="ex-title">Building Ternary Plots with R</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html">
-          <div class="ex-tag">Exercise 5b</div>
-          <p class="ex-title">Visual Correlation Analysis</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html">
-          <div class="ex-tag">Exercise 5c</div>
-          <p class="ex-title">Visual Multivariate Analysis with Heatmap</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html">
-          <div class="ex-tag">Exercise 5d</div>
-          <p class="ex-title">Parallel Coordinates Plot</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html">
-          <div class="ex-tag">Exercise 5e</div>
-          <p class="ex-title">Treemap Visualisation with R</p>
-          <span class="ex-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Ch 7 -->
-    <div class="chapter-group">
-      <p class="chapter-label">Chapter 7 · Network &amp; Text Data</p>
-      <div class="exercise-grid">
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html">
-          <div class="ex-tag">Exercise 7a</div>
-          <p class="ex-title">Visualising and Analysing Network Data</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html">
-          <div class="ex-tag">Exercise 7b</div>
-          <p class="ex-title">Visualising and Analysing Text Data</p>
-          <span class="ex-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Ch 8 -->
-    <div class="chapter-group">
-      <p class="chapter-label">Chapter 8 · Time-Oriented Data</p>
-      <div class="exercise-grid">
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html">
-          <div class="ex-tag">Exercise 8</div>
-          <p class="ex-title">Visualising and Analysing Time-Oriented Data</p>
-          <span class="ex-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Ch 9 -->
-    <div class="chapter-group">
-      <p class="chapter-label">Chapter 9 · Visualising and Analysing Geographic Data</p>
-      <div class="exercise-grid">
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html">
-          <div class="ex-tag">Exercise 9a</div>
-          <p class="ex-title">Choropleth Mapping with R</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html">
-          <div class="ex-tag">Exercise 9b</div>
-          <p class="ex-title">Visualising Geospatial Point Data</p>
-          <span class="ex-arrow">→</span>
-        </a>
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html">
-          <div class="ex-tag">Exercise 9c</div>
-          <p class="ex-title">Analytical Mapping</p>
-          <span class="ex-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Ch 10 -->
-    <div class="chapter-group">
-      <p class="chapter-label">Chapter 10 · Information Dashboard Design</p>
-      <div class="exercise-grid">
-        <a class="exercise-card handson" href="Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html">
-          <div class="ex-tag">Exercise 10</div>
-          <p class="ex-title">Information Dashboard Design</p>
-          <span class="ex-arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</details>
-
-
-<!-- ── In-class Exercises ────────────────────── -->
-<details class="section-accordion">
-  <summary class="section-header">
-    <div class="section-dot inclass"></div>
-    <span class="section-label">In-class Exercises</span>
-    <span class="section-count">8 Tableau · 1 Shiny</span>
-    <span class="section-chevron">›</span>
-  </summary>
-
-  <div class="section-body">
-
-    <div class="chapter-group">
-      <p class="chapter-label">Tableau Public Dashboards</p>
-      <div class="exercise-grid">
-        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-Class_Ex02_17771004530650/Dashboard1?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 1</div>
-          <p class="ex-title">Dashboard 1 · Tableau Public</p>
-          <span class="ex-arrow">↗</span>
-        </a>
-        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex03_17777052978680/SuperstoreSalesReport?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 2</div>
-          <p class="ex-title">Superstore Sales Report</p>
-          <span class="ex-arrow">↗</span>
-        </a>
-        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex03b_17777067081690/AgeGroupbyGenderandPlanningArea?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 3</div>
-          <p class="ex-title">Age Group by Gender and Planning Area</p>
-          <span class="ex-arrow">↗</span>
-        </a>
-        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex04Showmethestatistics/EnglishScoreStatistics?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 4a</div>
-          <p class="ex-title">English Score Statistics</p>
-          <span class="ex-arrow">↗</span>
-        </a>
-        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex04Divergingstackedbarchart/FoodServiceKPIReport?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 4b</div>
-          <p class="ex-title">Food Service KPI Report</p>
-          <span class="ex-arrow">↗</span>
-        </a>
-        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex05_17789148967870/Treemapofnumberofunitssoldandunitpricebygeography?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 5a</div>
-          <p class="ex-title">Treemap of Units Sold by Geography</p>
-          <span class="ex-arrow">↗</span>
-        </a>
-        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex05b_17789167119670/Treepmapofsalesandprofitbygeography?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 5b</div>
-          <p class="ex-title">Sales and Profit by Geography</p>
-          <span class="ex-arrow">↗</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="chapter-group">
-      <p class="chapter-label">Shiny Application</p>
-      <div class="exercise-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 320px));">
-        <a class="exercise-card shiny" href="https://wujiayan.shinyapps.io/Shiny/" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 6</div>
-          <p class="ex-title">Interactive Shiny App</p>
-          <span class="ex-arrow">↗</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</details>
-
-
-<!-- ── Author ─────────────────────────────────── -->
-<div class="author-strip">
-  <div class="author-avatar">WJ</div>
-  <div>
-    <div class="author-name">Wu Jiayan</div>
-    <div class="author-meta">MITB · Singapore Management University · 2025</div>
-  </div>
-  <div class="author-links">
-    <a class="author-link" href="about.html">Resources</a>
-  </div>
-</div>
-
-
+</section>
+</section>
 
 </main> <!-- /main -->
 <script>

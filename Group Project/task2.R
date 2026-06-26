@@ -9,6 +9,7 @@
 make_agent_label <- function(id) {
   map <- c(
     legal_agent          = "Legal",
+    judge_agent          = "Judge",
     judge_eval_agent     = "Judge",
     social_media_agent   = "Social-Media",
     social_manager_agent = "Social-Media",

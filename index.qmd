@@ -73,6 +73,7 @@ sidebar: false
         </p>
         <div class="project-links">
           <a class="project-link primary" href="Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html">Analysis Report</a>
+          <a class="project-link secondary teal" href="https://wujiayan.shinyapps.io/VAST_Challenge_2026/" target="_blank" rel="noopener">Shiny App</a>
         </div>
       </div>
 
