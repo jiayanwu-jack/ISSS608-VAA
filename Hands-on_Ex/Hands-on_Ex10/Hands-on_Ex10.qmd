@@ -204,6 +204,7 @@ report %>%
 ### **Plotting Coffechain Sales report**
 
 ```{r}
+#| html-table-processing: none
 report %>%
   group_by(Product) %>%
   summarize('Monthly Sales' = list(Sales), 
@@ -256,6 +257,7 @@ sales_data = left_join(sales, spark)
 ### **Plotting the updated data.table**
 
 ```{r}
+#| html-table-processing: none
 sales_data %>%
   gt() %>%
   gt_plt_sparkline('Monthly Sales',
@@ -281,6 +283,7 @@ sales_data = sales_data %>%
 ```
 
 ```{r}
+#| html-table-processing: none
 sales_data %>%
   gt() %>%
   gt_plt_sparkline('Monthly Sales') %>%
