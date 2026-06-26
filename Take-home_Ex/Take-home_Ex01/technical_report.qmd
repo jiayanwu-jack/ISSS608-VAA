@@ -3,6 +3,7 @@ title: "Visual Analytics for Motor Insurance Portfolio Discovery"
 author: "Wu Jiayan"
 date: "May 10, 2026"
 date-modified: "last-modified"
+sidebar: false
 format:
   html:
     toc: true

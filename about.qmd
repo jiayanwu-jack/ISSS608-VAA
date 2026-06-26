@@ -1,5 +1,6 @@
 ---
 title: "R Resources"
+sidebar: false
 ---
 
 ```{=html}

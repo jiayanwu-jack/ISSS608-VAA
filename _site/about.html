@@ -44,9 +44,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-80ce45c24245b02b7186e1b95c6aa12a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4508bc1239a13118213deca58d3bbff6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-80ce45c24245b02b7186e1b95c6aa12a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d992eefdf0c97ad083c8f5afbbb15d5e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -323,6 +323,26 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html">
  <span class="dropdown-text">Hands-on Exercise 7b: Visualising and Analysing Text Data</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html">
+ <span class="dropdown-text">Hands-on Exercise 8: Visualising and Analysing Time-Oriented Data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html">
+ <span class="dropdown-text">Hands-on Exercise 9a: Choropleth Mapping with R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html">
+ <span class="dropdown-text">Hands-on Exercise 9b: Visualising Geospatial Point Data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html">
+ <span class="dropdown-text">Hands-on Exercise 9c: Analytical Mapping</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html">
+ <span class="dropdown-text">Hands-on Exercise 10: Information Dashboard Design</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -532,6 +552,69 @@ ul.task-list li input[type="checkbox"] {
 
 
 </main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const exercises = [
+    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "Chapter 1", "A Layered Grammar of Graphics: ggplot2 methods"],
+    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "Chapter 2", "Beyond ggplot2 Fundamentals"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "Chapter 3", "Programming Interactive Data Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "Chapter 4", "Programming Animated Statistical Graphics with R"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "Chapter 5", "Visualising Distribution"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "Chapter 6", "Visual Statistical Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "Chapter 7", "Visualising Uncertainty"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "Chapter 8", "Funnel Plots for Fair Comparisons"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "Chapter 9", "Creating Ternary Plot with R"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "Chapter 10", "Visual Correlation Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "Chapter 11", "Heatmap for Visualising and Analysing Multivariate Data"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "Chapter 12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "Chapter 13", "Treemap Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "Chapter 14", "Modelling, Visualising and Analysing Network Data with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "Chapter 15", "Visualising and Analysing Text Data with R: tidytext methods"],
+    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "Chapter 16", "Visualising and Analysing Time-oriented Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "Chapter 17", "Choropleth Mapping with R"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "Chapter 18", "Visualising Geospatial Point Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "Chapter 19", "Analytical Mapping"],
+    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "Chapter 20", "Information Dashboard Design"]
+  ];
+
+  const marker = "Hands-on_Ex/";
+  const markerIndex = window.location.pathname.indexOf(marker);
+  if (markerIndex < 0) return;
+
+  const currentPath = window.location.pathname.slice(markerIndex);
+  const currentIndex = exercises.findIndex(([path]) => path === currentPath);
+  const main = document.querySelector("main.content");
+  if (currentIndex < 0 || !main) return;
+
+  const siteRoot = window.location.pathname.slice(0, markerIndex);
+  const nav = document.createElement("nav");
+  nav.className = "chapter-navigation";
+  nav.setAttribute("aria-label", "Hands-on exercise navigation");
+
+  const makeButton = (exercise, direction) => {
+    const [path, label, title] = exercise;
+    const link = document.createElement("a");
+    link.className = `chapter-nav-button chapter-nav-${direction}`;
+    link.href = `${siteRoot}${path}`;
+    link.innerHTML = direction === "previous"
+      ? `<span class="chapter-nav-direction">← Previous chapter</span><span class="chapter-nav-title">${label} · ${title}</span>`
+      : `<span class="chapter-nav-direction">Next chapter →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
+    return link;
+  };
+
+  if (currentIndex > 0) {
+    nav.appendChild(makeButton(exercises[currentIndex - 1], "previous"));
+  } else {
+    nav.appendChild(document.createElement("span"));
+  }
+
+  if (currentIndex < exercises.length - 1) {
+    nav.appendChild(makeButton(exercises[currentIndex + 1], "next"));
+  }
+
+  main.appendChild(nav);
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

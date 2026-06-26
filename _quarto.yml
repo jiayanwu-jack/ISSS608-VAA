@@ -79,10 +79,57 @@ website:
           - text: "Take-home Exercise 2: VAST Challenge 2026 MC1"
             href: "Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html"
             
-    right: 
+    right:
       - href: index.qmd
         text: Home
       - about.qmd
+
+  sidebar:
+    - id: handson-chapters
+      title: "Chapters"
+      style: "floating"
+      collapse-level: 1
+      contents:
+        - text: "1 · A Layered Grammar of Graphics: ggplot2 methods"
+          href: Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.qmd
+        - text: "2 · Beyond ggplot2 Fundamentals"
+          href: Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.qmd
+        - text: "3 · Programming Interactive Data Visualisation with R"
+          href: Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.qmd
+        - text: "4 · Programming Animated Statistical Graphics with R"
+          href: Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.qmd
+        - text: "5 · Visualising Distribution"
+          href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.qmd
+        - text: "6 · Visual Statistical Analysis"
+          href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.qmd
+        - text: "7 · Visualising Uncertainty"
+          href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.qmd
+        - text: "8 · Funnel Plots for Fair Comparisons"
+          href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.qmd
+        - text: "9 · Creating Ternary Plot with R"
+          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.qmd
+        - text: "10 · Visual Correlation Analysis"
+          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.qmd
+        - text: "11 · Heatmap for Visualising and Analysing Multivariate Data"
+          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.qmd
+        - text: "12 · Visual Multivariate Analysis with Parallel Coordinates Plot"
+          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.qmd
+        - text: "13 · Treemap Visualisation with R"
+          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.qmd
+        - text: "14 · Modelling, Visualising and Analysing Network Data with R"
+          href: Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.qmd
+        - text: "15 · Visualising and Analysing Text Data with R: tidytext methods"
+          href: Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.qmd
+        - text: "16 · Visualising and Analysing Time-oriented Data"
+          href: Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.qmd
+        - text: "17 · Choropleth Mapping with R"
+          href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.qmd
+        - text: "18 · Visualising Geospatial Point Data"
+          href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.qmd
+        - text: "19 · Analytical Mapping"
+          href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.qmd
+        - text: "20 · Information Dashboard Design"
+          href: Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.qmd
 
 format:
   html:
@@ -100,7 +147,7 @@ format:
     code-overflow: scroll
     grid:
       body-width: 1100px
-      sidebar-width: 250px
-      margin-width: 200px
+      sidebar-width: 290px
+      margin-width: 320px
 editor: visual
 

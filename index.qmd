@@ -1,5 +1,6 @@
 ---
 title: "ISSS608 Visual Analytics and Applications"
+sidebar: false
 ---
 
 ```{=html}
