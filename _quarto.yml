@@ -4,6 +4,9 @@ project:
 website:
   title: "ISSS608-VAA"
   description: "Visual Analytics and Applications — MITB, Singapore Management University"
+  search:
+    location: sidebar
+    type: textbox
   page-footer:
     left: "Wu Jiayan · ISSS608 Visual Analytics and Applications"
     right: "Singapore Management University · 2025"
@@ -86,50 +89,67 @@ website:
 
   sidebar:
     - id: handson-chapters
-      title: "Chapters"
-      style: "floating"
-      collapse-level: 1
+      title: "Hands-on Exercises"
+      style: "docked"
+      search: true
+      collapse-level: 2
       contents:
-        - text: "1 · A Layered Grammar of Graphics: ggplot2 methods"
-          href: Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.qmd
-        - text: "2 · Beyond ggplot2 Fundamentals"
-          href: Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.qmd
-        - text: "3 · Programming Interactive Data Visualisation with R"
-          href: Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.qmd
-        - text: "4 · Programming Animated Statistical Graphics with R"
-          href: Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.qmd
-        - text: "5 · Visualising Distribution"
-          href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.qmd
-        - text: "6 · Visual Statistical Analysis"
-          href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.qmd
-        - text: "7 · Visualising Uncertainty"
-          href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.qmd
-        - text: "8 · Funnel Plots for Fair Comparisons"
-          href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.qmd
-        - text: "9 · Creating Ternary Plot with R"
-          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.qmd
-        - text: "10 · Visual Correlation Analysis"
-          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.qmd
-        - text: "11 · Heatmap for Visualising and Analysing Multivariate Data"
-          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.qmd
-        - text: "12 · Visual Multivariate Analysis with Parallel Coordinates Plot"
-          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.qmd
-        - text: "13 · Treemap Visualisation with R"
-          href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.qmd
-        - text: "14 · Modelling, Visualising and Analysing Network Data with R"
-          href: Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.qmd
-        - text: "15 · Visualising and Analysing Text Data with R: tidytext methods"
-          href: Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.qmd
-        - text: "16 · Visualising and Analysing Time-oriented Data"
-          href: Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.qmd
-        - text: "17 · Choropleth Mapping with R"
-          href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.qmd
-        - text: "18 · Visualising Geospatial Point Data"
-          href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.qmd
-        - text: "19 · Analytical Mapping"
-          href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.qmd
-        - text: "20 · Information Dashboard Design"
-          href: Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.qmd
+        - section: "Introduction"
+          contents:
+            - text: "1 · A Layered Grammar of Graphics: ggplot2 methods"
+              href: Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.qmd
+            - text: "2 · Beyond ggplot2 Fundamentals"
+              href: Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.qmd
+        - section: "Interactivity in Visual Analytics"
+          contents:
+            - text: "3 · Programming Interactive Data Visualisation with R"
+              href: Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.qmd
+            - text: "4 · Programming Animated Statistical Graphics with R"
+              href: Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.qmd
+        - section: "Fundamentals of Visual Analytics"
+          contents:
+            - text: "5 · Visualising Distribution"
+              href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.qmd
+            - text: "6 · Visual Statistical Analysis"
+              href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.qmd
+            - text: "7 · Visualising Uncertainty"
+              href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.qmd
+            - text: "8 · Funnel Plots for Fair Comparisons"
+              href: Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.qmd
+        - section: "Visual Multivariate Analysis"
+          contents:
+            - text: "9 · Creating Ternary Plot with R"
+              href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.qmd
+            - text: "10 · Visual Correlation Analysis"
+              href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.qmd
+            - text: "11 · Heatmap for Visualising and Analysing Multivariate Data"
+              href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.qmd
+            - text: "12 · Visual Multivariate Analysis with Parallel Coordinates Plot"
+              href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.qmd
+            - text: "13 · Treemap Visualisation with R"
+              href: Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.qmd
+        - section: "Network & Text Data"
+          contents:
+            - text: "14 · Modelling, Visualising and Analysing Network Data with R"
+              href: Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.qmd
+            - text: "15 · Visualising and Analysing Text Data with R: tidytext methods"
+              href: Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.qmd
+        - section: "Time-Oriented Data"
+          contents:
+            - text: "16 · Visualising and Analysing Time-oriented Data"
+              href: Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.qmd
+        - section: "Visualising and Analysing Geographic Data"
+          contents:
+            - text: "17 · Choropleth Mapping with R"
+              href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.qmd
+            - text: "18 · Visualising Geospatial Point Data"
+              href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.qmd
+            - text: "19 · Analytical Mapping"
+              href: Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.qmd
+        - section: "Information Dashboard Design"
+          contents:
+            - text: "20 · Information Dashboard Design"
+              href: Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.qmd
 
 format:
   html:

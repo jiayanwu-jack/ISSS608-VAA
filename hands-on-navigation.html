@@ -1,26 +1,26 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const exercises = [
-    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "Chapter 1", "A Layered Grammar of Graphics: ggplot2 methods"],
-    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "Chapter 2", "Beyond ggplot2 Fundamentals"],
-    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "Chapter 3", "Programming Interactive Data Visualisation with R"],
-    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "Chapter 4", "Programming Animated Statistical Graphics with R"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "Chapter 5", "Visualising Distribution"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "Chapter 6", "Visual Statistical Analysis"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "Chapter 7", "Visualising Uncertainty"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "Chapter 8", "Funnel Plots for Fair Comparisons"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "Chapter 9", "Creating Ternary Plot with R"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "Chapter 10", "Visual Correlation Analysis"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "Chapter 11", "Heatmap for Visualising and Analysing Multivariate Data"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "Chapter 12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "Chapter 13", "Treemap Visualisation with R"],
-    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "Chapter 14", "Modelling, Visualising and Analysing Network Data with R"],
-    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "Chapter 15", "Visualising and Analysing Text Data with R: tidytext methods"],
-    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "Chapter 16", "Visualising and Analysing Time-oriented Data"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "Chapter 17", "Choropleth Mapping with R"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "Chapter 18", "Visualising Geospatial Point Data"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "Chapter 19", "Analytical Mapping"],
-    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "Chapter 20", "Information Dashboard Design"]
+    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "1", "A Layered Grammar of Graphics: ggplot2 methods"],
+    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "2", "Beyond ggplot2 Fundamentals"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "3", "Programming Interactive Data Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "4", "Programming Animated Statistical Graphics with R"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "5", "Visualising Distribution"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "6", "Visual Statistical Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "7", "Visualising Uncertainty"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "8", "Funnel Plots for Fair Comparisons"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "9", "Creating Ternary Plot with R"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "10", "Visual Correlation Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "11", "Heatmap for Visualising and Analysing Multivariate Data"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "13", "Treemap Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "14", "Modelling, Visualising and Analysing Network Data with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "15", "Visualising and Analysing Text Data with R: tidytext methods"],
+    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "16", "Visualising and Analysing Time-oriented Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "17", "Choropleth Mapping with R"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "18", "Visualising Geospatial Point Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "19", "Analytical Mapping"],
+    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "20", "Information Dashboard Design"]
   ];
 
   const marker = "Hands-on_Ex/";
@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     link.className = `chapter-nav-button chapter-nav-${direction}`;
     link.href = `${siteRoot}${path}`;
     link.innerHTML = direction === "previous"
-      ? `<span class="chapter-nav-direction">← Previous chapter</span><span class="chapter-nav-title">${label} · ${title}</span>`
-      : `<span class="chapter-nav-direction">Next chapter →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
+      ? `<span class="chapter-nav-direction">← Previous</span><span class="chapter-nav-title">${label} · ${title}</span>`
+      : `<span class="chapter-nav-direction">Next →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
     return link;
   };
 

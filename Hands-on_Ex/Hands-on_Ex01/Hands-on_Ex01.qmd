@@ -28,21 +28,21 @@ pacman::p_load(tidyverse)
 
 ### 1.2.2 Importing the data
 
--   The code chunk below imports *exam_data.csv* into R environment by using [*read_csv()*](https://readr.tidyverse.org/reference/read_delim.html) function of [**readr**](https://readr.tidyverse.org/) package.
+- The code chunk below imports *exam_data.csv* into R environment by using [*read_csv()*](https://readr.tidyverse.org/reference/read_delim.html) function of [**readr**](https://readr.tidyverse.org/) package.
 
--   **readr** is one of the tidyverse package.
+- **readr** is one of the tidyverse package.
 
 ```{r}
 exam_data <- read_csv("data/Exam_data.csv")
 ```
 
--   Year end examination grades of a cohort of primary 3 students from a local school.
+- Year end examination grades of a cohort of primary 3 students from a local school.
 
--   There are a total of seven attributes. Four of them are categorical data type and the other three are in continuous data type.
+- There are a total of seven attributes. Four of them are categorical data type and the other three are in continuous data type.
 
-    -   The categorical attributes are: ID, CLASS, GENDER and RACE.
+  - The categorical attributes are: ID, CLASS, GENDER and RACE.
 
-    -   The continuous attributes are: MATHS, ENGLISH and SCIENCE.
+  - The continuous attributes are: MATHS, ENGLISH and SCIENCE.
 
 ## 1.3 Introducing ggplot
 
@@ -54,7 +54,7 @@ It is also part of the tidyverse family specially designed for visual exploratio
 
 ![](images/clipboard-2587954059.png)
 
--   For more detail, visit [ggplot2 link](https://ggplot2.tidyverse.org/).
+- For more detail, visit [ggplot2 link](https://ggplot2.tidyverse.org/).
 
 ### 1.3.1 R Graphics VS ggplot
 
@@ -96,9 +96,9 @@ In the nutshell, Grammar of Graphics defines the rules of structuring mathematic
 
 There are two principles in Grammar of Graphics, they are:
 
--   Graphics = distinct layers of grammatical elements
+- Graphics = distinct layers of grammatical elements
 
--   Meaningful plots through aesthetic mapping
+- Meaningful plots through aesthetic mapping
 
 A good grammar of graphics will allow us to gain insight into the composition of complicated graphics, and reveal unexpected connections between seemingly different graphics (Cox 1978). It also provides a strong foundation for understanding a diverse range of graphics. Furthermore, it may also help guide us on what a well-formed or correct graphic looks like, but there will still be many grammatically correct but nonsensical graphics.
 
@@ -110,17 +110,17 @@ ggplot2 is an implementation of Leland Wilkinson’s Grammar of Graphics. Figure
 
 A short description of each building block are as follows:
 
--   **Data**: The dataset being plotted.
+- **Data**: The dataset being plotted.
 
--   **Aesthetics** take attributes of the data and use them to influence visual characteristics, such as position, colours, size, shape, or transparency.
+- **Aesthetics** take attributes of the data and use them to influence visual characteristics, such as position, colours, size, shape, or transparency.
 
--   **Geometrics**: The visual elements used for our data, such as point, bar or line. Facets split the data into subsets to create multiple variations of the same graph (paneling, multiple plots).
+- **Geometrics**: The visual elements used for our data, such as point, bar or line. Facets split the data into subsets to create multiple variations of the same graph (paneling, multiple plots).
 
--   **Statistics**: statiscal transformations that summarise data (e.g. mean, confidence intervals).
+- **Statistics**: statiscal transformations that summarise data (e.g. mean, confidence intervals).
 
--   **Coordinate** **systems** define the plane on which data are mapped on the graphic.
+- **Coordinate** **systems** define the plane on which data are mapped on the graphic.
 
--   **Themes** modify all non-data components of a plot, such as main title, sub-title, y-aixs title, or legend background.
+- **Themes** modify all non-data components of a plot, such as main title, sub-title, y-aixs title, or legend background.
 
 ## 1.5 Essential Grammatical Elements in ggplot2:
 
@@ -132,13 +132,13 @@ ggplot(data=exam_data)
 
 note:
 
--   A blank canvas appears.
+- A blank canvas appears.
 
--   `ggplot()` initializes a ggplot object.
+- `ggplot()` initializes a ggplot object.
 
--   The *data* argument defines the dataset to be used for plotting.
+- The *data* argument defines the dataset to be used for plotting.
 
--   If the dataset is not already a data.frame, it will be converted to one by `fortify()`.
+- If the dataset is not already a data.frame, it will be converted to one by `fortify()`.
 
 ## 1.6 Essential Grammatical Elements in ggplot2: [Aesthetic mappings](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
 
@@ -158,25 +158,25 @@ note: ggplot includes the x-axis and the axis’s label.
 
 Geometric objects are the actual marks we put on a plot. Examples include:
 
--   *geom_point* for drawing individual points (e.g., a scatter plot)
+- *geom_point* for drawing individual points (e.g., a scatter plot)
 
--   *geom_line* for drawing lines (e.g., for a line charts)
+- *geom_line* for drawing lines (e.g., for a line charts)
 
--   *geom_smooth* for drawing smoothed lines (e.g., for simple trends or approximations)
+- *geom_smooth* for drawing smoothed lines (e.g., for simple trends or approximations)
 
--   *geom_bar* for drawing bars (e.g., for bar charts)
+- *geom_bar* for drawing bars (e.g., for bar charts)
 
--   *geom_histogram* for drawing binned values (e.g. a histogram)
+- *geom_histogram* for drawing binned values (e.g. a histogram)
 
--   *geom_polygon* for drawing arbitrary shapes
+- *geom_polygon* for drawing arbitrary shapes
 
--   *geom_map* for drawing polygons in the shape of a map! (You can access the data to use for these maps by using the map_data() function).
+- *geom_map* for drawing polygons in the shape of a map! (You can access the data to use for these maps by using the map_data() function).
 
 ![](images/clipboard-3829529658.png)
 
--   A plot must have at least one geom; there is no upper limit. You can add a geom to a plot using the **+** operator.
+- A plot must have at least one geom; there is no upper limit. You can add a geom to a plot using the **+** operator.
 
--   For complete list, please refer to [here](https://ggplot2.tidyverse.org/reference/#section-layer-geoms).
+- For complete list, please refer to [here](https://ggplot2.tidyverse.org/reference/#section-layer-geoms).
 
 ### 1.7.1 Geometric Objects: geom_bar
 
@@ -206,9 +206,9 @@ Note:
 
 The code chunk below performs the following two steps:
 
--   `scale_y_continuous()` is used to turn off the y-axis, and
+- `scale_y_continuous()` is used to turn off the y-axis, and
 
--   *binwidth argument* is used to change the binwidth to 2.5.
+- *binwidth argument* is used to change the binwidth to 2.5.
 
 ```{r}
 ggplot(data=exam_data, 
@@ -235,11 +235,11 @@ Note that the default bin is **30**.
 
 In the code chunk below,
 
--   *bins* argument is used to change the number of bins to 20,
+- *bins* argument is used to change the number of bins to 20,
 
--   *fill* argument is used to shade the histogram with light blue color, and
+- *fill* argument is used to shade the histogram with light blue color, and
 
--   *color* argument is used to change the outline colour of the bars in black
+- *color* argument is used to change the outline colour of the bars in black
 
 ```{r}
 ggplot(data=exam_data, 
@@ -251,7 +251,7 @@ ggplot(data=exam_data,
 
 ### 1.7.5 Modifying a geometric object by changing aes()
 
--   The code chunk below changes the interior colour of the histogram (i.e. *fill*) by using sub-group of *aesthetic()*.
+- The code chunk below changes the interior colour of the histogram (i.e. *fill*) by using sub-group of *aesthetic()*.
 
 ```{r}
 ggplot(data=exam_data, 
@@ -353,17 +353,17 @@ ggplot(data=exam_data,
 
 The [Statistics functions](https://ggplot2.tidyverse.org/reference/index.html#stats) statistically transform data, usually as some form of summary. For example:
 
--   frequency of values of a variable (bar graph)
+- frequency of values of a variable (bar graph)
 
-    -   a mean
+  - a mean
 
-    -   a confidence limit
+  - a confidence limit
 
--   There are two ways to use these functions:
+- There are two ways to use these functions:
 
-    -   add a `stat_()` function and override the default geom, or
+  - add a `stat_()` function and override the default geom, or
 
-    -   add a `geom_()` function and override the default stat.
+  - add a `geom_()` function and override the default stat.
 
 ### 1.8.1 Working with stat()
 
@@ -463,10 +463,10 @@ ggplot(data=exam_data,
 
 The Coordinates functions map the position of objects onto the plane of the plot. There are a number of different possible coordinate systems to use, they are:
 
--   [`coord_cartesian()`](https://ggplot2.tidyverse.org/reference/coord_cartesian.html): the default cartesian coordinate systems, where you specify x and y values (e.g. allows you to zoom in or out).
--   [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html): a cartesian system with the x and y flipped.
--   [`coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html): a cartesian system with a "fixed" aspect ratio (e.g. 1.78 for a "widescreen" plot).
--   [`coord_quickmap()`](https://ggplot2.tidyverse.org/reference/coord_map.html): a coordinate system that approximates a good aspect ratio for maps.
+- [`coord_cartesian()`](https://ggplot2.tidyverse.org/reference/coord_cartesian.html): the default cartesian coordinate systems, where you specify x and y values (e.g. allows you to zoom in or out).
+- [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html): a cartesian system with the x and y flipped.
+- [`coord_fixed()`](https://ggplot2.tidyverse.org/reference/coord_fixed.html): a cartesian system with a "fixed" aspect ratio (e.g. 1.78 for a "widescreen" plot).
+- [`coord_quickmap()`](https://ggplot2.tidyverse.org/reference/coord_map.html): a coordinate system that approximates a good aspect ratio for maps.
 
 ### 1.10.1 Working with Coordinate
 
@@ -550,14 +550,14 @@ ggplot(data=exam_data,
 
 ## 1.12 Reference
 
--   Hadley Wickham (2023) ggplot2: Elegant Graphics for Data Analysis. Online 3rd edition.
+- Hadley Wickham (2023) ggplot2: Elegant Graphics for Data Analysis. Online 3rd edition.
 
--   Winston Chang (2013) R Graphics Cookbook 2nd edition. Online version.
+- Winston Chang (2013) R Graphics Cookbook 2nd edition. Online version.
 
--   Healy, Kieran (2019) Data Visualization: A practical introduction. Online version
+- Healy, Kieran (2019) Data Visualization: A practical introduction. Online version
 
--   Learning ggplot2 on Paper – Components
+- Learning ggplot2 on Paper – Components
 
--   Learning ggplot2 on Paper – Layer
+- Learning ggplot2 on Paper – Layer
 
--   Learning ggplot2 on Paper – Scale
+- Learning ggplot2 on Paper – Scale
