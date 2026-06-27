@@ -12,9 +12,9 @@ execute:
   fig-height: 6
 ---
 
-# **15  Visualising and Analysing Text Data with R: tidytext methods**
+# 15  Visualising and Analysing Text Data with R: tidytext methods
 
-## **15.1 Learning Outcome**
+## 15.1 Learning Outcome
 
 Learning Objectives:
 
@@ -32,9 +32,9 @@ Learning Objectives:
 
 -   visualising texts and terms relationship.
 
-## **15.2 Getting Started**
+## 15.2 Getting Started
 
-### **15.2.1 Installing and launching R packages**
+### 15.2.1 Installing and launching R packages
 
 In this hands-on exercise, the following R packages for handling, processing, wrangling, analysing and visualising text data will be used:
 
@@ -57,15 +57,15 @@ pacman::p_load(tidytext, widyr, wordcloud, DT, ggwordcloud, textplot, lubridate,
                tidyverse, tidygraph, ggraph, igraph)
 ```
 
-## **15.3 Importing Multiple Text Files from Multiple Folders**
+## 15.3 Importing Multiple Text Files from Multiple Folders
 
-### **15.3.1 Creating a folder list**
+### 15.3.1 Creating a folder list
 
 ```{r}
 news20 <- "data/20news/"
 ```
 
-### **15.3.2 Define a function to read all files from a folder into a data frame**
+### 15.3.2 Define a function to read all files from a folder into a data frame
 
 ```{r}
 read_folder <- function(infolder) {
@@ -79,9 +79,9 @@ read_folder <- function(infolder) {
 }
 ```
 
-## **15.4 Importing Multiple Text Files from Multiple Folders**
+## 15.4 Importing Multiple Text Files from Multiple Folders
 
-### **15.4.1 Reading in all the messages from the 20news folder**
+### 15.4.1 Reading in all the messages from the 20news folder
 
 ```{r}
 raw_text <- tibble(folder = 
@@ -110,7 +110,7 @@ Things to learn from the code chunk above:**
 
 -   [`read_rds()`](https://readr.tidyverse.org/reference/read_rds.html) is used to save the extracted and combined data frame as rds file for future use.
 
-## **15.5 Initial EDA**
+## 15.5 Initial EDA
 
 Code chunk below presents the frequency of messages by newsgroup.
 
@@ -123,7 +123,7 @@ raw_text %>%
   labs(y = NULL)
 ```
 
-## **15.6 Introducing tidytext**
+## 15.6 Introducing tidytext
 
 -   Using tidy data principles in processing, analysing and visualising text data.
 
@@ -133,7 +133,7 @@ Figure below shows the workflow using tidytext approach for processing and visua
 
 ![](images/clipboard-120512561.png)
 
-### **15.6.1 Removing header and automated email signitures**
+### 15.6.1 Removing header and automated email signitures
 
 Notice that each message has some structure and extra text that we don’t want to include in the analysis. For example, every message has a header, containing field such as “from:” or “in_reply_to:” that describe the message. Some also have automated email signatures, which occur after a line like “–”.
 
@@ -152,7 +152,7 @@ cleaned_text <- raw_text %>%
 
 -   [`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) from **stringr** is used to detect the presence or absence of a pattern in a string.
 
-### **15.6.2 Removing lines with nested text representing quotes from other users.**
+### 15.6.2 Removing lines with nested text representing quotes from other users.
 
 In this code chunk below, regular expressions are used to remove with nested text representing quotes from other users.
 
@@ -173,7 +173,7 @@ cleaned_text <- cleaned_text %>%
 
 -   [`filter()`](https://dplyr.tidyverse.org/reference/filter.html) of **dplyr** package is used to subset a data frame, retaining all rows that satisfy the specified conditions.
 
-### **15.6.3 Text Data Processing**
+### 15.6.3 Text Data Processing
 
 In this code chunk below, [`unnest_tokens()`](https://www.rdocumentation.org/packages/tidytext/versions/0.3.1/topics/unnest_tokens) of **tidytext** package is used to split the dataset into tokens, while [`stop_words()`](https://rdrr.io/cran/tidytext/man/stop_words.html) is used to remove stop-words.
 
@@ -201,7 +201,7 @@ words_by_newsgroup <- usenet_words %>%
 words_by_newsgroup
 ```
 
-### **15.6.4 Visualising Words in newsgroups**
+### 15.6.4 Visualising Words in newsgroups
 
 In this code chunk below, `wordcloud()` of **wordcloud** package is used to plot a static wordcloud.
 
@@ -226,7 +226,7 @@ DT::datatable(
 )
 ```
 
-### **15.6.5 Visualising Words in newsgroups**
+### 15.6.5 Visualising Words in newsgroups
 
 The wordcloud below is plotted by using [**ggwordcloud**](https://lepennec.github.io/ggwordcloud/) package.
 
@@ -243,13 +243,13 @@ words_by_newsgroup %>%
   facet_wrap(~newsgroup)
 ```
 
-## **15.7 Basic Concept of TF-IDF**
+## 15.7 Basic Concept of TF-IDF
 
 -   [tf–idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), short for term frequency–inverse document frequency, is a numerical statistic that is intended to reflect how important a word is to a document in a collection of [corpus](https://en.wikipedia.org/wiki/Text_corpus).
 
 ![](images/clipboard-508796412.png)
 
-### **15.7.1 Computing tf-idf within newsgroups**
+### 15.7.1 Computing tf-idf within newsgroups
 
 The code chunk below uses *bind_tf_idf()* of tidytext to compute and bind the term frequency, inverse document frequency and ti-idf of a tidy text dataset to the dataset.
 
@@ -259,7 +259,7 @@ tf_idf <- words_by_newsgroup %>%
   arrange(desc(tf_idf))
 ```
 
-### **15.7.2 Visualising tf-idf as interactive table**
+### 15.7.2 Visualising tf-idf as interactive table
 
 Table below is an interactive table created by using `datatable()`.
 
@@ -276,7 +276,7 @@ DT::datatable(
   DT::formatRound(columns = c("tf", "idf", "tf_idf"), digits = 3)
 ```
 
-### **15.7.3 Visualising tf-idf as interactive table**
+### 15.7.3 Visualising tf-idf as interactive table
 
 The code chunk below uses `datatable()` of DT package to create a html table that allows pagination of rows and columns.
 
@@ -300,7 +300,7 @@ DT::datatable(tf_idf, filter = 'top') %>%
 
 To learn more about customising DT’s table, visit this [link](https://rstudio.github.io/DT/functions.html).
 
-### **15.7.4 Visualising tf-idf within newsgroups**
+### 15.7.4 Visualising tf-idf within newsgroups
 
 Facet bar charts technique is used to visualise the tf-idf values of science related newsgroup.
 
@@ -325,7 +325,7 @@ tf_idf %>%
        y = NULL)
 ```
 
-### **15.7.5 Counting and correlating pairs of words with the widyr package**
+### 15.7.5 Counting and correlating pairs of words with the widyr package
 
 -   To count the number of times that two words appear within the same document, or to see how correlated they are.
 
@@ -348,7 +348,7 @@ newsgroup_cors <- words_by_newsgroup %>%
 newsgroup_cors
 ```
 
-### **15.7.6 Visualising correlation as a network**
+### 15.7.6 Visualising correlation as a network
 
 Now, we can visualise the relationship between newgroups in network graph as shown below.
 
@@ -372,7 +372,7 @@ newsgroup_cors %>%
   theme_void()
 ```
 
-### **15.7.7 Bigram**
+### 15.7.7 Bigram
 
 In this code chunk below, a bigram data frame is created by using `unnest_tokens()` of tidytext.
 
@@ -385,7 +385,7 @@ bigrams <- cleaned_text %>%
 bigrams
 ```
 
-### **15.7.8 Counting bigrams**
+### 15.7.8 Counting bigrams
 
 The code chunk is used to count and sort the bigram data frame ascendingly.
 
@@ -396,7 +396,7 @@ bigrams_count <- bigrams %>%
 bigrams_count
 ```
 
-### **15.7.9 Cleaning bigram**
+### 15.7.9 Cleaning bigram
 
 The code chunk below is used to seperate the bigram into two words.
 
@@ -412,7 +412,7 @@ bigrams_filtered <- bigrams_separated %>%
 bigrams_separated
 ```
 
-### **15.7.10 Counting the bigram again**
+### 15.7.10 Counting the bigram again
 
 ```{r}
 bigram_counts <- bigrams_filtered %>% 
@@ -420,7 +420,7 @@ bigram_counts <- bigrams_filtered %>%
 bigram_counts
 ```
 
-### **15.7.11 Create a network graph from bigram data frame**
+### 15.7.11 Create a network graph from bigram data frame
 
 In the code chunk below, a network graph is created by using `graph_from_data_frame()` of **igraph** package.
 
@@ -431,7 +431,7 @@ bigram_graph <- bigram_counts %>%
 bigram_graph
 ```
 
-### **15.7.12 Visualizing a network of bigrams with ggraph**
+### 15.7.12 Visualizing a network of bigrams with ggraph
 
 In this code chunk below, **ggraph** package is used to plot the bigram.
 
@@ -448,7 +448,7 @@ ggraph(bigram_graph, layout = "fr") +
                  hjust = 1)
 ```
 
-### **15.7.13 Revised version**
+### 15.7.13 Revised version
 
 ```{r}
 #| code-fold: true
@@ -474,7 +474,7 @@ ggraph(bigram_graph,
   theme_void()
 ```
 
-## **15.8 References**
+## 15.8 References
 
 #### 15.8.0.1 widyr
 

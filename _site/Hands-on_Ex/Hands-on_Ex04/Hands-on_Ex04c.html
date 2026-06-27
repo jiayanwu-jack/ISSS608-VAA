@@ -81,22 +81,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d992eefdf0c97ad083c8f5afbbb15d5e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-49bba0804858afe7429ce09893f9b4ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-b7f7b225a8555b5ccdeae8108dd9e254.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-49bba0804858afe7429ce09893f9b4ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -148,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -321,7 +320,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">ISSS608-VAA</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -494,138 +492,234 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html">7 · Visualising Uncertainty</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">Fundamentals of Visual Analytics</a></li><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html">7 · Visualising Uncertainty</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1 · A Layered Grammar of Graphics: ggplot2 methods</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2 · Beyond ggplot2 Fundamentals</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Interactivity in Visual Analytics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3 · Programming Interactive Data Visualisation with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4 · Programming Animated Statistical Graphics with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fundamentals of Visual Analytics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5 · Visualising Distribution</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6 · Visual Statistical Analysis</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">7 · Visualising Uncertainty</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">8 · Funnel Plots for Fair Comparisons</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visual Multivariate Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">9 · Creating Ternary Plot with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">10 · Visual Correlation Analysis</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 · Heatmap for Visualising and Analysing Multivariate Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">12 · Visual Multivariate Analysis with Parallel Coordinates Plot</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">13 · Treemap Visualisation with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Network &amp; Text Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">14 · Modelling, Visualising and Analysing Network Data with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">15 · Visualising and Analysing Text Data with R: tidytext methods</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Time-Oriented Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">16 · Visualising and Analysing Time-oriented Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visualising and Analysing Geographic Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">17 · Choropleth Mapping with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">18 · Visualising Geospatial Point Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">19 · Analytical Mapping</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Information Dashboard Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">20 · Information Dashboard Design</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -633,7 +727,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
   <li><a href="#visualising-uncertainty" id="toc-visualising-uncertainty" class="nav-link active" data-scroll-target="#visualising-uncertainty"><strong>7&nbsp; Visualising Uncertainty</strong></a>
@@ -670,7 +764,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">Fundamentals of Visual Analytics</a></li><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html">7 · Visualising Uncertainty</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Hands-on Exercise 4c: Visualising Uncertainty</h1>
 </div>
@@ -696,7 +790,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 6, 2026</p>
+      <p class="date-modified">June 27, 2026</p>
     </div>
   </div>
     
@@ -919,12 +1013,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="container-fluid crosstalk-bscols">
 <div class="row">
 <div class="col-xs-4">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-dcac9be24d0eb94c0ea1" style="width:100%;height:400px;"></div>
-<script type="application/json" data-for="htmlwidget-dcac9be24d0eb94c0ea1">{"x":{"data":[{"x":[1,3,4,2],"y":[76.507772020725383,60.666666666666664,57.444444444444443,69.666666666666671],"text":"","key":["1","2","3","4"],"type":"scatter","mode":"lines","opacity":0.90000000000000002,"line":{"color":"transparent"},"error_y":{"array":[2.9214818033282057,18.165794029639137,5.2713960499886028,9.7819093228264933],"arrayminus":[2.9214818033282057,18.165794029639137,5.2713960499886028,9.7819093228265004],"type":"data","width":21.333333333333353,"symmetric":false,"color":"rgba(0,0,0,1)"},"set":"SharedData14598c1f","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[1,3,4,2],"y":[76.507772020725383,60.666666666666664,57.444444444444443,69.666666666666671],"text":["Race: Chinese <br>N: 193 <br>Avg. Scores: 76.51 <br>95% CI:[ 73.59 , 79.43 ]","Race: Indian <br>N: 12 <br>Avg. Scores: 60.67 <br>95% CI:[ 42.5 , 78.83 ]","Race: Malay <br>N: 108 <br>Avg. Scores: 57.44 <br>95% CI:[ 52.17 , 62.72 ]","Race: Others <br>N: 9 <br>Avg. Scores: 69.67 <br>95% CI:[ 59.88 , 79.45 ]"],"key":["1","2","3","4"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,0,0,1)"}},"hoveron":"points","set":"SharedData14598c1f","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isNestedKey":false,"frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":47.923444344685095,"l":37.260273972602747},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"99% Confidence interval of average /<br>maths scores by race","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["Chinese","Others","Indian","Malay"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["Chinese","Others","Indian","Malay"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Race","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[40.653487469404247,81.295961157116452],"tickmode":"array","ticktext":["50","60","70","80"],"tickvals":[50,60,70,80],"categoryorder":"array","categoryarray":["50","60","70","80"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Average Scores","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative","dragmode":"zoom"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1f4030b7cdb":{"x":{},"ymin":{},"ymax":{},"type":"scatter"},"1f4066d2bab":{"x":{},"y":{},"text":{}}},"cur_data":"1f4030b7cdb","visdat":{"1f4030b7cdb":["function (y) ","x"],"1f4066d2bab":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedData14598c1f"]},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d3f3de9ec326814d7c19" style="width:100%;height:400px;"></div>
+<script type="application/json" data-for="htmlwidget-d3f3de9ec326814d7c19">{"x":{"data":[{"x":[1,3,4,2],"y":[76.507772020725383,60.666666666666664,57.444444444444443,69.666666666666671],"text":"","key":["1","2","3","4"],"type":"scatter","mode":"lines","opacity":0.90000000000000002,"line":{"color":"transparent"},"error_y":{"array":[2.9214818033282057,18.165794029639137,5.2713960499886028,9.7819093228264933],"arrayminus":[2.9214818033282057,18.165794029639137,5.2713960499886028,9.7819093228265004],"type":"data","width":21.333333333333353,"symmetric":false,"color":"rgba(0,0,0,1)"},"set":"SharedDatab9afd369","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isNestedKey":false,"frame":null},{"x":[1,3,4,2],"y":[76.507772020725383,60.666666666666664,57.444444444444443,69.666666666666671],"text":["Race: Chinese <br>N: 193 <br>Avg. Scores: 76.51 <br>95% CI:[ 73.59 , 79.43 ]","Race: Indian <br>N: 12 <br>Avg. Scores: 60.67 <br>95% CI:[ 42.5 , 78.83 ]","Race: Malay <br>N: 108 <br>Avg. Scores: 57.44 <br>95% CI:[ 52.17 , 62.72 ]","Race: Others <br>N: 9 <br>Avg. Scores: 69.67 <br>95% CI:[ 59.88 , 79.45 ]"],"key":["1","2","3","4"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,0,0,1)"}},"hoveron":"points","set":"SharedDatab9afd369","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isNestedKey":false,"frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":47.923444344685095,"l":37.260273972602747},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"99% Confidence interval of average /<br>maths scores by race","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["Chinese","Others","Indian","Malay"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["Chinese","Others","Indian","Malay"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Race","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[40.653487469404247,81.295961157116452],"tickmode":"array","ticktext":["50","60","70","80"],"tickvals":[50,60,70,80],"categoryorder":"array","categoryarray":["50","60","70","80"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Average Scores","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative","dragmode":"zoom"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"d581405717b":{"x":{},"ymin":{},"ymax":{},"type":"scatter"},"d587e871f0a":{"x":{},"y":{},"text":{}}},"cur_data":"d581405717b","visdat":{"d581405717b":["function (y) ","x"],"d587e871f0a":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedDatab9afd369"]},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="col-xs-8">
-<div id="htmlwidget-c988cc0fde8996e16c63" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c988cc0fde8996e16c63">{"x":{"crosstalkOptions":{"key":["1","2","3","4"],"group":"SharedData14598c1f"},"filter":"none","vertical":false,"data":[["Chinese","Indian","Malay","Others"],[193,12,108,9],[76.50777202072538,60.66666666666666,57.44444444444444,69.66666666666667],[15.69040284264306,23.35237318418266,21.13478478068458,10.72380529476361],[1.132357288111705,7.041005437844626,2.043176763561474,3.791437722025775]],"container":"<table class=\"compact\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>No. of pupils<\/th>\n      <th>Avg Scores<\/th>\n      <th>Std Dev<\/th>\n      <th>Std Error<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"scrollX":true,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":"RACE","targets":0},{"name":"n","targets":1},{"name":"mean","targets":2},{"name":"sd","targets":3},{"name":"se","targets":4}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
+<div id="htmlwidget-aec03a2c0f53e89bfe79" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aec03a2c0f53e89bfe79">{"x":{"crosstalkOptions":{"key":["1","2","3","4"],"group":"SharedDatab9afd369"},"filter":"none","vertical":false,"data":[["Chinese","Indian","Malay","Others"],[193,12,108,9],[76.50777202072538,60.66666666666666,57.44444444444444,69.66666666666667],[15.69040284264306,23.35237318418266,21.13478478068458,10.72380529476361],[1.132357288111705,7.041005437844626,2.043176763561474,3.791437722025775]],"container":"<table class=\"compact\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>No. of pupils<\/th>\n      <th>Avg Scores<\/th>\n      <th>Std Dev<\/th>\n      <th>Std Error<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"scrollX":true,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":"RACE","targets":0},{"name":"n","targets":1},{"name":"mean","targets":2},{"name":"sd","targets":3},{"name":"se","targets":4}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1131,26 +1225,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const exercises = [
-    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "Chapter 1", "A Layered Grammar of Graphics: ggplot2 methods"],
-    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "Chapter 2", "Beyond ggplot2 Fundamentals"],
-    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "Chapter 3", "Programming Interactive Data Visualisation with R"],
-    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "Chapter 4", "Programming Animated Statistical Graphics with R"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "Chapter 5", "Visualising Distribution"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "Chapter 6", "Visual Statistical Analysis"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "Chapter 7", "Visualising Uncertainty"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "Chapter 8", "Funnel Plots for Fair Comparisons"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "Chapter 9", "Creating Ternary Plot with R"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "Chapter 10", "Visual Correlation Analysis"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "Chapter 11", "Heatmap for Visualising and Analysing Multivariate Data"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "Chapter 12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "Chapter 13", "Treemap Visualisation with R"],
-    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "Chapter 14", "Modelling, Visualising and Analysing Network Data with R"],
-    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "Chapter 15", "Visualising and Analysing Text Data with R: tidytext methods"],
-    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "Chapter 16", "Visualising and Analysing Time-oriented Data"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "Chapter 17", "Choropleth Mapping with R"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "Chapter 18", "Visualising Geospatial Point Data"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "Chapter 19", "Analytical Mapping"],
-    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "Chapter 20", "Information Dashboard Design"]
+    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "1", "A Layered Grammar of Graphics: ggplot2 methods"],
+    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "2", "Beyond ggplot2 Fundamentals"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "3", "Programming Interactive Data Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "4", "Programming Animated Statistical Graphics with R"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "5", "Visualising Distribution"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "6", "Visual Statistical Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "7", "Visualising Uncertainty"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "8", "Funnel Plots for Fair Comparisons"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "9", "Creating Ternary Plot with R"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "10", "Visual Correlation Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "11", "Heatmap for Visualising and Analysing Multivariate Data"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "13", "Treemap Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "14", "Modelling, Visualising and Analysing Network Data with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "15", "Visualising and Analysing Text Data with R: tidytext methods"],
+    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "16", "Visualising and Analysing Time-oriented Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "17", "Choropleth Mapping with R"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "18", "Visualising Geospatial Point Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "19", "Analytical Mapping"],
+    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "20", "Information Dashboard Design"]
   ];
 
   const marker = "Hands-on_Ex/";
@@ -1173,8 +1267,8 @@ document.addEventListener("DOMContentLoaded", () => {
     link.className = `chapter-nav-button chapter-nav-${direction}`;
     link.href = `${siteRoot}${path}`;
     link.innerHTML = direction === "previous"
-      ? `<span class="chapter-nav-direction">← Previous chapter</span><span class="chapter-nav-title">${label} · ${title}</span>`
-      : `<span class="chapter-nav-direction">Next chapter →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
+      ? `<span class="chapter-nav-direction">← Previous</span><span class="chapter-nav-title">${label} · ${title}</span>`
+      : `<span class="chapter-nav-direction">Next →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
     return link;
   };
 

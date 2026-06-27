@@ -162,6 +162,7 @@ format:
     css: styles.css
     include-after-body: hands-on-navigation.html
     toc: true
+    toc-title: "Table of contents"
     code-block-bg: true
     code-block-border-left: "#31BAE9"
     code-overflow: scroll

@@ -148,14 +148,14 @@ Thing to learn from the code chunk above:
 write_rds(mpsz_pop2020, "data/rds/mpszpop2020.rds")
 ```
 
-## Choropleth Mapping Geospatial Data Using *tmap*
+## Choropleth Mapping Geospatial Data Using tmap
 
 Two approaches can be used to prepare thematic map using *tmap*, they are:
 
 - Plotting a thematic map quickly by using *qtm()*.
 - Plotting highly customisable thematic map by using tmap elements.
 
-### Plotting a choropleth map quickly by using *qtm()*
+### Plotting a choropleth map quickly by using qtm()
 
 The easiest and quickest to draw a choropleth map using **tmap** is using *qtm()*. It is concise and provides a good default visualisation in many cases.
 
@@ -172,7 +172,7 @@ Things to learn from the code chunk above:
 - *tmap_mode()* with "plot" option is used to produce a static map. For interactive mode, "view" option should be used.
 - *fill* argument is used to map the attribute (i.e. DEPENDENCY)
 
-### Creating a choropleth map by using *tmap*'s elements
+### Creating a choropleth map by using tmap's elements
 
 Despite its usefulness of drawing a choropleth map quickly and easily, the disadvantge of *qtm()* is that it makes aesthetics of individual layers harder to control. To draw a high quality cartographic choropleth map as shown in the figure below, **tmap**'s drawing elements should be used.
 
@@ -207,7 +207,7 @@ tm_shape(mpsz_pop2020) +
   tm_polygons()
 ```
 
-#### Drawing a choropleth map using *tm_polygons()*
+#### Drawing a choropleth map using tm_polygons()
 
 To draw a choropleth map showing the geographical distribution of a selected variable by planning subzone, we just need to assign the target variable such as *Dependency* to *tm_polygons()*.
 
@@ -222,7 +222,7 @@ Things to learn from *tm_polygons()*:
 - The default colour scheme used is `YlOrRd` of ColorBrewer. More detail about the colour scheme is provided in the later subsection on colour schemes.
 - By default, Missing value will be shaded in grey.
 
-#### Drawing a choropleth map using *tm_fill()* and \*tm_border()\*\*
+#### Drawing a choropleth map using tm_fill() and \tm_border()
 
 Actually, *tm_polygons()* is a wraper of *tm_fill()* and *tm_border()*. *tm_fill()* shades the polygons by using the default colour scheme and *tm_borders()* adds the borders of the shapefile onto the choropleth map.
 
@@ -254,7 +254,7 @@ Beside *alpha* argument, there are three other arguments for *tm_borders()*, the
 - *lwd* = border line width. The default is 1, and
 - *lty* = border line type. The default is "solid".
 
-### Data classification methods of **tmap**
+### Data classification methods of tmap
 
 Most choropleth maps employ some methods of data classification. The point of classification is to take a large number of observations and group them into data ranges or classes.
 
@@ -449,7 +449,7 @@ tm_shape(mpsz_pop2020)+
   tm_layout(legend.position = c("right", "bottom"))
 ```
 
-#### By defining a group-by variable in *tm_facets()*
+#### By defining a group-by variable in tm_facets()
 
 In this example, multiple small choropleth maps are created by using `tm_facets()`.
 
@@ -467,7 +467,7 @@ tm_shape(mpsz_pop2020) +
   tm_borders(alpha = 0.5)
 ```
 
-#### By creating multiple stand-alone maps with `tmap_arrange()`
+#### By creating multiple stand-alone maps with tmap_arrange()
 
 In this example, multiple small choropleth maps are created by creating multiple stand-alone maps with `tmap_arrange()`.
 
@@ -507,7 +507,7 @@ tm_shape(mpsz_pop2020[mpsz_pop2020$REGION_N=="CENTRAL REGION", ])+
 
 ## Reference
 
-### All about **tmap** package
+### All about tmap package
 
 - [tmap: Thematic Maps in R](https://www.jstatsoft.org/article/view/v084i06)
 - [tmap](https://cran.r-project.org/web/packages/tmap/index.html)

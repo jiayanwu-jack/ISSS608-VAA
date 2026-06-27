@@ -10,7 +10,7 @@ execute:
   freeze: true
 ---
 
-# **1 A Layered Grammar of Graphics: ggplot2 methods**
+# 1 A Layered Grammar of Graphics: ggplot2 methods
 
 ## 1.1 Learning Outcome
 
@@ -140,7 +140,7 @@ note:
 
 - If the dataset is not already a data.frame, it will be converted to one by `fortify()`.
 
-## 1.6 Essential Grammatical Elements in ggplot2: [Aesthetic mappings](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
+## 1.6 Essential Grammatical Elements in ggplot2: Aesthetic mappings
 
 The aesthetic mappings take attributes of the data and and use them to influence visual characteristics, such as position, colour, size, shape, or transparency. Each visual characteristic can thus encode an aspect of the data and be used to convey information.
 
@@ -219,7 +219,7 @@ ggplot(data=exam_data,
                      breaks = NULL)  
 ```
 
-### 1.7.3 Geometric Objects: **`geom_histogram()`**
+### 1.7.3 Geometric Objects: geom_histogram()
 
 In the code chunk below, [*geom_histogram()*](https://ggplot2.tidyverse.org/reference/geom_histogram.html) is used to create a simple histogram by using values in *MATHS* field of *exam_data*.
 

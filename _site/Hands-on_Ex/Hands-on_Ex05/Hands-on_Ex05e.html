@@ -81,22 +81,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d992eefdf0c97ad083c8f5afbbb15d5e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-49bba0804858afe7429ce09893f9b4ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-b7f7b225a8555b5ccdeae8108dd9e254.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-49bba0804858afe7429ce09893f9b4ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -126,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -299,7 +298,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">ISSS608-VAA</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -472,138 +470,234 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html">13 · Treemap Visualisation with R</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html">Visual Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html">13 · Treemap Visualisation with R</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1 · A Layered Grammar of Graphics: ggplot2 methods</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2 · Beyond ggplot2 Fundamentals</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Interactivity in Visual Analytics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3 · Programming Interactive Data Visualisation with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4 · Programming Animated Statistical Graphics with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fundamentals of Visual Analytics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5 · Visualising Distribution</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6 · Visual Statistical Analysis</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7 · Visualising Uncertainty</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">8 · Funnel Plots for Fair Comparisons</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visual Multivariate Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">9 · Creating Ternary Plot with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">10 · Visual Correlation Analysis</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 · Heatmap for Visualising and Analysing Multivariate Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">12 · Visual Multivariate Analysis with Parallel Coordinates Plot</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">13 · Treemap Visualisation with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Network &amp; Text Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">14 · Modelling, Visualising and Analysing Network Data with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">15 · Visualising and Analysing Text Data with R: tidytext methods</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Time-Oriented Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">16 · Visualising and Analysing Time-oriented Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visualising and Analysing Geographic Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">17 · Choropleth Mapping with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">18 · Visualising Geospatial Point Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">19 · Analytical Mapping</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Information Dashboard Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">20 · Information Dashboard Design</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -611,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
   <li><a href="#treemap-visualisation-with-r" id="toc-treemap-visualisation-with-r" class="nav-link active" data-scroll-target="#treemap-visualisation-with-r"><strong>13&nbsp; Treemap Visualisation with R</strong></a>
@@ -655,7 +749,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html">Visual Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html">13 · Treemap Visualisation with R</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Hands-on Exercise 5e: Treemap Visualisation with R</h1>
 </div>
@@ -681,7 +775,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 12, 2026</p>
+      <p class="date-modified">June 27, 2026</p>
     </div>
   </div>
     
@@ -1104,8 +1198,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">d3tree</span>(tm,<span class="at">rootname =</span> <span class="st">"Singapore"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="d3tree html-widget html-fill-item" id="htmlwidget-974baf349848fd8b8c63" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-974baf349848fd8b8c63">{"x":{"data":{"name":"Singapore","id":1,"size":null,"children":[{"name":"Central Region","color":"#006837","h":1,"id":2,"size":10825,"stdErr":10825,"vColor":20978846.5,"vColorValue":20978846.5,"vSize":10825,"w":0.4664942900237019,"x0":0,"y0":0,"children":[{"name":"Bishan","color":"#D9EF8B","h":0.2367458236356611,"id":3,"size":698,"stdErr":698,"vColor":749211.5,"vColorValue":749211.5,"vSize":698,"w":0.1270549306232422,"x0":0.1423806226439446,"y0":0.1990971324844313},{"name":"Bukit Merah","color":"#DCF090","h":0.2142894534257121,"id":4,"size":708,"stdErr":708,"vColor":689448,"vColorValue":689448,"vSize":708,"w":0.1423806226439446,"x0":0,"y0":0},{"name":"Bukit Timah","color":"#219B51","h":0.2943187066974596,"id":5,"size":1171,"stdErr":1171,"vColor":2823552.5,"vColorValue":2823552.5,"vSize":1171,"w":0.1714578824914484,"x0":0.1841964271342802,"y0":0.4358429561200924},{"name":"Downtown Core","color":"#E0F295","h":0.2031601135150858,"id":6,"size":439,"stdErr":439,"vColor":570894,"vColorValue":570894,"vSize":439,"w":0.09312032877945109,"x0":0.3733739612442507,"y0":0.2326828426050067},{"name":"Geylang","color":"#66BD63","h":0.269838337182448,"id":7,"size":1489,"stdErr":1489,"vColor":2140814.5,"vColorValue":2140814.5,"vSize":1489,"w":0.2377986983379979,"x0":0,"y0":0.730161662817552},{"name":"Kallang","color":"#A6D96A","h":0.2943187066974596,"id":8,"size":757,"stdErr":757,"vColor":1415268,"vColorValue":1415268,"vSize":757,"w":0.1108399803979731,"x0":0.3556543096257287,"y0":0.4358429561200924},{"name":"Marine Parade","color":"#ABDB6D","h":0.2031601135150857,"id":9,"size":490,"stdErr":490,"vColor":1397529.5,"vColorValue":1397529.5,"vSize":490,"w":0.1039384079770639,"x0":0.2694355532671868,"y0":0.2326828426050067},{"name":"Museum","color":"#FBFDB9","h":0.05679659937602524,"id":10,"size":28,"stdErr":28,"vColor":135893,"vColorValue":135893,"vSize":28,"w":0.02124487229887724,"x0":0.4277982726221753,"y0":0},{"name":"Newton","color":"#B0DD70","h":0.0913016132037215,"id":11,"size":268,"stdErr":268,"vColor":1306816,"vColorValue":1306816,"vSize":268,"w":0.1264954109066727,"x0":0.2694355532671868,"y0":0},{"name":"Novena","color":"#40AA59","h":0.2215535026943803,"id":12,"size":732,"stdErr":732,"vColor":2483944.5,"vColorValue":2483944.5,"vSize":732,"w":0.1423806226439446,"x0":0,"y0":0.2142894534257121},{"name":"Orchard","color":"#F3FAAF","h":0.05679659937602524,"id":13,"size":42,"stdErr":42,"vColor":251834.5,"vColorValue":251834.5,"vSize":42,"w":0.03186730844831587,"x0":0.3959309641738595,"y0":0},{"name":"Outram","color":"#FBFDB9","h":0.05679659937602528,"id":14,"size":23,"stdErr":23,"vColor":130671,"vColorValue":130671,"vSize":23,"w":0.01745114510264919,"x0":0.4490431449210526,"y0":0},{"name":"Queenstown","color":"#C9E881","h":0.269838337182448,"id":15,"size":1432,"stdErr":1432,"vColor":953979.5,"vColorValue":953979.5,"vSize":1432,"w":0.2286955916857039,"x0":0.2377986983379979,"y0":0.730161662817552},{"name":"River Valley","color":"#72C264","h":0.1990971324844313,"id":16,"size":587,"stdErr":587,"vColor":1998014,"vColorValue":1998014,"vSize":587,"w":0.1270549306232422,"x0":0.1423806226439446,"y0":0},{"name":"Rochor","color":"#E4F39A","h":0.0806145281466165,"id":17,"size":132,"stdErr":132,"vColor":520971,"vColorValue":520971,"vSize":132,"w":0.0705633258498423,"x0":0.3959309641738595,"y0":0.1520683144583902},{"name":"Singapore River","color":"#ECF7A4","h":0.09527171508236494,"id":18,"size":107,"stdErr":107,"vColor":378001,"vColorValue":378001,"vSize":107,"w":0.04839920426880209,"x0":0.3959309641738595,"y0":0.05679659937602524},{"name":"Southern Islands","color":"#F7FBB4","h":0.0952717150823649,"id":19,"size":49,"stdErr":49,"vColor":173903,"vColorValue":173903,"vSize":49,"w":0.02216412158104021,"x0":0.4443301684426615,"y0":0.05679659937602528},{"name":"Tanglin","color":"#66BD63","h":0.1413812294012852,"id":20,"size":415,"stdErr":415,"vColor":2187332,"vColorValue":2187332,"vSize":415,"w":0.1264954109066727,"x0":0.2694355532671868,"y0":0.0913016132037215},{"name":"Toa Payoh","color":"#DCF090","h":0.2943187066974596,"id":21,"size":1258,"stdErr":1258,"vColor":670769,"vColorValue":670769,"vSize":1258,"w":0.1841964271342802,"x0":0,"y0":0.4358429561200924}]},{"name":"East Region","color":"#006837","h":0.6954765751211631,"id":22,"size":3775,"stdErr":3775,"vColor":4616987.5,"vColorValue":4616987.5,"vSize":3775,"w":0.2339122015285163,"x0":0.7660877984714837,"y0":0.3045234248788369,"children":[{"name":"Bedok","color":"#006837","h":0.3334602916474981,"id":23,"size":1810,"stdErr":1810,"vColor":3529868.5,"vColorValue":3529868.5,"vSize":1810,"w":0.2339122015285163,"x0":0.7660877984714837,"y0":0.6665397083525019},{"name":"Changi","color":"#FFFFBF","h":0.001895373211904023,"id":24,"size":5,"stdErr":5,"vColor":20564,"vColorValue":20564,"vSize":5,"w":0.1136825203357421,"x0":0.8863174796642579,"y0":0.3045234248788369},{"name":"Pasir Ris","color":"#DCF090","h":0.360120910261761,"id":25,"size":950,"stdErr":950,"vColor":669171,"vColorValue":669171,"vSize":950,"w":0.113682520335742,"x0":0.8863174796642579,"y0":0.3064187980907409},{"name":"Tampines","color":"#ECF7A4","h":0.362016283473665,"id":26,"size":1010,"stdErr":1010,"vColor":397384,"vColorValue":397384,"vSize":1010,"w":0.1202296811927743,"x0":0.7660877984714837,"y0":0.3045234248788368}]},{"name":"North East Region","color":"#006837","h":0.6954765751211631,"id":27,"size":4835,"stdErr":4835,"vColor":4208661,"vColorValue":4208661,"vSize":4835,"w":0.2995935084477819,"x0":0.4664942900237019,"y0":0.3045234248788369,"children":[{"name":"Ang Mo Kio","color":"#DCF090","h":0.1240051577145652,"id":28,"size":316,"stdErr":316,"vColor":640722.5,"vColorValue":640722.5,"vSize":316,"w":0.1098160354391928,"x0":0.656271763032291,"y0":0.4273513184378841},{"name":"Hougang","color":"#99D368","h":0.4486435238475507,"id":29,"size":1875,"stdErr":1875,"vColor":1617014.5,"vColorValue":1617014.5,"vSize":1875,"w":0.1801019007180478,"x0":0.4664942900237019,"y0":0.5513564761524493},{"name":"Punggol","color":"#FBFDB9","h":0.1228278935590472,"id":30,"size":313,"stdErr":313,"vColor":126110,"vColorValue":126110,"vSize":313,"w":0.1098160354391927,"x0":0.656271763032291,"y0":0.3045234248788369},{"name":"Sengkang","color":"#EFF8AA","h":0.4486435238475507,"id":31,"size":1244,"stdErr":1244,"vColor":348343.5,"vColorValue":348343.5,"vSize":1244,"w":0.1194916077297341,"x0":0.6465961907417497,"y0":0.5513564761524493},{"name":"Serangoon","color":"#A6D96A","h":0.2468330512736124,"id":32,"size":1087,"stdErr":1087,"vColor":1476470.5,"vColorValue":1476470.5,"vSize":1087,"w":0.1897774730085891,"x0":0.4664942900237019,"y0":0.3045234248788369}]},{"name":"North Region","color":"#CEEA84","h":0.3045234248788369,"id":33,"size":1117,"stdErr":1117,"vColor":866745,"vColorValue":866745,"vSize":1117,"w":0.1580705246799801,"x0":0.8419294753200198,"y0":0,"children":[{"name":"Mandai","color":"#FFFFBF","h":0.02952717240970033,"id":34,"size":29,"stdErr":29,"vColor":62025,"vColorValue":62025,"vSize":29,"w":0.04232476595303113,"x0":0.9503778606067911,"y0":0},{"name":"Sembawang","color":"#F3FAAF","h":0.1968360902081649,"id":35,"size":286,"stdErr":286,"vColor":244075,"vColorValue":244075,"vSize":286,"w":0.06261519398680651,"x0":0.9373848060131934,"y0":0.107687334670672},{"name":"Sungei Kadut","color":"#FFFFBF","h":0.02952717240970035,"id":36,"size":5,"stdErr":5,"vColor":24359,"vColorValue":24359,"vSize":5,"w":0.007297373440177778,"x0":0.9927026265598222,"y0":0},{"name":"Woodlands","color":"#F7FBB4","h":0.1076873346706719,"id":37,"size":271,"stdErr":271,"vColor":164195,"vColorValue":164195,"vSize":271,"w":0.1084483852867712,"x0":0.8419294753200198,"y0":0},{"name":"Yishun","color":"#EFF8AA","h":0.1968360902081649,"id":38,"size":436,"stdErr":436,"vColor":313496,"vColorValue":313496,"vSize":436,"w":0.09545533069317358,"x0":0.8419294753200198,"y0":0.1076873346706719},{"name":"YISHUN","color":"#FFFFBF","h":0.07816016226097162,"id":39,"size":90,"stdErr":90,"vColor":58595,"vColorValue":58595,"vSize":90,"w":0.04962213939320891,"x0":0.9503778606067911,"y0":0.02952717240970038}]},{"name":"West Region","color":"#79C565","h":0.3045234248788369,"id":40,"size":2653,"stdErr":2653,"vColor":1919890.5,"vColorValue":1919890.5,"vSize":2653,"w":0.3754351852963181,"x0":0.4664942900237019,"y0":0,"children":[{"name":"Bukit Batok","color":"#E0F295","h":0.2045358948206935,"id":41,"size":583,"stdErr":583,"vColor":618812.5,"vColorValue":618812.5,"vSize":583,"w":0.1228336754003785,"x0":0.6316404872497867,"y0":0.09998753005814345},{"name":"Bukit Panjang","color":"#ECF7A4","h":0.09998753005814345,"id":42,"size":285,"stdErr":285,"vColor":374543.5,"vColorValue":374543.5,"vSize":285,"w":0.1228336754003785,"x0":0.6316404872497867,"y0":0},{"name":"Choa Chu Kang","color":"#FBFDB9","h":0.1320587020510166,"id":43,"size":268,"stdErr":268,"vColor":125114,"vColorValue":125114,"vSize":268,"w":0.08745531266985471,"x0":0.7544741626501652,"y0":0.03498570091650065},{"name":"Clementi","color":"#E4F39A","h":0.3045234248788369,"id":44,"size":1167,"stdErr":1167,"vColor":531398.5,"vColorValue":531398.5,"vSize":1167,"w":0.1651461972260849,"x0":0.4664942900237019,"y0":0},{"name":"Jurong East","color":"#FFFFBF","h":0.03498570091650072,"id":45,"size":71,"stdErr":71,"vColor":65122,"vColorValue":65122,"vSize":71,"w":0.08745531266985475,"x0":0.7544741626501652,"y0":0},{"name":"Jurong West","color":"#F7FBB4","h":0.1374790219113196,"id":46,"size":279,"stdErr":279,"vColor":204900,"vColorValue":204900,"vSize":279,"w":0.08745531266985471,"x0":0.7544741626501652,"y0":0.1670444029675173}]}]},"meta":{"type":"value","vSize":"Total Unit Sold","vColor":"Median Unit Price ($ psm)","stdErr":"Total Unit Sold","algorithm":"pivotSize","vpCoorX":[0.01406074240719908,0.9859392575928009],"vpCoorY":[0.08584251968503934,0.9551574803149606],"aspRatio":1.565174859378821,"range":[0,3500000],"mapping":[null,null,null],"draw":true},"options":{"id":"id","celltext":"name","valueField":"size"}},"evals":[],"jsHooks":[]}</script>
+<div class="d3tree html-widget html-fill-item" id="htmlwidget-070255598d6decf4cb5a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-070255598d6decf4cb5a">{"x":{"data":{"name":"Singapore","id":1,"size":null,"children":[{"name":"Central Region","color":"#006837","h":1,"id":2,"size":10825,"stdErr":10825,"vColor":20978846.5,"vColorValue":20978846.5,"vSize":10825,"w":0.4664942900237019,"x0":0,"y0":0,"children":[{"name":"Bishan","color":"#D9EF8B","h":0.2367458236356611,"id":3,"size":698,"stdErr":698,"vColor":749211.5,"vColorValue":749211.5,"vSize":698,"w":0.1270549306232422,"x0":0.1423806226439446,"y0":0.1990971324844313},{"name":"Bukit Merah","color":"#DCF090","h":0.2142894534257121,"id":4,"size":708,"stdErr":708,"vColor":689448,"vColorValue":689448,"vSize":708,"w":0.1423806226439446,"x0":0,"y0":0},{"name":"Bukit Timah","color":"#219B51","h":0.2943187066974596,"id":5,"size":1171,"stdErr":1171,"vColor":2823552.5,"vColorValue":2823552.5,"vSize":1171,"w":0.1714578824914484,"x0":0.1841964271342802,"y0":0.4358429561200924},{"name":"Downtown Core","color":"#E0F295","h":0.2031601135150858,"id":6,"size":439,"stdErr":439,"vColor":570894,"vColorValue":570894,"vSize":439,"w":0.09312032877945109,"x0":0.3733739612442507,"y0":0.2326828426050067},{"name":"Geylang","color":"#66BD63","h":0.269838337182448,"id":7,"size":1489,"stdErr":1489,"vColor":2140814.5,"vColorValue":2140814.5,"vSize":1489,"w":0.2377986983379979,"x0":0,"y0":0.730161662817552},{"name":"Kallang","color":"#A6D96A","h":0.2943187066974596,"id":8,"size":757,"stdErr":757,"vColor":1415268,"vColorValue":1415268,"vSize":757,"w":0.1108399803979731,"x0":0.3556543096257287,"y0":0.4358429561200924},{"name":"Marine Parade","color":"#ABDB6D","h":0.2031601135150857,"id":9,"size":490,"stdErr":490,"vColor":1397529.5,"vColorValue":1397529.5,"vSize":490,"w":0.1039384079770639,"x0":0.2694355532671868,"y0":0.2326828426050067},{"name":"Museum","color":"#FBFDB9","h":0.05679659937602524,"id":10,"size":28,"stdErr":28,"vColor":135893,"vColorValue":135893,"vSize":28,"w":0.02124487229887724,"x0":0.4277982726221753,"y0":0},{"name":"Newton","color":"#B0DD70","h":0.0913016132037215,"id":11,"size":268,"stdErr":268,"vColor":1306816,"vColorValue":1306816,"vSize":268,"w":0.1264954109066727,"x0":0.2694355532671868,"y0":0},{"name":"Novena","color":"#40AA59","h":0.2215535026943803,"id":12,"size":732,"stdErr":732,"vColor":2483944.5,"vColorValue":2483944.5,"vSize":732,"w":0.1423806226439446,"x0":0,"y0":0.2142894534257121},{"name":"Orchard","color":"#F3FAAF","h":0.05679659937602524,"id":13,"size":42,"stdErr":42,"vColor":251834.5,"vColorValue":251834.5,"vSize":42,"w":0.03186730844831587,"x0":0.3959309641738595,"y0":0},{"name":"Outram","color":"#FBFDB9","h":0.05679659937602528,"id":14,"size":23,"stdErr":23,"vColor":130671,"vColorValue":130671,"vSize":23,"w":0.01745114510264919,"x0":0.4490431449210526,"y0":0},{"name":"Queenstown","color":"#C9E881","h":0.269838337182448,"id":15,"size":1432,"stdErr":1432,"vColor":953979.5,"vColorValue":953979.5,"vSize":1432,"w":0.2286955916857039,"x0":0.2377986983379979,"y0":0.730161662817552},{"name":"River Valley","color":"#72C264","h":0.1990971324844313,"id":16,"size":587,"stdErr":587,"vColor":1998014,"vColorValue":1998014,"vSize":587,"w":0.1270549306232422,"x0":0.1423806226439446,"y0":0},{"name":"Rochor","color":"#E4F39A","h":0.0806145281466165,"id":17,"size":132,"stdErr":132,"vColor":520971,"vColorValue":520971,"vSize":132,"w":0.0705633258498423,"x0":0.3959309641738595,"y0":0.1520683144583902},{"name":"Singapore River","color":"#ECF7A4","h":0.09527171508236494,"id":18,"size":107,"stdErr":107,"vColor":378001,"vColorValue":378001,"vSize":107,"w":0.04839920426880209,"x0":0.3959309641738595,"y0":0.05679659937602524},{"name":"Southern Islands","color":"#F7FBB4","h":0.0952717150823649,"id":19,"size":49,"stdErr":49,"vColor":173903,"vColorValue":173903,"vSize":49,"w":0.02216412158104021,"x0":0.4443301684426615,"y0":0.05679659937602528},{"name":"Tanglin","color":"#66BD63","h":0.1413812294012852,"id":20,"size":415,"stdErr":415,"vColor":2187332,"vColorValue":2187332,"vSize":415,"w":0.1264954109066727,"x0":0.2694355532671868,"y0":0.0913016132037215},{"name":"Toa Payoh","color":"#DCF090","h":0.2943187066974596,"id":21,"size":1258,"stdErr":1258,"vColor":670769,"vColorValue":670769,"vSize":1258,"w":0.1841964271342802,"x0":0,"y0":0.4358429561200924}]},{"name":"East Region","color":"#006837","h":0.6954765751211631,"id":22,"size":3775,"stdErr":3775,"vColor":4616987.5,"vColorValue":4616987.5,"vSize":3775,"w":0.2339122015285163,"x0":0.7660877984714837,"y0":0.3045234248788369,"children":[{"name":"Bedok","color":"#006837","h":0.3334602916474981,"id":23,"size":1810,"stdErr":1810,"vColor":3529868.5,"vColorValue":3529868.5,"vSize":1810,"w":0.2339122015285163,"x0":0.7660877984714837,"y0":0.6665397083525019},{"name":"Changi","color":"#FFFFBF","h":0.001895373211904023,"id":24,"size":5,"stdErr":5,"vColor":20564,"vColorValue":20564,"vSize":5,"w":0.1136825203357421,"x0":0.8863174796642579,"y0":0.3045234248788369},{"name":"Pasir Ris","color":"#DCF090","h":0.360120910261761,"id":25,"size":950,"stdErr":950,"vColor":669171,"vColorValue":669171,"vSize":950,"w":0.113682520335742,"x0":0.8863174796642579,"y0":0.3064187980907409},{"name":"Tampines","color":"#ECF7A4","h":0.362016283473665,"id":26,"size":1010,"stdErr":1010,"vColor":397384,"vColorValue":397384,"vSize":1010,"w":0.1202296811927743,"x0":0.7660877984714837,"y0":0.3045234248788368}]},{"name":"North East Region","color":"#006837","h":0.6954765751211631,"id":27,"size":4835,"stdErr":4835,"vColor":4208661,"vColorValue":4208661,"vSize":4835,"w":0.2995935084477819,"x0":0.4664942900237019,"y0":0.3045234248788369,"children":[{"name":"Ang Mo Kio","color":"#DCF090","h":0.1240051577145652,"id":28,"size":316,"stdErr":316,"vColor":640722.5,"vColorValue":640722.5,"vSize":316,"w":0.1098160354391928,"x0":0.656271763032291,"y0":0.4273513184378841},{"name":"Hougang","color":"#99D368","h":0.4486435238475507,"id":29,"size":1875,"stdErr":1875,"vColor":1617014.5,"vColorValue":1617014.5,"vSize":1875,"w":0.1801019007180478,"x0":0.4664942900237019,"y0":0.5513564761524493},{"name":"Punggol","color":"#FBFDB9","h":0.1228278935590472,"id":30,"size":313,"stdErr":313,"vColor":126110,"vColorValue":126110,"vSize":313,"w":0.1098160354391927,"x0":0.656271763032291,"y0":0.3045234248788369},{"name":"Sengkang","color":"#EFF8AA","h":0.4486435238475507,"id":31,"size":1244,"stdErr":1244,"vColor":348343.5,"vColorValue":348343.5,"vSize":1244,"w":0.1194916077297341,"x0":0.6465961907417497,"y0":0.5513564761524493},{"name":"Serangoon","color":"#A6D96A","h":0.2468330512736124,"id":32,"size":1087,"stdErr":1087,"vColor":1476470.5,"vColorValue":1476470.5,"vSize":1087,"w":0.1897774730085891,"x0":0.4664942900237019,"y0":0.3045234248788369}]},{"name":"North Region","color":"#CEEA84","h":0.3045234248788369,"id":33,"size":1117,"stdErr":1117,"vColor":866745,"vColorValue":866745,"vSize":1117,"w":0.1580705246799801,"x0":0.8419294753200198,"y0":0,"children":[{"name":"Mandai","color":"#FFFFBF","h":0.02952717240970033,"id":34,"size":29,"stdErr":29,"vColor":62025,"vColorValue":62025,"vSize":29,"w":0.04232476595303113,"x0":0.9503778606067911,"y0":0},{"name":"Sembawang","color":"#F3FAAF","h":0.1968360902081649,"id":35,"size":286,"stdErr":286,"vColor":244075,"vColorValue":244075,"vSize":286,"w":0.06261519398680651,"x0":0.9373848060131934,"y0":0.107687334670672},{"name":"Sungei Kadut","color":"#FFFFBF","h":0.02952717240970035,"id":36,"size":5,"stdErr":5,"vColor":24359,"vColorValue":24359,"vSize":5,"w":0.007297373440177778,"x0":0.9927026265598222,"y0":0},{"name":"Woodlands","color":"#F7FBB4","h":0.1076873346706719,"id":37,"size":271,"stdErr":271,"vColor":164195,"vColorValue":164195,"vSize":271,"w":0.1084483852867712,"x0":0.8419294753200198,"y0":0},{"name":"Yishun","color":"#EFF8AA","h":0.1968360902081649,"id":38,"size":436,"stdErr":436,"vColor":313496,"vColorValue":313496,"vSize":436,"w":0.09545533069317358,"x0":0.8419294753200198,"y0":0.1076873346706719},{"name":"YISHUN","color":"#FFFFBF","h":0.07816016226097162,"id":39,"size":90,"stdErr":90,"vColor":58595,"vColorValue":58595,"vSize":90,"w":0.04962213939320891,"x0":0.9503778606067911,"y0":0.02952717240970038}]},{"name":"West Region","color":"#79C565","h":0.3045234248788369,"id":40,"size":2653,"stdErr":2653,"vColor":1919890.5,"vColorValue":1919890.5,"vSize":2653,"w":0.3754351852963181,"x0":0.4664942900237019,"y0":0,"children":[{"name":"Bukit Batok","color":"#E0F295","h":0.2045358948206935,"id":41,"size":583,"stdErr":583,"vColor":618812.5,"vColorValue":618812.5,"vSize":583,"w":0.1228336754003785,"x0":0.6316404872497867,"y0":0.09998753005814345},{"name":"Bukit Panjang","color":"#ECF7A4","h":0.09998753005814345,"id":42,"size":285,"stdErr":285,"vColor":374543.5,"vColorValue":374543.5,"vSize":285,"w":0.1228336754003785,"x0":0.6316404872497867,"y0":0},{"name":"Choa Chu Kang","color":"#FBFDB9","h":0.1320587020510166,"id":43,"size":268,"stdErr":268,"vColor":125114,"vColorValue":125114,"vSize":268,"w":0.08745531266985471,"x0":0.7544741626501652,"y0":0.03498570091650065},{"name":"Clementi","color":"#E4F39A","h":0.3045234248788369,"id":44,"size":1167,"stdErr":1167,"vColor":531398.5,"vColorValue":531398.5,"vSize":1167,"w":0.1651461972260849,"x0":0.4664942900237019,"y0":0},{"name":"Jurong East","color":"#FFFFBF","h":0.03498570091650072,"id":45,"size":71,"stdErr":71,"vColor":65122,"vColorValue":65122,"vSize":71,"w":0.08745531266985475,"x0":0.7544741626501652,"y0":0},{"name":"Jurong West","color":"#F7FBB4","h":0.1374790219113196,"id":46,"size":279,"stdErr":279,"vColor":204900,"vColorValue":204900,"vSize":279,"w":0.08745531266985471,"x0":0.7544741626501652,"y0":0.1670444029675173}]}]},"meta":{"type":"value","vSize":"Total Unit Sold","vColor":"Median Unit Price ($ psm)","stdErr":"Total Unit Sold","algorithm":"pivotSize","vpCoorX":[0.01406074240719908,0.9859392575928009],"vpCoorY":[0.08584251968503934,0.9551574803149606],"aspRatio":1.565174859378821,"range":[0,3500000],"mapping":[null,null,null],"draw":true},"options":{"id":"id","celltext":"name","valueField":"size"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -1118,26 +1212,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const exercises = [
-    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "Chapter 1", "A Layered Grammar of Graphics: ggplot2 methods"],
-    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "Chapter 2", "Beyond ggplot2 Fundamentals"],
-    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "Chapter 3", "Programming Interactive Data Visualisation with R"],
-    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "Chapter 4", "Programming Animated Statistical Graphics with R"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "Chapter 5", "Visualising Distribution"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "Chapter 6", "Visual Statistical Analysis"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "Chapter 7", "Visualising Uncertainty"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "Chapter 8", "Funnel Plots for Fair Comparisons"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "Chapter 9", "Creating Ternary Plot with R"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "Chapter 10", "Visual Correlation Analysis"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "Chapter 11", "Heatmap for Visualising and Analysing Multivariate Data"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "Chapter 12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "Chapter 13", "Treemap Visualisation with R"],
-    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "Chapter 14", "Modelling, Visualising and Analysing Network Data with R"],
-    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "Chapter 15", "Visualising and Analysing Text Data with R: tidytext methods"],
-    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "Chapter 16", "Visualising and Analysing Time-oriented Data"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "Chapter 17", "Choropleth Mapping with R"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "Chapter 18", "Visualising Geospatial Point Data"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "Chapter 19", "Analytical Mapping"],
-    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "Chapter 20", "Information Dashboard Design"]
+    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "1", "A Layered Grammar of Graphics: ggplot2 methods"],
+    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "2", "Beyond ggplot2 Fundamentals"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "3", "Programming Interactive Data Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "4", "Programming Animated Statistical Graphics with R"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "5", "Visualising Distribution"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "6", "Visual Statistical Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "7", "Visualising Uncertainty"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "8", "Funnel Plots for Fair Comparisons"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "9", "Creating Ternary Plot with R"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "10", "Visual Correlation Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "11", "Heatmap for Visualising and Analysing Multivariate Data"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "13", "Treemap Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "14", "Modelling, Visualising and Analysing Network Data with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "15", "Visualising and Analysing Text Data with R: tidytext methods"],
+    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "16", "Visualising and Analysing Time-oriented Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "17", "Choropleth Mapping with R"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "18", "Visualising Geospatial Point Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "19", "Analytical Mapping"],
+    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "20", "Information Dashboard Design"]
   ];
 
   const marker = "Hands-on_Ex/";
@@ -1160,8 +1254,8 @@ document.addEventListener("DOMContentLoaded", () => {
     link.className = `chapter-nav-button chapter-nav-${direction}`;
     link.href = `${siteRoot}${path}`;
     link.innerHTML = direction === "previous"
-      ? `<span class="chapter-nav-direction">← Previous chapter</span><span class="chapter-nav-title">${label} · ${title}</span>`
-      : `<span class="chapter-nav-direction">Next chapter →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
+      ? `<span class="chapter-nav-direction">← Previous</span><span class="chapter-nav-title">${label} · ${title}</span>`
+      : `<span class="chapter-nav-direction">Next →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
     return link;
   };
 

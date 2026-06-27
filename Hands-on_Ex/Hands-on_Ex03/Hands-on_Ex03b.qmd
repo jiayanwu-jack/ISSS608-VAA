@@ -10,9 +10,9 @@ execute:
   freeze: true
 ---
 
-# **4 Programming Animated Statistical Graphics with R**
+# 4 Programming Animated Statistical Graphics with R
 
-## **4.1 Overview**
+## 4.1 Overview
 
 When telling a visually-driven data story, animated graphics tends to attract the interest of the audience and make deeper impression than static graphics. The following sections demonstrates how to:
 
@@ -20,21 +20,21 @@ When telling a visually-driven data story, animated graphics tends to attract th
 2.  reshape data by using **tidyr** package
 3.  process, wrangle and transform data by using **dplyr** package
 
-### **4.1.1 Basic concepts of animation**
+### 4.1.1 Basic concepts of animation
 
 When creating animations, the plot does not actually move. Instead, many individual plots are built and then stitched together as movie frames, just like an old-school flip book or cartoon. Each frame is a different plot when conveying motion, which is built using some relevant subset of the aggregate data. The subset drives the flow of the animation when stitched back together.
 
 ![](images/clipboard-1859662484.png)
 
-### **4.1.2 Terminology**
+### 4.1.2 Terminology
 
 1.  **Frame**: In an animated line graph, each frame represents a different point in time or a different category. When the frame changes, the data points on the graph are updated to reflect the new data.
 
 2.  **Animation Attributes**: The animation attributes are the settings that control how the animation behaves, such as specify the duration of each frame, the easing function used to transition between frames, and whether to start the animation from the current frame or from the beginning.
 
-## **4.2 Getting Started**
+## 4.2 Getting Started
 
-### **4.2.1 Loading the R packages**
+### 4.2.1 Loading the R packages
 
 The code chunk below install and load the following R packages:
 
@@ -53,7 +53,7 @@ pacman::p_load(readxl, gifski, gapminder,
                plotly, gganimate, tidyverse)
 ```
 
-### **4.2.2 Importing the data**
+### 4.2.2 Importing the data
 
 Following code chunk import Data worksheet from GlobalPopulation Excel workbook.
 
@@ -77,7 +77,7 @@ Key knowledge:
 
 `mutate_each_()` was deprecated in dplyr 0.7.0. and `funs()` was deprecated in dplyr 0.8.0, therefore `mutate_at()`, [`across()`](https://dplyr.tidyverse.org/reference/across.html) is used instead.
 
-## **4.3 Animated Data Visualisation: gganimate methods**
+## 4.3 Animated Data Visualisation: gganimate methods
 
 [**gganimate**](https://gganimate.com/) extends the grammar of graphics as implemented by ggplot2 to include the description of animation. It does this by providing a range of new grammar classes that can be added to the plot object in order to customise how it should change with time.
 
@@ -91,7 +91,7 @@ Key knowledge:
 
 -   `ease_aes()` defines how different aesthetics should be eased during transitions.
 
-### **4.3.1 Building a static population bubble plot**
+### 4.3.1 Building a static population bubble plot
 
 The code chunk below creates a static bubble plot using the basic ggplot2 functions.
 
@@ -108,7 +108,7 @@ ggplot(globalPop, aes(x = Old, y = Young,
        y = '% Young') 
 ```
 
-### **4.3.2 Building the animated bubble plot**
+### 4.3.2 Building the animated bubble plot
 
 In the code chunk below,
 
@@ -131,11 +131,11 @@ ggplot(globalPop, aes(x = Old, y = Young,
   ease_aes('linear')          
 ```
 
-## **4.4 Animated Data Visualisation: plotly**
+## 4.4 Animated Data Visualisation: plotly
 
 In **Plotly R** package, both `ggplotly()` and `plot_ly()` support key frame animations through the `frame` argument/aesthetic. They also support an `ids` argument/aesthetic to ensure smooth transitions between objects with the same id (which helps facilitate object constancy).
 
-### **4.4.1 Building an animated bubble plot: `ggplotly()` method**
+### 4.4.1 Building an animated bubble plot: ggplotly() method
 
 This section demonstrates creating an animated bubble plot by using `ggplotly()` method.
 
@@ -189,7 +189,7 @@ The animated bubble plot above includes a play/pause button and a slider compone
 
 Use  `theme(legend.position='none')` instead of `show.legend = FALSE`  to hide legend.
 
-### **4.4.2 Building an animated bubble plot: `plot_ly()`**
+### 4.4.2 Building an animated bubble plot: plot_ly()
 
 Following code chunk creates an animated bubble plot by using `plot_ly()` method.
 
@@ -235,7 +235,7 @@ bp
 ```
 :::
 
-## **4.5 Reference**
+## 4.5 Reference
 
 -   [Getting Started](https://gganimate.com/articles/gganimate.html)
 

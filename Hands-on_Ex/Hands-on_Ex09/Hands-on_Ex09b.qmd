@@ -65,7 +65,7 @@ list(sgpools)
 
 Notice that the *sgpools* data in tibble data frame and not the common R data frame.
 
-### Creating a **sf** data frame from an aspatial data frame
+### Creating a sf data frame from an aspatial data frame
 
 The code chunk below converts sgpools data frame into a simple feature data frame by using *st_as_sf()* of **sf** packages
 
@@ -161,7 +161,7 @@ tmap_mode("plot")
 
 ## Reference
 
-### All about **tmap** package
+### All about tmap package
 
 - [tmap: Thematic Maps in R](https://www.jstatsoft.org/article/view/v084i06)
 - [tmap](https://cran.r-project.org/web/packages/tmap/index.html)

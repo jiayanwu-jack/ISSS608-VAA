@@ -10,9 +10,9 @@ execute:
   freeze: true
 ---
 
-# **6  Visual Statistical Analysis**
+# 6  Visual Statistical Analysis
 
-## **6.1 Learning Outcome**
+## 6.1 Learning Outcome
 
 -   ggstatsplot package to create visual graphics with rich statistical information,
 
@@ -20,15 +20,15 @@ execute:
 
 -   parameters package to visualise model parameters
 
-## **6.2 Visual Statistical Analysis with ggstatsplot**
+## 6.2 Visual Statistical Analysis with ggstatsplot
 
 [**ggstatsplot**](https://indrajeetpatil.github.io/ggstatsplot/index.html) is an extension of [**ggplot2**](https://ggplot2.tidyverse.org/) package for creating graphics with details from statistical tests included in the information-rich plots themselves.
 
 \- To provide alternative statistical inference methods by default. - To follow best practices for statistical reporting.
 
-## **6.3 Preparation**
+## 6.3 Preparation
 
-### **6.3.1 Installing and launching R packages**
+### 6.3.1 Installing and launching R packages
 
 **ggstatsplot** and **tidyverse** will be used for the following sections
 
@@ -36,13 +36,13 @@ execute:
 pacman::p_load(ggstatsplot, tidyverse)
 ```
 
-### **6.3.2 Importing data**
+### 6.3.2 Importing data
 
 ```{r}
 exam <- read_csv("data/Exam_data.csv")
 ```
 
-### **6.3.3 One-sample test: *gghistostats()* method**
+### 6.3.3 One-sample test: gghistostats() method
 
 In the code chunk below, [*gghistostats()*](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html) is used to to build an visual of one-sample test on English scores.
 
@@ -60,7 +60,7 @@ gghistostats(
 
 Default information: - statistical details - Bayes Factor - sample sizes - distribution summary
 
-### **6.3.4 Unpacking the Bayes Factor**
+### 6.3.4 Unpacking the Bayes Factor
 
 -   A Bayes factor is the ratio of the likelihood of one particular hypothesis to the likelihood of another. It can be interpreted as a measure of the strength of evidence in favor of one theory among two competing theories.
 
@@ -72,13 +72,13 @@ Default information: - statistical details - Bayes Factor - sample sizes - distr
 
 -   The [**Schwarz criterion**](https://www.statisticshowto.com/bayesian-information-criterion/) is one of the easiest ways to calculate rough approximation of the Bayes Factor.
 
-### **6.3.5 How to interpret Bayes Factor**
+### 6.3.5 How to interpret Bayes Factor
 
 A **Bayes Factor** can be any positive number. Following is one of the most common interpretations:
 
 ![](images/clipboard-1307896440.png){width="592"}
 
-### **6.3.6 Two-sample mean test: *ggbetweenstats()***
+### 6.3.6 Two-sample mean test: ggbetweenstats()
 
 In the code chunk below, [*ggbetweenstats()*](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html) is used to build a visual for two-sample mean test of Maths scores by gender.
 
@@ -94,7 +94,7 @@ ggbetweenstats(
 
 Default information: - statistical details - Bayes Factor - sample sizes - distribution summary
 
-### **6.3.7 Oneway ANOVA Test: *ggbetweenstats()* method**
+### 6.3.7 Oneway ANOVA Test: ggbetweenstats() method
 
 In the code chunk below, [*ggbetweenstats()*](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html) is used to build a visual for One-way ANOVA test on English score by race.
 
@@ -124,7 +124,7 @@ ggbetweenstats(
 
 ![](images/clipboard-3020069380.png)
 
-### **6.3.8 Significant Test of Correlation: *ggscatterstats()***
+### 6.3.8 Significant Test of Correlation: ggscatterstats()
 
 In the code chunk below, [*ggscatterstats()*](https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html) is used to build a visual for Significant Test of Correlation between Maths scores and English scores.
 
@@ -137,7 +137,7 @@ ggscatterstats(
   )
 ```
 
-### **6.3.9 Significant Test of Association (Depedence) : *ggbarstats()* methods**
+### 6.3.9 Significant Test of Association (Depedence) : ggbarstats() methods
 
 In the code chunk below, the Maths scores is binned into a 4-class variable by using [*cut()*](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cut).
 

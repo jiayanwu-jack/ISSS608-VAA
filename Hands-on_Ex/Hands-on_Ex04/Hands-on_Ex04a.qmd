@@ -10,15 +10,15 @@ execute:
   freeze: true
 ---
 
-# **5  Visualising Distribution**
+# 5  Visualising Distribution
 
-## **5.1 Learning Outcome**
+## 5.1 Learning Outcome
 
 This chapter introduces two relatively new statistical graphic methods for visualising distribution: ridgeline plot and raincloud plot by using ggplot2 and its extensions.
 
-## **5.2 Preparation**
+## 5.2 Preparation
 
-### **5.2.1 Installing and loading the packages**
+### 5.2.1 Installing and loading the packages
 
 The code chunk below will load following R packages into RStudio environment:
 
@@ -37,7 +37,7 @@ pacman::p_load(ggdist, ggridges, ggthemes,
                colorspace, tidyverse)
 ```
 
-### **5.2.2 Data import**
+### 5.2.2 Data import
 
 Code chunk below uses [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) of [**readr**](https://readr.tidyverse.org/) package to import *Exam_data.csv* into R and saved it into a tibble data.frame.
 
@@ -45,7 +45,7 @@ Code chunk below uses [`read_csv()`](https://readr.tidyverse.org/reference/read
 exam <- read_csv("data/Exam_data.csv")
 ```
 
-## **5.3 Visualising Distribution with Ridgeline Plot**
+## 5.3 Visualising Distribution with Ridgeline Plot
 
 [*Ridgeline plot*](https://www.data-to-viz.com/graph/ridgeline.html) (sometimes called *Joyplot*) is a data visualisation technique for revealing the distribution of a numeric value for several groups. Distribution can be represented using histograms or density plots, all aligned to the same horizontal scale and presented with a slight overlap.
 
@@ -57,7 +57,7 @@ Figure below is a ridgelines plot showing the distribution of English score by c
 
 -   It works well when there is a clear pattern in the result, like if there is an obvious ranking in groups. Otherwise group will tend to overlap each other, leading to a messy plot not providing any insight.
 
-### **5.3.1 Plotting ridgeline graph: ggridges method**
+### 5.3.1 Plotting ridgeline graph: ggridges method
 
 This section demonstrates how to plot ridgeline plot by using [ggridges](https://wilkelab.org/ggridges/index.html) package.
 
@@ -111,7 +111,7 @@ ggplot(exam,
 ```
 :::
 
-### **5.3.2 Varying fill colors along the x axis**
+### 5.3.2 Varying fill colors along the x axis
 
 Effect of gradient color can be achieved by using either [`geom_ridgeline_gradient()`](https://wilkelab.org/ggridges/reference/geom_ridgeline_gradient.html) or [`geom_density_ridges_gradient()`](https://wilkelab.org/ggridges/reference/geom_ridgeline_gradient.html). Both geoms work just like `geom_ridgeline()` and `geom_density_ridges()`, except that they allow for varying fill colors. However, they do not allow for alpha transparency in the fill. For technical reasons, we can have changing fill colors or transparency but not both.
 
@@ -159,7 +159,7 @@ ggplot(exam,
 ```
 :::
 
-### **5.3.3 Mapping the probabilities directly onto colour**
+### 5.3.3 Mapping the probabilities directly onto colour
 
 Code chunk below maps the probabilities calculated by using `stat(ecdf)` which represent the empirical cumulative density function for the distribution of English score.
 
@@ -195,7 +195,7 @@ ggplot(exam,
 ```
 :::
 
-### **5.3.4 Ridgeline plots with quantile lines**
+### 5.3.4 Ridgeline plots with quantile lines
 
 [`geom_density_ridges_gradient()`](https://wilkelab.org/ggridges/reference/geom_ridgeline_gradient.html), can be used to colour the ridgeline plot by quantile, via the calculated `stat(quantile)` aesthetic as shown in the figure below.
 
@@ -285,13 +285,13 @@ ggplot(exam,
 ```
 :::
 
-## **5.4 Visualising Distribution with Raincloud Plot**
+## 5.4 Visualising Distribution with Raincloud Plot
 
 Raincloud Plot is a data visualisation techniques that produces a half-density to a distribution plot. It gets the name because the density plot is in the shape of a “raincloud”. The raincloud (half-density) plot enhances the traditional box-plot by highlighting multiple modalities (an indicator that groups may exist). The boxplot does not show where densities are clustered, but the raincloud plot does.
 
 This section demonstrates visualising the distribution of English score by race with raincloud plot. It will be created by using functions provided by **ggdist** and ggplot2 packages.
 
-### **5.4.1 Plotting a Half Eye graph**
+### 5.4.1 Plotting a Half Eye graph
 
 First, plot a Half-Eye graph by using [`stat_halfeye()`](https://mjskay.github.io/ggdist/reference/stat_halfeye.html) of **ggdist** package.
 
@@ -329,7 +329,7 @@ Knowledge point:
 
 Slab interval was removed by setting .width = 0 and point_colour = NA.
 
-### **5.4.2 Adding the boxplot with `geom_boxplot()`**
+### 5.4.2 Adding the boxplot with geom_boxplot()
 
 Next, add the second geometry layer using [`geom_boxplot()`](https://r4va.netlify.app/chap09) of ggplot2. This produces a narrow boxplot. We reduce the width and adjust the opacity.
 
@@ -365,7 +365,7 @@ ggplot(exam,
 ```
 :::
 
-### **5.4.3 Adding the Dot Plots with `stat_dots()`**
+### 5.4.3 Adding the Dot Plots with stat_dots()
 
 Next, add the third geometry layer using [`stat_dots()`](https://mjskay.github.io/ggdist/reference/stat_dots.html) of ggdist package. This produces a half-dotplot, which is similar to a histogram that indicates the number of samples (number of dots) in each bin. We select side = “left” to indicate we want it on the left-hand side.
 
@@ -409,7 +409,7 @@ ggplot(exam,
 ```
 :::
 
-### **5.4.4 Finishing touch**
+### 5.4.4 Finishing touch
 
 Lastly, [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html) of ggplot2 package will be used to flip the raincloud chart horizontally to give it the raincloud appearance. At the same time, `theme_economist()` of ggthemes package is used to give the raincloud chart a professional publishing standard look.
 

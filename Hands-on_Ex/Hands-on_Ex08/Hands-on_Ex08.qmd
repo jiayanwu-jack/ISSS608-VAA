@@ -13,9 +13,9 @@ execute:
   out-width: "100%"
 ---
 
-# **16  Visualising and Analysing Time-oriented Data**
+# 16  Visualising and Analysing Time-oriented Data
 
-## **16.1 Learning Outcome**
+## 16.1 Learning Outcome
 
 Create the followings data visualisation by using R packages:
 
@@ -27,7 +27,7 @@ Create the followings data visualisation by using R packages:
 
 - plotting a horizon chart
 
-## **16.2 Getting Started**
+## 16.2 Getting Started
 
 Code chunk below check, install and launch the following R packages: scales, viridis, lubridate, ggthemes, gridExtra, readxl, knitr, data.table and tidyverse.
 
@@ -51,7 +51,7 @@ remotes::install_github("haleyjeppson/ggmosaic")
 remotes::install_github("ibecav/CGPfunctions")
 ```
 
-## **16.3 Plotting Calendar Heatmap**
+## 16.3 Plotting Calendar Heatmap
 
 This section plots a calender heatmap programmatically by using ggplot2 package.
 
@@ -65,11 +65,11 @@ Knowledge to learn:
 
 - to derive specific date and time related field by using base R and lubridate packages
 
-### **16.3.1 The Data**
+### 16.3.1 The Data
 
 For the purpose of this hands-on exercise, *eventlog.csv* file will be used. This data file consists of 199,999 rows of time-series cyber attack records by country.
 
-### **16.3.2 Importing the data**
+### 16.3.2 Importing the data
 
 First, you will use the code chunk below to import *eventlog.csv* file into R environment and called the data frame as *attacks*.
 
@@ -79,7 +79,7 @@ First, you will use the code chunk below to import *eventlog.csv* file into R en
 attacks <- read_csv("data/eventlog.csv")
 ```
 
-### **16.3.3 Examining the data structure**
+### 16.3.3 Examining the data structure
 
 It is always a good practice to examine the imported data frame before further analysis is performed.
 
@@ -97,7 +97,7 @@ There are three columns, namely *timestamp*, *source_country* and *tz*.
 
 - *tz* field stores time zone of the source IP address.
 
-### **16.3.4 Data Preparation**
+### 16.3.4 Data Preparation
 
 Step 1: Deriving *weekday* and *hour of day* fields
 
@@ -153,7 +153,7 @@ Table below shows the tidy tibble table after processing.
 kable(head(attacks))
 ```
 
-### **16.3.5 Building the Calendar Heatmaps**
+### 16.3.5 Building the Calendar Heatmaps
 
 ```{r}
 grouped <- attacks %>% 
@@ -201,7 +201,7 @@ ggplot(grouped,
 
 Then we can simply group the count by hour and wkday and plot it, since we know that we have values for every combination there’s no need to further preprocess the data.
 
-### **16.3.6 Building Multiple Calendar Heatmaps**
+### 16.3.6 Building Multiple Calendar Heatmaps
 
 Step 1: Deriving attack by country object
 
@@ -259,13 +259,13 @@ ggplot(top4_attacks,
         legend.text = element_text(size = 6) )
 ```
 
-## **16.4 Plotting Cycle Plot**
+## 16.4 Plotting Cycle Plot
 
 This section demonstrates how to plot a cycle plot showing the time-series patterns and trend of visitor arrivals from Vietnam programmatically by using ggplot2 functions.
 
 ![](images/clipboard-999480731.png)
 
-### **16.4.1 Step 1: Data Import**
+### 16.4.1 Step 1: Data Import
 
 For the purpose of this hands-on exercise, *arrivals_by_air.xlsx* will be used.
 
@@ -275,7 +275,7 @@ The code chunk below imports *arrivals_by_air.xlsx* by using `read_excel()` of *
 air <- read_excel("data/arrivals_by_air.xlsx")
 ```
 
-### **16.4.2 Step 2: Deriving month and year fields**
+### 16.4.2 Step 2: Deriving month and year fields
 
 Next, two new fields called *month* and *year* are derived from *Month-Year* field.
 
@@ -287,7 +287,7 @@ air$month <- factor(month(air$`Month-Year`),
 air$year <- year(ymd(air$`Month-Year`))
 ```
 
-### **16.4.3 Step 4: Extracting the target country**
+### 16.4.3 Step 4: Extracting the target country
 
 Next, the code chunk below is use to extract data for the target country (i.e. Vietnam)
 
@@ -299,7 +299,7 @@ Vietnam <- air %>%
   filter(year >= 2010)
 ```
 
-### **16.4.4 Step 5: Computing year average arrivals by month**
+### 16.4.4 Step 5: Computing year average arrivals by month
 
 The code chunk below uses `group_by()` and `summarise()` of **dplyr** to compute year average arrivals by month.
 
@@ -309,7 +309,7 @@ hline.data <- Vietnam %>%
   summarise(avgvalue = mean(`Vietnam`))
 ```
 
-### **16.4.5 Srep 6: Plotting the cycle plot**
+### 16.4.5 Srep 6: Plotting the cycle plot
 
 The code chunk below is used to plot the cycle plot as shown at the beginning of section 16.4.
 
@@ -333,13 +333,13 @@ ggplot() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) # Applies label tilt
 ```
 
-## **16.5 Plotting Slopegraph**
+## 16.5 Plotting Slopegraph
 
 This section demonstrates how to plot a [slopegraph](https://www.storytellingwithdata.com/blog/2020/7/27/what-is-a-slopegraph) by using R.
 
 Refer to [Using newggslopegraph](https://cran.r-project.org/web/packages/CGPfunctions/vignettes/Using-newggslopegraph.html) to learn more about the function. Lastly, read more about `newggslopegraph()` and its arguments by referring to this [link](https://www.rdocumentation.org/packages/CGPfunctions/versions/0.6.3/topics/newggslopegraph).
 
-### **16.5.1 Step 1: Data Import**
+### 16.5.1 Step 1: Data Import
 
 Import the rice data set into R environment by using the code chunk below.
 
@@ -347,7 +347,7 @@ Import the rice data set into R environment by using the code chunk below.
 rice <- read_csv("data/rice.csv")
 ```
 
-### **16.5.2 Step 2: Plotting the slopegraph**
+### 16.5.2 Step 2: Plotting the slopegraph
 
 Next, code chunk below will be used to plot a basic slopegraph as shown below.
 

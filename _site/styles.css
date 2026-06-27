@@ -630,8 +630,37 @@ h1, h2, h3, h4, h5 {
   padding-left: 0.9rem;
 }
 
-#TOC a { color: var(--color-text-muted); }
-#TOC a:hover, #TOC a.active { color: var(--color-accent); }
+#TOC a,
+#TOC .nav-link,
+#TOC strong,
+#TOC b,
+#quarto-margin-sidebar nav[role="doc-toc"] a,
+#quarto-margin-sidebar nav[role="doc-toc"] .nav-link,
+#quarto-margin-sidebar nav[role="doc-toc"] strong,
+#quarto-margin-sidebar nav[role="doc-toc"] b {
+  color: var(--color-text-muted);
+  font-weight: 400 !important;
+}
+
+#TOC a:hover,
+#TOC a.active,
+#TOC .nav-link:hover,
+#TOC .nav-link.active,
+#quarto-margin-sidebar nav[role="doc-toc"] a:hover,
+#quarto-margin-sidebar nav[role="doc-toc"] a.active,
+#quarto-margin-sidebar nav[role="doc-toc"] .nav-link:hover,
+#quarto-margin-sidebar nav[role="doc-toc"] .nav-link.active {
+  color: var(--color-accent);
+  font-weight: 400 !important;
+}
+
+#TOC a strong,
+#TOC a b,
+#quarto-margin-sidebar nav[role="doc-toc"] a strong,
+#quarto-margin-sidebar nav[role="doc-toc"] a b {
+  color: inherit !important;
+  font-weight: inherit !important;
+}
 
 /* ---- Inline muted text (about page intro) ---- */
 .page-intro {
