@@ -1,12 +1,16 @@
 ---
 title: "ISSS608 Visual Analytics and Applications"
 sidebar: false
+toc: false
+page-layout: full
 ---
 
 ```{=html}
 <style>
   #title-block-header { display: none !important; }
 </style>
+
+<div class="home-narrow">
 
 <!-- ── Hero ─────────────────────────────────── -->
 <div class="hero-section">
@@ -330,5 +334,7 @@ sidebar: false
   <div class="author-links">
     <a class="author-link" href="about.html">Resources</a>
   </div>
+</div>
+
 </div>
 ```

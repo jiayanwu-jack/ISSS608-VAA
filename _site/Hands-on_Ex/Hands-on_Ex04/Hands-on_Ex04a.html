@@ -81,22 +81,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d992eefdf0c97ad083c8f5afbbb15d5e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-a56facffba62ac4cdbd69fe23800d47c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-49bba0804858afe7429ce09893f9b4ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-b7f7b225a8555b5ccdeae8108dd9e254.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-49bba0804858afe7429ce09893f9b4ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -116,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -289,7 +288,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">ISSS608-VAA</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -462,138 +460,234 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">5 · Visualising Distribution</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">Fundamentals of Visual Analytics</a></li><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">5 · Visualising Distribution</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1 · A Layered Grammar of Graphics: ggplot2 methods</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2 · Beyond ggplot2 Fundamentals</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Interactivity in Visual Analytics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3 · Programming Interactive Data Visualisation with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4 · Programming Animated Statistical Graphics with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fundamentals of Visual Analytics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">5 · Visualising Distribution</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6 · Visual Statistical Analysis</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7 · Visualising Uncertainty</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">8 · Funnel Plots for Fair Comparisons</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visual Multivariate Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">9 · Creating Ternary Plot with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">10 · Visual Correlation Analysis</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 · Heatmap for Visualising and Analysing Multivariate Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">12 · Visual Multivariate Analysis with Parallel Coordinates Plot</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">13 · Treemap Visualisation with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Network &amp; Text Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">14 · Modelling, Visualising and Analysing Network Data with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">15 · Visualising and Analysing Text Data with R: tidytext methods</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Time-Oriented Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">16 · Visualising and Analysing Time-oriented Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visualising and Analysing Geographic Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">17 · Choropleth Mapping with R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">18 · Visualising Geospatial Point Data</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">19 · Analytical Mapping</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Information Dashboard Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">20 · Information Dashboard Design</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -634,7 +728,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">Fundamentals of Visual Analytics</a></li><li class="breadcrumb-item"><a href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html">5 · Visualising Distribution</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Hands-on Exercise 4a: Fundamentals of Visual Analytics</h1>
 </div>
@@ -1067,26 +1161,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const exercises = [
-    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "Chapter 1", "A Layered Grammar of Graphics: ggplot2 methods"],
-    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "Chapter 2", "Beyond ggplot2 Fundamentals"],
-    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "Chapter 3", "Programming Interactive Data Visualisation with R"],
-    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "Chapter 4", "Programming Animated Statistical Graphics with R"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "Chapter 5", "Visualising Distribution"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "Chapter 6", "Visual Statistical Analysis"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "Chapter 7", "Visualising Uncertainty"],
-    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "Chapter 8", "Funnel Plots for Fair Comparisons"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "Chapter 9", "Creating Ternary Plot with R"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "Chapter 10", "Visual Correlation Analysis"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "Chapter 11", "Heatmap for Visualising and Analysing Multivariate Data"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "Chapter 12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
-    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "Chapter 13", "Treemap Visualisation with R"],
-    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "Chapter 14", "Modelling, Visualising and Analysing Network Data with R"],
-    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "Chapter 15", "Visualising and Analysing Text Data with R: tidytext methods"],
-    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "Chapter 16", "Visualising and Analysing Time-oriented Data"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "Chapter 17", "Choropleth Mapping with R"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "Chapter 18", "Visualising Geospatial Point Data"],
-    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "Chapter 19", "Analytical Mapping"],
-    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "Chapter 20", "Information Dashboard Design"]
+    ["Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html", "1", "A Layered Grammar of Graphics: ggplot2 methods"],
+    ["Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html", "2", "Beyond ggplot2 Fundamentals"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03a.html", "3", "Programming Interactive Data Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03b.html", "4", "Programming Animated Statistical Graphics with R"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04a.html", "5", "Visualising Distribution"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04b.html", "6", "Visual Statistical Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04c.html", "7", "Visualising Uncertainty"],
+    ["Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04d.html", "8", "Funnel Plots for Fair Comparisons"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05a.html", "9", "Creating Ternary Plot with R"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05b.html", "10", "Visual Correlation Analysis"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05c.html", "11", "Heatmap for Visualising and Analysing Multivariate Data"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05d.html", "12", "Visual Multivariate Analysis with Parallel Coordinates Plot"],
+    ["Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05e.html", "13", "Treemap Visualisation with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07a.html", "14", "Modelling, Visualising and Analysing Network Data with R"],
+    ["Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07b.html", "15", "Visualising and Analysing Text Data with R: tidytext methods"],
+    ["Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html", "16", "Visualising and Analysing Time-oriented Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09a.html", "17", "Choropleth Mapping with R"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09b.html", "18", "Visualising Geospatial Point Data"],
+    ["Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09c.html", "19", "Analytical Mapping"],
+    ["Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html", "20", "Information Dashboard Design"]
   ];
 
   const marker = "Hands-on_Ex/";
@@ -1109,8 +1203,8 @@ document.addEventListener("DOMContentLoaded", () => {
     link.className = `chapter-nav-button chapter-nav-${direction}`;
     link.href = `${siteRoot}${path}`;
     link.innerHTML = direction === "previous"
-      ? `<span class="chapter-nav-direction">← Previous chapter</span><span class="chapter-nav-title">${label} · ${title}</span>`
-      : `<span class="chapter-nav-direction">Next chapter →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
+      ? `<span class="chapter-nav-direction">← Previous</span><span class="chapter-nav-title">${label} · ${title}</span>`
+      : `<span class="chapter-nav-direction">Next →</span><span class="chapter-nav-title">${label} · ${title}</span>`;
     return link;
   };
 

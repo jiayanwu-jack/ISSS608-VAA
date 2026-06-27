@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Rscript -e ' *)",
+      "Bash(Rscript --vanilla -e 'suppressMessages\\(library\\(shiny\\)\\); suppressMessages\\(library\\(bslib\\)\\); suppressMessages\\(library\\(DT\\)\\); cat\\('\\\\''pkgs OK\\\\n'\\\\''\\); raw <- jsonlite::fromJSON\\('\\\\''VAST_Challenge_2026_MC1/MC1_final_00.json'\\\\'', simplifyVector=FALSE\\); cat\\('\\\\''rounds:'\\\\'', length\\(raw$rounds\\), '\\\\''\\\\n'\\\\''\\)')",
+      "Bash(Rscript --vanilla -e \"p <- parse\\('app.R'\\); cat\\('OK:', length\\(p\\), '\\\\n'\\)\")",
+      "Bash(Rscript --vanilla test_app.R)",
+      "Bash(echo \"library\\(shiny\\); library\\(bslib\\); cat\\('parse OK\\\\n'\\)\")",
+      "Bash(Rscript --vanilla -e \"tryCatch\\(parse\\(file='app.R'\\), error=function\\(e\\) cat\\('PARSE ERROR:', conditionMessage\\(e\\), '\\\\n'\\), warning=function\\(w\\) cat\\('WARNING:', conditionMessage\\(w\\), '\\\\n'\\)\\); cat\\('Done\\\\n'\\)\")",
+      "Bash(del _test_syntax.R)"
+    ]
+  }
+}
