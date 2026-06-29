@@ -33,8 +33,11 @@
   --ease:       0.22s ease;
 }
 
-/* ---- Dark mode overrides ---- */
-[data-bs-theme="dark"] {
+/* ---- Dark mode overrides ----
+   Quarto's theme toggle adds `quarto-dark` to <body>; we also keep
+   [data-bs-theme="dark"] for Bootstrap-driven contexts. */
+[data-bs-theme="dark"],
+body.quarto-dark {
   --color-primary:    #e2e8f0;
   --color-accent:     #5bbfec;
   --color-accent-h:   #7ec8f0;
@@ -133,7 +136,8 @@ h1, h2, h3, h4, h5 {
   overflow: hidden;
 }
 
-[data-bs-theme="dark"] .hero-section {
+[data-bs-theme="dark"] .hero-section,
+body.quarto-dark .hero-section {
   background: linear-gradient(135deg, #060d16 0%, #0d1e30 35%, #1a2c42 65%, #0a1828 100%);
 }
 
