@@ -1,0 +1,8 @@
+Control chart weekly Sales by Category
+https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex08aControlChart/ControlchartweeklySalesbyCategory?publish=yes
+
+Slopegraph
+https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex08aControlChart/Slopegraph?publish=yes
+
+Visitor Arrival
+https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex08b_17813360100610/VisitorArrivals?publish=yes

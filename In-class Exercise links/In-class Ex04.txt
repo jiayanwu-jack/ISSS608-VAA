@@ -1,0 +1,5 @@
+In-class_Ex04a
+https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex04Showmethestatistics/EnglishScoreStatistics?publish=yes
+
+In-class_Ex04b
+https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex04Divergingstackedbarchart/FoodServiceKPIReport?publish=yes

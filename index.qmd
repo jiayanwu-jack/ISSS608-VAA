@@ -30,7 +30,7 @@ page-layout: full
       <span class="stat-label">Major Projects</span>
     </div>
     <div class="hero-stat">
-      <span class="stat-number">8</span>
+      <span class="stat-number">13</span>
       <span class="stat-label">Tableau Dashboards</span>
     </div>
     <div class="hero-stat">
@@ -291,30 +291,45 @@ page-layout: full
   <summary class="section-header">
     <div class="section-dot inclass"></div>
     <span class="section-label">In-class Exercises</span>
-    <span class="section-count">8 Tableau · 1 Shiny</span>
+    <span class="section-count">13 Tableau · 1 Shiny</span>
     <span class="section-chevron">&#8250;</span>
   </summary>
 
   <div class="section-body">
 
+    <!-- Ch 1–2 -->
     <div class="chapter-group">
-      <p class="chapter-label">Tableau Public Dashboards</p>
+      <p class="chapter-label">Chapter 1–2 · Introduction</p>
       <div class="exercise-grid">
         <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-Class_Ex02_17771004530650/Dashboard1?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 1</div>
+          <div class="ex-tag">In-class 2</div>
           <p class="ex-title">Dashboard 1 · Tableau Public</p>
           <span class="ex-arrow">↗</span>
         </a>
+      </div>
+    </div>
+
+    <!-- Ch 3 -->
+    <div class="chapter-group">
+      <p class="chapter-label">Chapter 3 · Interactivity in Visual Analytics</p>
+      <div class="exercise-grid">
         <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex03_17777052978680/SuperstoreSalesReport?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 2</div>
+          <div class="ex-tag">In-class 3a</div>
           <p class="ex-title">Superstore Sales Report</p>
           <span class="ex-arrow">↗</span>
         </a>
         <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex03b_17777067081690/AgeGroupbyGenderandPlanningArea?publish=yes" target="_blank" rel="noopener">
-          <div class="ex-tag">In-class 3</div>
+          <div class="ex-tag">In-class 3b</div>
           <p class="ex-title">Age Group by Gender and Planning Area</p>
           <span class="ex-arrow">↗</span>
         </a>
+      </div>
+    </div>
+
+    <!-- Ch 4 -->
+    <div class="chapter-group">
+      <p class="chapter-label">Chapter 4 · Fundamentals of Visual Analytics</p>
+      <div class="exercise-grid">
         <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex04Showmethestatistics/EnglishScoreStatistics?publish=yes" target="_blank" rel="noopener">
           <div class="ex-tag">In-class 4a</div>
           <p class="ex-title">English Score Statistics</p>
@@ -325,6 +340,13 @@ page-layout: full
           <p class="ex-title">Food Service KPI Report</p>
           <span class="ex-arrow">↗</span>
         </a>
+      </div>
+    </div>
+
+    <!-- Ch 5 -->
+    <div class="chapter-group">
+      <p class="chapter-label">Chapter 5 · Visual Multivariate Analysis</p>
+      <div class="exercise-grid">
         <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex05_17789148967870/Treemapofnumberofunitssoldandunitpricebygeography?publish=yes" target="_blank" rel="noopener">
           <div class="ex-tag">In-class 5a</div>
           <p class="ex-title">Treemap of Units Sold by Geography</p>
@@ -338,12 +360,57 @@ page-layout: full
       </div>
     </div>
 
+    <!-- Ch 6 -->
     <div class="chapter-group">
-      <p class="chapter-label">Shiny Application</p>
+      <p class="chapter-label">Chapter 6 · Shiny Application</p>
       <div class="exercise-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 320px));">
         <a class="exercise-card shiny" href="https://wujiayan.shinyapps.io/Shiny/" target="_blank" rel="noopener">
           <div class="ex-tag">In-class 6</div>
           <p class="ex-title">Interactive Shiny App</p>
+          <span class="ex-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Ch 8 -->
+    <div class="chapter-group">
+      <p class="chapter-label">Chapter 8 · Time-Oriented Data</p>
+      <div class="exercise-grid">
+        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex08aControlChart/ControlchartweeklySalesbyCategory?publish=yes" target="_blank" rel="noopener">
+          <div class="ex-tag">In-class 8a</div>
+          <p class="ex-title">Control Chart · Weekly Sales by Category</p>
+          <span class="ex-arrow">↗</span>
+        </a>
+        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex08aControlChart/Slopegraph?publish=yes" target="_blank" rel="noopener">
+          <div class="ex-tag">In-class 8a</div>
+          <p class="ex-title">Slopegraph</p>
+          <span class="ex-arrow">↗</span>
+        </a>
+        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex08b_17813360100610/VisitorArrivals?publish=yes" target="_blank" rel="noopener">
+          <div class="ex-tag">In-class 8b</div>
+          <p class="ex-title">Visitor Arrivals</p>
+          <span class="ex-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Ch 9 -->
+    <div class="chapter-group">
+      <p class="chapter-label">Chapter 9 · Visualising and Analysing Geographic Data</p>
+      <div class="exercise-grid">
+        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex09a/Sheet1#1" target="_blank" rel="noopener">
+          <div class="ex-tag">In-class 9a</div>
+          <p class="ex-title">Geospatial Visualisation A</p>
+          <span class="ex-arrow">↗</span>
+        </a>
+        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex09b/Sheet3#1" target="_blank" rel="noopener">
+          <div class="ex-tag">In-class 9b</div>
+          <p class="ex-title">Geospatial Visualisation B</p>
+          <span class="ex-arrow">↗</span>
+        </a>
+        <a class="exercise-card tableau" href="https://public.tableau.com/app/profile/jiayan.wu/viz/In-class_Ex09c/Sheet1#3" target="_blank" rel="noopener">
+          <div class="ex-tag">In-class 9c</div>
+          <p class="ex-title">Geospatial Visualisation C</p>
           <span class="ex-arrow">↗</span>
         </a>
       </div>
