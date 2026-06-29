@@ -108,8 +108,8 @@ website:
             href: "Take-home_Ex/Take-home_Ex02/mc1_analysis_r.html"
             
     right:
-      - href: index.qmd
-        text: Home
+      - href: tableau.qmd
+        text: "Tableau Resources"
       - about.qmd
 
   sidebar:

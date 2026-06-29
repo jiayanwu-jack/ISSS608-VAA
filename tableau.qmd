@@ -1,0 +1,210 @@
+---
+title: "Tableau Resources"
+sidebar: false
+---
+
+```{=html}
+<style>
+  .quarto-title { margin-bottom: 0.25rem; }
+</style>
+
+<p class="page-intro">
+  A curated collection of helpful links related to Tableau — official documentation,
+  white papers, inspiring blogs, webinars, and tips used throughout ISSS608 Visual
+  Analytics and Applications.
+</p>
+
+<!-- All About Tableau -->
+<div class="resource-section">
+  <div class="section-header" style="margin-top:0;">
+    <div class="section-dot" style="background: var(--color-tableau);"></div>
+    <span class="section-label">All About Tableau</span>
+  </div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="resource-icon">📊</div>
+      <div>
+        <a href="http://www.tableausoftware.com/" target="_blank" rel="noopener">Tableau Home Page</a>
+        <p class="resource-desc">The official Tableau website — product information, downloads, and the latest news.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">🎓</div>
+      <div>
+        <a href="http://www.tableausoftware.com/learn/training" target="_blank" rel="noopener">Training and Tutorials</a>
+        <p class="resource-desc">Free on-demand and live training videos covering Tableau from beginner to advanced.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">📖</div>
+      <div>
+        <a href="https://help.tableau.com/current/pro/desktop/en-us/default.htm" target="_blank" rel="noopener">Tableau Desktop User Guide</a>
+        <p class="resource-desc">The complete reference manual for building visualisations and dashboards in Tableau Desktop.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">🧹</div>
+      <div>
+        <a href="https://help.tableau.com/current/prep/en-us/prep_welcome.htm" target="_blank" rel="noopener">Tableau Prep Builder User Guide</a>
+        <p class="resource-desc">Documentation for cleaning, shaping, and combining data with Tableau Prep Builder.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">🖼️</div>
+      <div>
+        <a href="http://www.tableausoftware.com/learn/gallery" target="_blank" rel="noopener">Visual Gallery</a>
+        <p class="resource-desc">A showcase of standout visualisations and dashboards for inspiration.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">🌐</div>
+      <div>
+        <a href="https://public.tableau.com/en-us/s/" target="_blank" rel="noopener">Tableau Public</a>
+        <p class="resource-desc">The free platform for publishing and exploring interactive visualisations from the community.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- White Papers -->
+<div class="resource-section">
+  <div class="section-header">
+    <div class="section-dot" style="background: var(--color-accent);"></div>
+    <span class="section-label">White Papers</span>
+  </div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="resource-icon">📄</div>
+      <div>
+        <a href="https://www.tableau.com/learn/whitepapers/10-best-practices-building-effective-dashboards" target="_blank" rel="noopener">10 Best Practices for Building Effective Dashboards</a>
+        <p class="resource-desc">Practical, field-tested guidance for designing dashboards that communicate clearly.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">📝</div>
+      <div>
+        <a href="https://www.tableau.com/learn/articles/data-visualization-tips" target="_blank" rel="noopener">Tips for Creating Effective, Engaging Data Visualizations</a>
+        <p class="resource-desc">Core principles for turning data into clear and engaging visual stories.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Blogs that Inspired -->
+<div class="resource-section">
+  <div class="section-header">
+    <div class="section-dot inclass"></div>
+    <span class="section-label">Blogs that Inspired</span>
+  </div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="resource-icon">💡</div>
+      <div>
+        <a href="http://www.theinformationlab.co.uk/blog/" target="_blank" rel="noopener">The Information Lab</a>
+        <p class="resource-desc">Hands-on tutorials and ideas from one of the leading data consultancies.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">🎨</div>
+      <div>
+        <a href="http://dataremixed.com/" target="_blank" rel="noopener">DataRemixed</a>
+        <p class="resource-desc">Ben Jones on data visualisation, storytelling, and data literacy.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">📐</div>
+      <div>
+        <a href="https://playfairdata.com/blog/" target="_blank" rel="noopener">PlayfairData</a>
+        <p class="resource-desc">Ryan Sleeper's detailed Tableau techniques, tips, and design walkthroughs.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">📋</div>
+      <div>
+        <a href="https://www.datarevelations.com/visualizing-survey-data/" target="_blank" rel="noopener">Data Revelations — Visualizing Survey Data</a>
+        <p class="resource-desc">
+          Steve Wexler's guidance on visualising survey data. See also his
+          <a href="https://www.datarevelations.com/resources/" target="_blank" rel="noopener">resources</a>.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- From Data to Tada -->
+<div class="resource-section">
+  <div class="section-header">
+    <div class="section-dot handson"></div>
+    <span class="section-label">From Data to Tada</span>
+  </div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="resource-icon">🎥</div>
+      <div>
+        <a href="https://www.tableau.com/learn/webinars/using-data-visualization-make-better-decisions-faster" target="_blank" rel="noopener">Using Data Visualization to Make Better Decisions—Faster</a>
+        <p class="resource-desc">Webinar on how visual analytics accelerates and improves decision-making.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">🧠</div>
+      <div>
+        <a href="https://www.tableau.com/learn/webinars/breaking-down-17-key-traits-data-literacy" target="_blank" rel="noopener">17 Key Traits of Data Literacy</a>
+        <p class="resource-desc">Webinar breaking down the traits that define a data-literate organisation.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">🔄</div>
+      <div>
+        <a href="https://www.tableau.com/learn/webinars/inspiring-change-data-visualization" target="_blank" rel="noopener">Inspiring Change with Data Visualization</a>
+        <p class="resource-desc">Webinar on using visualisation to drive understanding and action.</p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-icon">🧩</div>
+      <div>
+        <a href="https://www.tableau.com/learn/webinars/5-important-elements-dashboard-design" target="_blank" rel="noopener">5 Important Elements of Dashboard Design</a>
+        <p class="resource-desc">Webinar covering the essential building blocks of a well-designed dashboard.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Tableau Tips and Tricks -->
+<div class="resource-section">
+  <div class="section-header">
+    <div class="section-dot" style="background: var(--color-takehome);"></div>
+    <span class="section-label">Tableau Tips and Tricks</span>
+  </div>
+  <div class="resource-grid">
+
+    <div class="resource-card">
+      <div class="resource-icon">▶️</div>
+      <div>
+        <a href="https://www.youtube.com/watch?v=EL1m1akHhC4" target="_blank" rel="noopener">Relationships, Joins and Unions in Tableau 2020.2</a>
+        <p class="resource-desc">YouTube video covering the data-management features introduced in Tableau 2020.2.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
