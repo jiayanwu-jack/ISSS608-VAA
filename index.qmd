@@ -422,7 +422,9 @@ page-layout: full
 
 <!-- ── Author ─────────────────────────────────── -->
 <div class="author-strip">
-  <div class="author-avatar">WJ</div>
+  <a class="author-avatar" href="https://mitb-projects.vercel.app/" target="_blank" rel="noopener" aria-label="MITB Projects">
+    <img src="images/avatar.JPEG" alt="Wu Jiayan" />
+  </a>
   <div>
     <div class="author-name">Wu Jiayan</div>
     <div class="author-meta">MITB · Singapore Management University · 2025</div>
